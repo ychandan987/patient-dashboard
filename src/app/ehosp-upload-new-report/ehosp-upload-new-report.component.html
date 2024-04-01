@@ -1,0 +1,94 @@
+<div class="row">
+  <div class="col-md-12">
+    <!--***** PRODUCT INFO *****-->
+      <div class="card form" id="form1">
+          <div class="card-header">
+              <h3>
+                  <i class="fa fa-medkit"></i> Ehospital Share Reports
+                  <!-- <a routerLink="/labtests"  class="btn btn-primary pull-right">
+                      <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+                      Go Back
+                  </a>   -->
+              </h3>
+          </div>
+          <br>
+          <form [formGroup]="reportsForm" (ngSubmit)="submit()" ngNativeValidate> 
+              <div class="row" style="padding: 50px">
+           
+                <div class="col-md-12">
+                    <div class="form-group row">
+                        <label for="example-tel-input" style="width: 150px;" class=" col-form-label">Select Previous History OR Ehospital Lab Report</label>
+                        <div class="col-8">
+                            <!-- <button class="btn btn-info">Proceed</button> -->
+                            <!-- <button routerLink="/ehosp/history/share/{{appId}}/{{doctorId}}" class="btn btn-info"> Proceed to share  </button> -->
+
+                            <a routerLink="/ehosp/history/share/{{appId}}/{{doctorId}}" class="btn btn-primary">Proceed to share</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                      <div class="form-group row">
+                          <label for="example-tel-input" style="width: 150px;" class=" col-form-label">Select Report</label>
+                          <div class="col-8">
+                                <!-- <button routerLink="/ehosp/lab/report/share/{{appId}}/{{doctorId}}" class="btn btn-info"> Proceed to share  </button> -->
+
+                                <a routerLink="/ehosp/lab/report/share/{{appId}}/{{doctorId}}" class="btn btn-primary">Proceed to share</a>
+                          </div>
+                      </div>
+                  </div>
+
+
+                  <div class="col-md-2">
+                  <!-- <h2>OR</h2> -->
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group row">
+                        <label for="example-tel-input" style="width: 150px;" class=" col-form-label">Upload Report</label>
+                        <div class="col-8">
+                            <input class="form-control" type="file" formControlName="MDoc_Path" id="example-tel-input" (change)="getFile($event.target.files)">
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              <hr>
+              <div class="row" *ngIf="selectedReports">
+                <h3 class="text-center">Selected Report:</h3><br>
+               <a href="{{selectedReports.report_path}}" target="_blank"><img src="{{selectedReports.report_path}}" width="200px" height="200px"></a>
+              </div>
+
+              <div class="row" *ngIf="selectedReports1">
+                    <h3 class="text-center">Selected Previous History:</h3><br>
+                   <a href="{{selectedReports1.doc_path}}" target="_blank"><img src="{{selectedReports1.doc_path}}" width="200px" height="200px"></a>
+                  </div>
+              <div class="row">
+                  <div class="d-block mx-auto">
+                  <button class="btn btn-primary" style="cursor:pointer;">Submit</button>
+                  </div>
+              </div>
+          </form>
+      </div> 
+      <div class="container">
+            <h2>Shared Documents</h2>           
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Doc Type</th>
+                    <th>Report</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let app of GetEhospitalReports,let i=index">
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{app.Doc_Type}}</td>
+                  <td><a href="{{app.Doc_Path}}" target="_blank"><img src="{{app.Doc_Path}}" width="50" height="50px"></a></td>
+                </tr>
+               
+              </tbody>
+            </table>
+          </div>
+  </div>
+
+ 
+</div>

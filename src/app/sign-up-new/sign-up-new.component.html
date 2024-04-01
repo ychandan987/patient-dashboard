@@ -1,0 +1,102 @@
+<section class="hero-area">
+  <div class="overlay"></div>
+  <div class="container">
+   
+      <div class="col-md-12 ">
+          <div class="contact-h-cont">
+              <div style="text-align:center;"><strong>Patient Dashboard</strong></div>
+            <h3 class="text-center"><img src="../assets/img/logo.png" class="img-fluid" alt=""></h3><br>
+            <div class="alert alert-danger" role="alert" *ngIf="errMsg!=''">
+              {{errMsg}}
+            </div>
+            <form [formGroup]="signUpForm" (ngSubmit)="signUp()" ngNativeValidate>
+             <div class="row">
+             <div class="col-md-6">
+              <div class="form-group"> 
+                <label for="username" class="required">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username" formControlName="username"
+                [ngClass]="{'is-invalid': signUpForm.controls['username'].invalid && (signUpForm.controls['username'].dirty || signUpForm.controls['username'].touched),
+                'is-valid': signUpForm.controls['username'].valid && (signUpForm.controls['username'].dirty || signUpForm.controls['username'].touched)}"  tabindex="1" required> 
+                <div class="" *ngIf="signUpForm.controls['username'].invalid && (signUpForm.controls['username'].dirty || signUpForm.controls['username'].touched)" style="color:#ff0000">
+                    Please Provide Username (6 characters long with a mix of letters,numbers & symbols)
+                </div>
+              </div> 
+              <div class="form-group">
+                <label for="fname" class="required">First Name</label>
+                <input type="text" class="form-control" id="fname" placeholder="First Name" formControlName="first_name"
+                [ngClass]="{'is-invalid': signUpForm.controls['first_name'].invalid && (signUpForm.controls['first_name'].dirty || signUpForm.controls['first_name'].touched),
+                'is-valid': signUpForm.controls['first_name'].valid && (signUpForm.controls['first_name'].dirty || signUpForm.controls['first_name'].touched)}" required> 
+                <div class="" *ngIf="signUpForm.controls['first_name'].invalid && (signUpForm.controls['first_name'].dirty || signUpForm.controls['first_name'].touched)" style="color:#ff0000">
+                  Please provide a valid First Name.
+                </div>
+              </div> 
+              
+              <div class="form-group">
+                <label for="password" class="required">Password</label>
+                <input class="form-control" type="password" id="password" formControlName="password"
+                [ngClass]="{'is-invalid': signUpForm.controls['password'].invalid && (signUpForm.controls['password'].dirty || signUpForm.controls['password'].touched),
+                'is-valid': signUpForm.controls['password'].valid && (signUpForm.controls['password'].dirty || signUpForm.controls['password'].touched)}" required> 
+                <div class="" *ngIf="signUpForm.controls['password'].invalid && (signUpForm.controls['password'].dirty || signUpForm.controls['password'].touched)" style="color:#ff0000">
+                  Please provide a valid password.
+                </div>
+              </div> 
+                
+            </div>
+            <div class="col-md-6">
+             <div class="form-group">
+                <label for="email" class="required">Email Id</label>
+                <input type="text" class="form-control" id="email" placeholder="Email Id" formControlName="email"
+                [ngClass]="{'is-invalid': signUpForm.controls['email'].invalid && (signUpForm.controls['email'].dirty || signUpForm.controls['email'].touched),
+                'is-valid': signUpForm.controls['email'].valid && (signUpForm.controls['email'].dirty || signUpForm.controls['email'].touched)}" required> 
+                <div class="" *ngIf="signUpForm.controls['email'].invalid && (signUpForm.controls['email'].dirty || signUpForm.controls['email'].touched)" style="color:#ff0000">
+                  Please provide a valid Email Id.
+                </div>
+              </div>    
+              
+              <div class="form-group">
+                <label for="lname" class="required">Last Name</label>
+                <input type="text" class="form-control" id="lname" placeholder="Last Name" formControlName="last_name"
+                [ngClass]="{'is-invalid': signUpForm.controls['last_name'].invalid && (signUpForm.controls['last_name'].dirty || signUpForm.controls['last_name'].touched),
+                'is-valid': signUpForm.controls['last_name'].valid && (signUpForm.controls['last_name'].dirty || signUpForm.controls['last_name'].touched)}" required> 
+                <div class="" *ngIf="signUpForm.controls['last_name'].invalid && (signUpForm.controls['last_name'].dirty || signUpForm.controls['last_name'].touched)" style="color:#ff0000">
+                  Please provide a valid Last Name.
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="confrmpassword" class="required">Confirm Password</label>
+                <input class="form-control" type="password"  id="confrmpassword" formControlName="confirmpassword"
+                [ngClass]="passCheck()" tabindex="6" required>  
+                <div class="" *ngIf="!matchPassword() && signUpForm.controls['confirmpassword'].touched" style="color:#ff0000">
+                  Password does not match.
+                </div>
+              </div>   
+            </div>
+            <div class="col-md-12">
+                <div class="form-group small">
+                    (Password must be 6 characters long with a mix of letters,numbers & symbols)
+                  </div>
+            <div class="form-group">
+                <label for="mobile" class="required">Mobile No.</label>
+                <!-- <input type="text" class="form-control" id="mobile" placeholder="Mobile No." formControlName="mobile_no" (keypress)="keyPress($event)"  pattern="[0-9]*" maxlength="10" minlength="10" [ngClass]="{'is-invalid': signUpForm.controls['mobile_no'].invalid && (signUpForm.controls['mobile_no'].dirty || signUpForm.controls['mobile_no'].touched),
+                'is-valid': signUpForm.controls['mobile_no'].valid && (signUpForm.controls['mobile_no'].dirty || signUpForm.controls['mobile_no'].touched)}" required>  -->
+                <input type="text" class="form-control" id="mobile" formControlName="mobile_no" title="Please provide mobile no (Starts with digit 6-9)" pattern="[0-9]*" maxlength="10" minlength="10" placeholder="Enter 10 digit mobile no" (keypress)="keyPress($event)" [ngClass]="{'is-invalid': signUpForm.controls['mobile_no'].invalid && (signUpForm.controls['mobile_no'].dirty || signUpForm.controls['mobile_no'].touched),
+                'is-valid': signUpForm.controls['mobile_no'].valid && (signUpForm.controls['mobile_no'].dirty || signUpForm.controls['mobile_no'].touched)}" required> 
+               
+                <div class="" *ngIf="signUpForm.controls['mobile_no'].invalid && (signUpForm.controls['mobile_no'].dirty || signUpForm.controls['mobile_no'].touched)" style="color:#ff0000">
+                  Please provide a valid Mobile Number (don't use prefix 0 or +91 - Enter only 10 digit cell no).
+                </div> 
+              </div> 
+
+                <div class="form-group small">
+                   By clicking on <strong>submit</strong> you are accepting the <a href="http://13.126.100.44/T&C/" target="_blank"><b>Terms and Conditions.</b></a> 
+                </div>
+              
+              <button type="submit" class="btn btn-general btn-blue" role="button" ><i fa fa-right-arrow></i>Submit</button>
+              <a routerLink="/login" class="btn btn-general btn-blue" role="button"><i fa fa-right-arrow></i>Login</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>  
+  </div>
+</section>

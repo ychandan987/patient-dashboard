@@ -1,0 +1,145 @@
+<div class="row mt-2" id="card-prof">
+  <div class="col-md-3">
+      <div class="card hovercard">
+          <div class="cardheader"></div>
+          <div class="avatar">
+            <div *ngIf="profile.profile_picture_path != '' ">
+                    <img alt="" src="{{profile.profile_picture_path}}" class="img-fluid">
+                </div>
+                  
+                  <div *ngIf="profile.profile_picture_path == '' ">
+                        <img src="./assets/img/avatar-1.jpg" alt="..." class="img-fluid" >
+                  </div>
+      </div>
+          <div class="info">
+              <div class="title">
+                  <a target="_blank" routerLink="#">Username: {{currentUser.username}}</a>
+              </div>
+              <hr>
+              <strong class="mr-5">Unique Id:</strong>    {{currentUser.unique_id}}
+            
+            </div>
+             
+    
+      </div>
+  </div>
+  <div class="col-md-9">
+      <div class="card hovercard">
+          <div class="tab" role="tabpanel"> 
+              <ul class="nav nav-tabs" role="tablist">
+                
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/profile" role="tab" data-toggle="tab"><span><i class="fa fa-user"></i></span> My Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/profile/edit" role="tab" data-toggle="tab"><span><i class="fa fa-cog"></i></span> Edit Profile</a> 
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " routerLink="/profile/healthnutritionalform" role="tab" data-toggle="tab"><span><i class="fa fa-medkit"></i></span> Health & Nutritional </a> 
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " routerLink="/profile/psychosocialform" role="tab" data-toggle="tab"><span><i class="fa fa-heartbeat"></i></span> Psychosocial </a> 
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " routerLink="/profile/initialclinicform" role="tab" data-toggle="tab"><span><i class="fa fa-hospital-o"></i></span> Initial Clinic </a> 
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" routerLink="/profile/upload-previous-history" role="tab" data-toggle="tab"><span><i class="fa fa-upload"></i></span> Upload Previous History</a> 
+                  </li>
+              </ul>
+
+              <div class="tab-content tabs">
+                <div role="tabpanel" class="tab-pane fade show active" id="edit">
+                    </div>
+                    <!-- <div class="row mx-2">
+                        
+                            <h4 class="panel-title"> Upload Degree Documents : Qualification Mark Sheet (SSC, HSC & Diploma or Graduation) 
+                                and Upload Certificates (Experience Certificate , Pharmacist Registration Certificate and Drugs Sale License copy)</h4><br>
+                        
+                        </div> -->
+                        <div class="row mt-3">
+                          <!-- <h5 class="col-12 mb-2">
+                                  Previous History Document : <br/>
+                              <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div>
+                          </h5>                                    -->
+                          <div class="col-12">
+                                  <table class="table" >
+                                      <!-- <thead>
+                                          <tr class="bg-info text-white">
+                                      <th>Previous History Document :</th> 
+                                      </thead> -->
+                                  <tbody>
+                                   <tr>
+                                     <!-- <td *ngFor="let img of upload_prev_hist">
+                                            <img src="{{img.doc_path}}" style="width:100px;height:100px;"> -->
+                                     <!-- <a href="{{img.doc_path}}" target="_blank" > Click Here to view 
+                                             <img src="./assets/img/logo-white.png" style="width:100px;height:100px;">  
+                                     </a>  -->
+                                        <!-- <div >
+                                            {{jpg_flag}} 
+                                             <span *ngIf="jpg_flag==0">show pdf</span>
+                                         </div> -->
+                                    <!-- </td> -->
+                                   </tr> 
+                                   </tbody>
+                                  </table>
+                                  <!-- <span>(Note : Create One PDF File for all degree documents to upload)</span> -->
+                           </div>                                             
+                         
+                       </div>
+                        <div class="row mt-3">
+                                <h5 class="col-12 mb-2">
+                                        Upload Previous History Document : <br/>
+                                        <h6>(Previous Health History Documents (Reports or Prescriptions) )</h6>
+                                    <div class="progress">
+                                      <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </h5>                                   
+                                <div class="col-12">
+                                        <div class="form-group">
+                                            <strong class="mr-5">Upload Document :</strong> 
+                                           <input  type="file" value="" id="example-date-input" (change)="getFile($event.target.files)">
+
+                                        </div>
+                                        <!-- <span>(Note : Create One PDF File for all degree documents to upload)</span> -->
+                                 </div>                                             
+                               
+                             </div>
+                            
+
+                                 
+         </div>
+         <div style="text-align: center;">
+                <button class="btn-blue" (click)="submit()">Submit</button>
+            </div>
+            <hr>
+            <div class="progress">
+                <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+<div class="page-header">
+    <h1>
+        Previous History Document - List
+    </h1>
+  </div>
+            <table class="table table-bordered">
+                <thead>
+                  <tr class="bg-info text-white">
+                    <th>ID</th>
+                    <th>Reports and Previous History</th>
+                    <th>Created Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let app of upload_prev_hist,let i=index">
+                    <th scope="row">{{i+1}}</th>
+                    <td scope="row"><a href="{{app.doc_path}}" target="_blank"><img src="{{app.doc_path}}" width="150px" height="150px"></a></td>
+                    <td scope="row">{{formatTime(app.created_on)}}</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
+</div> 

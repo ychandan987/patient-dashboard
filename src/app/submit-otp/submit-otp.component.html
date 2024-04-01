@@ -1,0 +1,24 @@
+<section class="hero-area">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 ">
+          <div class="contact-h-cont">
+            <h3 class="text-center"><img src="../assets/img/logo.png" class="img-fluid" alt=""></h3><br>
+            <div class="alert alert-danger" role="alert" *ngIf="errorMsg!=''">
+              {{errorMsg}}
+            </div>
+            <form [formGroup]="submitOtpForm" (ngSubmit)="submitOtp()">
+              <div class="form-group">
+                <label for="otp">Enter OTP</label>
+                <input type="text" class="form-control" placeholder="Enter OTP" formControlName="otp"
+                [ngClass]="{'is-invalid': submitOtpForm.controls['otp'].invalid && (submitOtpForm.controls['otp'].dirty || submitOtpForm.controls['otp'].touched),
+                'is-valid': submitOtpForm.controls['otp'].valid && (submitOtpForm.controls['otp'].dirty || submitOtpForm.controls['otp'].touched)}"> 
+              </div>  
+            <button type="submit" class="btn btn-general btn-blue" role="button"><i fa fa-right-arrow></i>Submit</button>
+          </form>
+          </div>
+      </div>
+    </div>  
+  </div>
+</section>

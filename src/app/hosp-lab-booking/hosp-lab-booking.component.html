@@ -1,0 +1,180 @@
+<mat-card class="card-picture">
+  <mat-card-title>
+    Book Lab Tests
+  </mat-card-title>
+  <mat-divider></mat-divider>
+
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Select Test</ng-template>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Select Tests" formControlName="tests" multiple (selectionChange)="calculateCosts()" required>
+                <!-- <mat-option *ngFor="let test of tests" [value]="test.id">{{test.test_name}}</mat-option> -->
+                <!-- <mat-optgroup *ngFor="let group of categories" [label]="group.category"> -->
+                  <mat-option *ngFor="let test of allTests" [value]="test">
+                    {{test.description}}
+                  </mat-option>
+                <!-- </mat-optgroup> -->
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <!-- <div class="col-md-6">
+            <b>Total Cost: </b>{{cost}}
+          </div> -->
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                  <mat-select placeholder="Select Consultation" formControlName="consultation_type_id" required>
+                    <mat-option *ngFor="let ct of consultationType" [value]="ct.type">{{ct.type}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                  <mat-label>Select appointment date</mat-label>
+                  <input matInput type="date" placeholder="Select an appointment date" formControlName="appointment_date" [min]="getCurrentDate()">
+                </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                  <mat-label>Select appointment time</mat-label>
+                  <!-- <input matInput type="time"  placeholder="Select appointment time" formControlName="probable_start_time"> -->
+
+                  <mat-select placeholder="Select appointment Time" formControlName="probable_start_time" required>
+                    <mat-option>Select Time</mat-option>
+                    <mat-option value="07:00-09:30">07:00-09:30</mat-option>
+                    <mat-option value="09:30-12:00">09:30-12:00</mat-option>
+                    <mat-option value="12:00-15:30">12:00-15:30</mat-option>
+                    <mat-option value="15:30-18:30">15:30-18:30</mat-option>
+                    <mat-option value="18:30-21:30">18:30-21:30</mat-option>
+                  </mat-select>
+
+
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-12">
+            <mat-form-field class="full-width">
+                <mat-label>Description</mat-label>
+              <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <button color="primary" mat-raised-button matStepperNext>Next</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Add Personal Deatils</ng-template>
+        <div class="row">
+          <!-- <div class="col-md-12">
+              <mat-form-field class="full-width">
+              </mat-form-field>
+          </div> -->
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input type="email" matInput placeholder="Email" formControlName="email" required>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Mobile" formControlName="mobile"  required>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input type="number" matInput placeholder="AltMobile"  formControlName="AltMobile">
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input type="text" matInput placeholder="AltEmail"  formControlName="AltEmail">
+            </mat-form-field>
+        </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Address" formControlName="address"  minlength="10" required>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="City" formControlName="locality"  required>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="State" formControlName="landmark" required>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Pincode" formControlName="pincode" required>
+              </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button color="primary" mat-raised-button matStepperPrevious>Back</button>
+          <button color="primary" mat-raised-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">
+      <ng-template matStepLabel>Overview</ng-template>
+      <table class="table table-hover">
+          <thead>
+              <tr class="bg-info text-white">
+                  <th>Serial No</th>
+                  <th>Test</th>
+                  <th>Cost</th>
+             </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor='let test of firstFormGroup.value.tests, let i=index'>
+              <td>{{i+1}}</td>
+              <td>{{test.description}}</td>
+              <td>{{test.price}}</td>
+              </tr>
+          </tbody>
+      </table>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <!-- <div class="col-md-12">
+        <form [formGroup]="thirdFormGroup">
+          <mat-label>Select Mode of Payment</mat-label>
+          <mat-select placeholder="Select Mode" formControlName="payment_type_id" required>
+            <mat-option value="1">Cash On Delivery</mat-option>
+            <mat-option value="2">Online</mat-option>
+          </mat-select>
+        </form>
+      </div> -->
+      <br>
+
+      <div class="col-md-12">
+        <button color="primary" mat-raised-button matStepperPrevious>Back</button>
+        <button color="accent" mat-raised-button (click)="stepper.reset()">Reset</button>
+        <button color="warn" mat-raised-button (click)="submit()">Submit</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+</mat-card>

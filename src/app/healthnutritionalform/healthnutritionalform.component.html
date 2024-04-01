@@ -1,0 +1,2609 @@
+<div class="row mt-2" id="card-prof">
+  <div class="col-md-3">
+      <div class="card hovercard">
+          <div class="cardheader"></div>
+          <div class="avatar">
+                <div *ngIf="profile.profile_picture_path != ''">
+                        <img alt="" src="{{profile.profile_picture_path}}" class="img-fluid">
+                    </div>
+                      
+                      <div *ngIf="profile.profile_picture_path == ''">
+                            <img src="./assets/img/avatar-1.jpg" alt="..." class="img-fluid" >
+                      </div>
+          </div>
+          <div class="info">
+              <div class="title">
+                  <a target="_blank" routerLink="#">Username: {{currentUser.username}}</a>
+              </div>
+              <hr>
+              <strong class="mr-5">Unique Id:</strong>    {{currentUser.unique_id}}
+            
+            </div>
+             
+    
+      </div>
+  </div>
+  <div class="col-md-9">
+      <div class="card hovercard">
+          <div class="tab" role="tabpanel"> 
+              <ul class="nav nav-tabs" role="tablist">
+                
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/profile" role="tab" data-toggle="tab"><span><i class="fa fa-user"></i></span> My Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/profile/edit" role="tab" data-toggle="tab"><span><i class="fa fa-cog"></i></span> Edit Profile</a> 
+                </li>
+                 <li class="nav-item">
+                  <a class="nav-link active" routerLink="/profile/healthnutritionalform" role="tab" data-toggle="tab"><span><i class="fa fa-medkit"></i></span> Health & Nutritional </a> 
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " routerLink="/profile/psychosocialform" role="tab" data-toggle="tab"><span><i class="fa fa-heartbeat"></i></span> Psychosocial </a> 
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " routerLink="/profile/initialclinicform" role="tab" data-toggle="tab"><span><i class="fa fa-hospital-o"></i></span> Initial Clinic </a> 
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/profile/upload-previous-history" role="tab" data-toggle="tab"><span><i class="fa fa-upload"></i></span> Upload Previous History</a> 
+                  </li>
+              </ul>
+
+            
+
+              <div class="tab-content tabs">
+                
+                <div class="row">
+                  
+                <div class="col-lg-12">
+                <div class="panel-group text-left" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne" style="border:1px solid #939293;padding:10px;">
+                          <h3 class="panel-title"> 
+                        <a data-toggle="collapse" style="color:#939293;text-align:left" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Edit Assessment Form
+                         
+                        </a>
+                      </h3>
+                
+                        </div>
+
+                        
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                              
+                              <form [formGroup]="edithealthnutassessmentform" (ngSubmit)="edithealthnutassessment()" ngNativeValidate>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="inputCity">UUID</label>
+                                   
+                                    <input class="form-control" value="{{user_uuid}}" type="text" id="example-uuid" disabled>
+                                    
+                                   
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="inputState">Prescription No.</label>
+                                    <input class="form-control" type="text" id="example-prescription_no" formControlName="prescription_no"
+                                    > 
+                                   
+                                 
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="inputZip">Membership No.</label>
+                                    <input class="form-control" type="text" id="example-membership_no" formControlName="membership_no"
+                                     > 
+                                   
+                                  </div>
+                                </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Date of Assessment</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="inputCity">Date of Assessment</label>
+                                      <input class="form-control" type="date" id="example-date_of_assessment" formControlName="date_of_assessment" value="{{date_of_assessment | date:'yyyy-MM-dd' }}"
+                                      > 
+                                     
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="inputState">Time of Assessment</label>
+                                      <input class="form-control" type="time" id="example-time_of_assessment" formControlName="time_of_assessment"
+                                     > 
+                                     
+                                   
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="inputZip">Assessment Mode</label>
+                                      <input class="form-control" type="text" id="example-mode_of_assessment" formControlName="mode_of_assessment"
+                                    > 
+                                   
+                                    </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Name</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="inputCity">First</label>
+                                      <input class="form-control" type="text" value="{{first_name}}" id="example-first_name" disabled>
+                                    
+                                    
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="inputState">Middle</label>
+                                      <input class="form-control" type="text" id="example-middle_name" formControlName="middle_name"
+                                      > 
+                                    
+                                   
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="inputZip">Last</label>
+                                      <input class="form-control" type="text" value="{{last_name}}" id="example-last_name" disabled>
+                                    
+                                   
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="inputAddress">Gender</label>
+                                    <input class="form-control" type="text" value="{{gender}}" id="example-last_name" disabled>
+                   
+                                   </div>
+                                   <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Date of Birth</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                      <label for="inputCity">Date of Birth</label>
+                                      <input class="form-control" type="date" value="{{dob}}" placeholder="DD/MM/YY" id="example-dob" value="{{dob | date:'yyyy-MM-dd' }}">
+                                   
+                                   
+                                      <!-- <input type="date" class="form-control" id="inputCity" placeholder="DD/MM/YY"> -->
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                      <label for="inputState">Age (Years)</label>
+                                      <input class="form-control" type="text" value="{{age}}" id="example-age" disabled>
+                                     
+                                    
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Address</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-group">
+                                    <!-- <label for="inputAddress2">Building, Street/Area </label> -->
+                                    <input class="form-control" type="text" value="{{address}}" id="example-address" placeholder="Building, Street/Area" disabled>
+                                     
+                                   
+                                    <!-- <input type="text" class="form-control" id="inputAddress2" placeholder="Building, Street/Area"> -->
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                      <label for="inputCity">City</label>
+                                      <input class="form-control" type="text" value="{{city}}" id="example-city" disabled>
+                                      
+                                      
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="inputState">State</label>
+                                      <input class="form-control" type="text" value="{{state}}" id="example-state" disabled>
+                                   
+                                  
+                                      <!-- <select id="inputState" class="form-control">
+                                        <option selected>Choose...</option>
+                                        <option>...</option>
+                                      </select> -->
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                      <label for="inputZip">Zip</label>
+                                      <input class="form-control" type="text" value="{{pincode}}" id="example-zip" disabled>
+                                     
+                                     
+                                    </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Contact Details</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                      <label for="inputCity">Home Phone</label>
+                                      <input class="form-control" type="text" value="{{mobile_no}}" id="example-home_telephone" disabled>
+                                    
+                                   
+                                       </div>
+                                    <div class="form-group col-md-6">
+                                      <label for="inputState">Email</label>
+                                      <input class="form-control" type="text" value="{{email}}" id="example-email" disabled>
+                                      
+                                     
+                                   
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Status</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-check" style="padding:10px;" *ngFor="let item of statusarr ; let s = index">
+                                      <input type="checkbox" [checked]="item.checked" [value]="item.name" id="item.id" (change)="toggleVisibility2($event,s)">
+                                      {{item.name}}
+                                      
+                                    </div>
+                                  
+                                  </div>
+                               
+                            
+                                    <div class="form-row">
+                                      <div class="form-group col-md-12">
+                                        <h4>Other Details</h4>
+                                        <hr>
+                                         </div>
+                                     
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="form-group col-md-4">
+                                        <label for="inputCity">Do You Have Children</label>
+                                        <input class="form-control" type="text" id="example-do_have_children" formControlName="do_have_children"
+                                      > 
+                                       
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="inputState">How Many</label>
+                                        <input class="form-control" type="text" id="example-how_many_children" formControlName="how_many_children"
+                                        > 
+                                       
+                                     
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="inputZip">Age of Children</label>
+                                        <input class="form-control" type="text" id="example-age_of_children" formControlName="age_of_children"
+                                 > 
+                                    
+                                      </div>
+                                    </div>
+                            
+                                    <div class="form-row">
+                                      <div class="form-group col-md-4">
+                                        <label for="inputCity">Height in CMS</label>
+                                        <input class="form-control" type="text" id="example-height" formControlName="height"
+                                        > 
+                                       
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="inputState">Weight in KGS</label>
+                                        <input class="form-control" type="text" id="example-weight" formControlName="weight"
+                                       > 
+                                       
+                                     
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="inputZip">BMI</label>
+                                        <input class="form-control" type="text" id="example-bmi" formControlName="bmi"
+                                       > 
+                                       
+                                      </div>
+                                    </div>
+                            
+                                    <div class="form-row">
+                                      <div class="form-group col-md-4">
+                                        <label for="inputCity">SPO2</label>
+                                        <input class="form-control" type="text" id="example-spo2" formControlName="spo2"
+                                 > 
+                                    
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="inputState">Heart Rate</label>
+                                        <input class="form-control" type="text" id="example-heart_rate" formControlName="heart_rate"
+                                       > 
+                                      
+                                     
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="inputZip">Blood Pressure (Diastolic)</label>
+                                        <input class="form-control" type="text" id="example-blood_pressure_diastolic" formControlName="blood_pressure_diastolic"
+                                   > 
+                                  
+                                      </div>
+                                    </div>
+                            
+                                    <div class="form-row">
+                                      <div class="form-group col-md-4">
+                                        <label for="inputCity">Blood Pressure (Systolic)</label>
+                                        <input class="form-control" type="text" id="example-blood_pressure_systolic" formControlName="blood_pressure_systolic"
+                                        > 
+                                       
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="inputState">ECG Interpretation (3 Lead)</label>
+                                        <input class="form-control" type="text" id="example-ecg_interpretation_lead_3" formControlName="ecg_interpretation_lead_3"
+                                   > 
+                                    
+                                     
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="inputZip">ECG Interpretation (12 Lead)</label>
+                                        <input class="form-control" type="text" id="example-ecg_interpretation_lead_12" formControlName="ecg_interpretation_lead_12"
+                                        > 
+                                       
+                                      </div>
+                                    </div>
+                                   
+                                 
+                                  
+                              
+                              <div class="col-md-12" >
+                                  <button type="submit" class="btn-btn">Save</button>
+                              </div>
+                             
+                            </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" >
+                      <div class="panel-heading" role="tab" id="headingTwo"  style="border:1px solid #939293;padding:10px;">
+                        <h3 class="panel-title">
+                      <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                       Primary Concerns
+                      </a>
+                    </h3>
+              
+                      </div>
+                      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="panel-body">
+                            <form [formGroup]="editPimaryConcernsForm" (ngSubmit)="editPimaryConcerns()" ngNativeValidate>
+                              <div class="row">
+                              <div class="col-md-12">
+                              <div class="form-group row">
+                                <div class="col-6">
+                                    <label for="example-tel-input" style="" class=" col-form-label ">
+                                     Main Concerns
+                                      </label>
+                                    </div>
+                                    <div class="col-6">
+                                      <textarea class="form-control" id="example-main_concerns" formControlName="main_concerns"
+                                      > </textarea>
+                                      
+                                    </div>
+                                </div>
+                          
+                                <div class="form-group row">
+                                  
+                                    <div class="col-6">
+                                      <label for="example-tel-input" style="" class=" col-form-label ">
+                                       How long have you has this/these issues?
+                                        </label>
+                                      </div>
+                                  <div class="col-6">
+                                      <input class="form-control" type="text" id="example-issues_how_long" formControlName="issues_how_long"
+                                      > 
+                                      
+                                  </div>
+                              </div>
+                          
+                              <div class="form-group row">
+                                <div class="col-6">
+                                  <label for="example-tel-input" style="" class=" col-form-label ">
+                                   Have you been diagnosed with any conditions by your doctor?
+                                    </label>
+                                  </div>
+                               
+                                <div class="col-6">
+                                  <input class="form-control" type="text" id="example-diagnosed_by_doctor" formControlName="diagnosed_by_doctor"
+                          > 
+                         
+                                </div>
+                            </div>
+                          
+                            <div class="form-group row">
+                              
+                                <div class="col-6">
+                                  <label for="example-tel-input" style="" class=" col-form-label ">
+                                  How do these concerns affect your daily life (sleep,work,eating,etc)?
+                                    </label>
+                                  </div>
+                              <div class="col-6">
+                                  <input class="form-control" type="text" id="example-concerned_affect_daily_life" formControlName="concerned_affect_daily_life"
+                                 > 
+                                
+                              </div>
+                              </div>
+                              
+                              
+                               
+                              <div class="form-group row">
+                              
+                                <div class="col-6">
+                                  <label for="example-tel-input" style="" class=" col-form-label ">
+                                    Please list any illnesses/conditions for which you are currently receiving medical treatment and/or therapy
+                                    </label>
+                                  </div>
+                              <div class="col-6">
+                                  <textarea class="form-control"  id="example-illness_conditions" formControlName="illness_conditions"
+                                   > </textarea>
+                                 
+                              </div>
+                            </div>
+                           
+                          
+                              </div>
+                            </div>
+                          
+                            <div class="col-md-12" >
+                              <button type="submit" class="btn-btn">Save</button>
+                          </div>
+                                </form>
+                            
+                            </div>
+                      </div>
+                  </div>
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" role="tab" id="headingThree"  style="border:1px solid #939293;padding:10px;">
+                          <h3 class="panel-title">
+                        <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          Your Medical History
+                        </a>
+                      </h3>
+                
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                              <form [formGroup]="editMedHistForm" (ngSubmit)="editMedHist()" ngNativeValidate>
+                                <div class="row">
+                                <div class="col-md-12">
+                                 
+                                  <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                      <label for="inputCity">List any previous surgery , hospitalization , medical procedures , and major traumas (accidents,falls,etc)</label>
+                                      <textarea class="form-control" id="example-previous_hospitalization" formControlName="previous_hospitalization"
+                                    > </textarea>
+                                   
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                      <label for="inputState"> Have you had any organs removed?</label>
+                                      <input class="form-control" type="text" id="example-any_organs_removed" formControlName="any_organs_removed"
+                                      > 
+                                      
+                                   
+                                    </div>
+                                   </div>
+                            
+                                   <div class="form-group row">
+                                    <div class="col-6">
+                                      <label for="example-tel-input" style="" class=" col-form-label ">
+                                       Food allergies/intolerances?
+                                        </label>
+                                      </div>
+                                   
+                                    <div class="col-6">
+                                      <input class="form-control" type="text" id="example-food_allergies" formControlName="food_allergies"
+                                      > 
+                                    
+                                    </div>
+                                </div>
+                              
+                                <div class="form-group row">
+                                  
+                                    <div class="col-6">
+                                      <label for="example-tel-input" style="" class=" col-form-label ">
+                                        Environmental or seasonal allergies/sensitivities?
+                                        </label>
+                                      </div>
+                                  <div class="col-6">
+                                      <input class="form-control" type="text" id="example-env_or_seasonal_allergies" formControlName="env_or_seasonal_allergies"
+                                       > 
+                                     
+                                  </div>
+                                  </div>
+
+                                  <div class="col-md-12" >
+                                    <button type="submit" class="btn-btn">Save</button>
+                                </div>
+
+                              </div>
+                            </div>
+                                          </form>
+                                  
+                                  
+                                   
+                                   <div class="form-group row">
+                                  
+                                    <div class="col-12">
+                                      <label for="example-tel-input" style="" class=" col-form-label ">
+                                        List any medications (prescription or over the counter) taken in the past or currently (ex Antibiotics,blood pressure,cholestrol,antacids,HRT,oral contraceptives,thyroid medication,etc)
+                                        </label>
+                                      </div>
+                                  
+                                </div>
+                                 <div class="">
+                                  
+                                  <div class="container">
+                            
+                                    <!-- Button to Open the Modal -->
+                                   
+                                                    
+                                  
+                                    <!-- The Modal -->
+                                    <div class="modal" id="myModal3" [style.display]="showModal3 ? 'block' : 'none'">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        
+                                          <!-- Modal Header -->
+                                          <div class="modal-header">
+                                            <h4 class="modal-title">{{ mltitle }}</h4>
+                                            <button type="button" class="close" data-dismiss="modal" (click) = "hide3()">&times;</button>
+                                          </div>
+                                          
+                                          <!-- Modal body -->
+                                          <div class="modal-body">
+                                          
+        
+                                            <form [formGroup]="editMedListForm" (ngSubmit)="addMedList()" ngNativeValidate>
+                                     
+                                       
+                                              <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                  <label for="name_of_medication">Name of Medication</label>
+                                                  <input type="text" class="form-control" id="name_of_medication" formControlName="name_of_medication">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                  <label for="when_taken_medication">When Taken Medication</label>
+                                                  <input type="text" class="form-control" id="when_taken_medication" formControlName="when_taken_medication">
+                                               
+                                                </div>
+                                               
+                                              </div>
+                                             
+                                              <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                  <label for="how_long">How long</label>
+                                                  <input type="text" class="form-control" id="how_long" formControlName="how_long">
+                                                </div>
+                                                
+                                               
+                                              </div>
+                                             
+                                           
+                                          <div class="col-md-12" >
+                                              <button type="submit" class="btn-btn">Save</button>
+                                          </div>
+                                         
+                                        </form>
+                                          </div>
+                                          
+                                          <!-- Modal footer -->
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide3()">Close</button>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+        
+        
+                                     <!-- The Modal -->
+                                     <div class="modal" id="myModal4" [style.display]="editModal4 ? 'block' : 'none'">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        
+                                          <!-- Modal Header -->
+                                          <div class="modal-header">
+                                            <h4 class="modal-title">{{ mltitle }}</h4>
+                                            <button type="button" class="close" data-dismiss="modal" (click) = "hide4()">&times;</button>
+                                          </div>
+                                          
+                                          <!-- Modal body -->
+                                          <div class="modal-body">
+                                          
+        
+                                            <form [formGroup]="editMedListForm1" (ngSubmit)="editMedList()" ngNativeValidate>
+                                     
+                                       
+                                              <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                  <label for="name_of_medication">Name of Medication</label>
+                                                  <input type="text" class="form-control" id="name_of_medication" formControlName="name_of_medication">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                  <label for="when_taken_medication">When Taken Medication</label>
+                                                  <input type="text" class="form-control" id="when_taken_medication" formControlName="when_taken_medication">
+                                               
+                                                </div>
+                                               
+                                              </div>
+                                             
+                                              <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                  <label for="how_long">How long</label>
+                                                  <input type="text" class="form-control" id="how_long" formControlName="how_long">
+                                                </div>
+                                                
+                                               
+                                              </div>
+                                              
+                                              
+                                          
+                                          <div class="col-md-12" >
+                                              <button type="submit" class="btn-btn">Update</button>
+                                          </div>
+                                         
+                                        </form>
+                                          </div>
+                                          
+                                          <!-- Modal footer -->
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide4()">Close</button>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- <a [routerLink]="['/add']" class="btn btn-success ml-2">New</a> -->
+        
+        
+                                  <button class=" btn btn-primary " style="float:right;background-color: #2cc1c8;border-color: #2cc1c8;" (click)="showml() ">Add</button>
+                                      <br/>
+                                              <hr>
+        
+                                              <div class="usercontact-list" style="margin-top:20px;">
+                                                <table class="table table-bordered" style="margin-top:20px;">
+                                                  <thead>
+                                                    <tr>
+                                                      <th>Id</th>
+                                                      <th>Medical History Id</th>
+                                                      <th>Name of Medication</th>
+                                                      <th>when taken </th>
+                                                      <th>How long</th>
+                                                      <th>Edit</th>
+                                                      <th>Delete</th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                    <tr *ngFor="let ml of medList">
+                                                      <td>{{ ml.id }}</td>
+                                                      <td>{{ ml.medical_history_id }}</td>
+                                                      <td>{{ ml.name_of_medication }}</td>
+                                                      <td>{{ ml.when_taken_medication }}</td>
+                                                      <td>{{ ml.how_long }}</td>
+                                                     
+                                                      <td>
+                                                        <button class=" btn btn-info " style="background-color: #0073c5;border-color:#0073c5;" (click)="editml(ml)"><span><i class="fa fa-edit"></i></span></button>
+                                                    
+                                                        <!-- <button class=" btn btn-info " (click)="editpreexistingdetails(ptd.id) ">Update</button> -->
+                                                      </td>
+                                                      <td>
+                                                        <button class="btn btn-danger ml-2 " (click)="deleteml(ml) "><span><i class="fa fa-trash"></i></span></button>
+                                                      </td>
+                                                    </tr>
+                                              
+                                              
+                                                  </tbody>
+                                                </table>
+                                              </div>
+                                  
+                                </div>
+                                 
+                                <div class="form-group row">
+                                  
+                                  <div class="col-12">
+                                    <label for="example-tel-input" style="" class=" col-form-label ">
+                                      List all supplements,homeopathic remedies,hebs,or other natural remedies that you are curently taking 
+                                       </label>
+                                    </div>
+                                
+                              </div> 
+                              <div class="">
+                                  <!-- Write here code  -->
+                                  <div class="container">
+                            
+                                    <!-- Button to Open the Modal -->
+                                   
+                                                    
+                                  
+                                    <!-- The Modal -->
+                                    <div class="modal" id="myModal5" [style.display]="showModal5 ? 'block' : 'none'">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        
+                                          <!-- Modal Header -->
+                                          <div class="modal-header">
+                                            <h4 class="modal-title">{{ sltitle }}</h4>
+                                            <button type="button" class="close" data-dismiss="modal" (click) = "hide5()">&times;</button>
+                                          </div>
+                                          
+                                          <!-- Modal body -->
+                                          <div class="modal-body">
+                                          
+        
+                                            <form [formGroup]="editSuppListForm" (ngSubmit)="addSuppList()" ngNativeValidate>
+                                     
+                                       
+                                              <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                  <label for="suppliment_herb"> Suppliment Herb</label>
+                                                  <input type="text" class="form-control" id="suppliment_herb" formControlName="suppliment_herb">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                  <label for="name_of_brand">Name of Band</label>
+                                                  <input type="text" class="form-control" id="name_of_brand" formControlName="name_of_brand">
+                                               
+                                                </div>
+                                               
+                                              </div>
+                                             
+                                              <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                  <label for="amount_taken">Amount Taken</label>
+                                                  <input type="text" class="form-control" id="amount_taken" formControlName="amount_taken">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                  <label for="when_taken_suppliment">When Taken Suppliment</label>
+                                                  <input type="text" class="form-control" id="when_taken_suppliment" formControlName="when_taken_suppliment">
+                                                </div>
+                                                
+                                               
+                                              </div>
+
+                                              <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                  <label for="how_long">How Long</label>
+                                                  <input type="text" class="form-control" id="how_long" formControlName="how_long">
+                                                </div>
+                                               
+                                               
+                                              </div>
+                                             
+                                           
+                                          <div class="col-md-12" >
+                                              <button type="submit" class="btn-btn">Save</button>
+                                          </div>
+                                         
+                                        </form>
+                                          </div>
+                                          
+                                          <!-- Modal footer -->
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide5()">Close</button>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+        
+        
+                                     <!-- The Modal -->
+                                     <div class="modal" id="myModal6" [style.display]="editModal6 ? 'block' : 'none'">
+                                      <div class="modal-dialog">
+                                        <div class="modal-content">
+                                        
+                                          <!-- Modal Header -->
+                                          <div class="modal-header">
+                                            <h4 class="modal-title">{{ sltitle }}</h4>
+                                            <button type="button" class="close" data-dismiss="modal" (click) = "hide6()">&times;</button>
+                                          </div>
+                                          
+                                          <!-- Modal body -->
+                                          <div class="modal-body">
+                                          
+        
+                                            <form [formGroup]="editSuppListForm1" (ngSubmit)="editSuppList()" ngNativeValidate>
+                                     
+                                       
+                                              <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                  <label for="suppliment_herb"> Suppliment Herb</label>
+                                                  <input type="text" class="form-control" id="suppliment_herb" formControlName="suppliment_herb">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                  <label for="name_of_brand">Name of Band</label>
+                                                  <input type="text" class="form-control" id="name_of_brand" formControlName="name_of_brand">
+                                               
+                                                </div>
+                                               
+                                              </div>
+                                             
+                                              <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                  <label for="amount_taken">Amount Taken</label>
+                                                  <input type="text" class="form-control" id="amount_taken" formControlName="amount_taken">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                  <label for="when_taken_suppliment">When Taken Suppliment</label>
+                                                  <input type="text" class="form-control" id="when_taken_suppliment" formControlName="when_taken_suppliment">
+                                                </div>
+                                                
+                                               
+                                              </div>
+
+                                              <div class="form-row">
+                                                <div class="form-group col-md-6">
+                                                  <label for="how_long">How Long</label>
+                                                  <input type="text" class="form-control" id="how_long" formControlName="how_long">
+                                                </div>
+                                               
+                                               
+                                              </div>
+                                             
+                                           
+                                          <div class="col-md-12" >
+                                              <button type="submit" class="btn-btn">Update</button>
+                                          </div>
+                                         
+                                        </form>
+                                          </div>
+                                          
+                                          <!-- Modal footer -->
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide6()">Close</button>
+                                          </div>
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!-- <a [routerLink]="['/add']" class="btn btn-success ml-2">New</a> -->
+        
+        
+                                  <button class=" btn btn-primary " style="float:right;background-color: #2cc1c8;border-color: #2cc1c8;" (click)="showsl() ">Add</button>
+                                      <br/>
+                                              <hr>
+        
+                                              <div class="usercontact-list" style="margin-top:20px;">
+                                                <table class="table table-bordered" style="margin-top:20px;">
+                                                  <thead>
+                                                    <tr>
+                                                      <th>Id</th>
+                                                      <th>Medical History Id</th>
+                                                      <th>Suppliment Herb</th>
+                                                      <th>Name of Brand</th>
+                                                      <th>Amount Taken</th>
+                                                      <th>When Taken Suppliment</th>
+                                                      <th>How Long</th>
+                                                      <th>Edit</th>
+                                                      <th>Delete</th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                    <tr *ngFor="let sl of suppList">
+                                                      <td>{{ sl.id }}</td>
+                                                      <td>{{ sl.medical_history_id }}</td>
+                                                      <td>{{ sl.suppliment_herb }}</td>
+                                                      <td>{{ sl.name_of_brand }}</td>
+                                                      <td>{{ sl.amount_taken }}</td>
+                                                      <td>{{ sl.when_taken_suppliment }}</td>
+                                                      <td>{{ sl.how_long }}</td>
+                                                     
+                                                      <td>
+                                                        <button class=" btn btn-info " style="background-color: #0073c5;border-color:#0073c5;" (click)="editsl(sl)"><span><i class="fa fa-edit"></i></span></button>
+                                                    
+                                                        <!-- <button class=" btn btn-info " (click)="editpreexistingdetails(ptd.id) ">Update</button> -->
+                                                      </td>
+                                                      <td>
+                                                        <button class="btn btn-danger ml-2 " (click)="deletesl(sl) "><span><i class="fa fa-trash"></i></span></button>
+                                                      </td>
+                                                    </tr>
+                                              
+                                              
+                                                  </tbody>
+                                                </table>
+                                              </div>
+                              
+                            </div>
+                                   
+                               
+                          
+                                  
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default" >
+                      <div class="panel-heading" role="tab" id="headingFour"  style="border:1px solid #939293;padding:10px;">
+                        <h3 class="panel-title">
+                      <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                        Family Medical History
+                      </a>
+                    </h3>
+              
+                      </div>
+                      <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                          <div class="panel-body">
+                            <form [formGroup]="editFamilyMedicalHistoryform" (ngSubmit)="editFamilyMedicalHistory()" ngNativeValidate>
+                              <div class="row">
+                                <table>
+                                  <tr>
+                                    <th>Family Member</th>
+                                    <th>Age</th>
+                                    <th>General Health</th>
+                                    <th>Disease or Illness</th>
+                                  </tr>
+                                  <tr>
+                                    <td>Mother</td>
+                                    <td>
+                                        <input class="form-control" type="text" id="example-mother_age" formControlName="mother_age"
+                                      > 
+                                    
+                                  </td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-mother_general_health" formControlName="mother_general_health"
+                                      > 
+                                     
+                                    </td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-mother_disease" formControlName="mother_disease"
+                                      > 
+                                     
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Father</td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-father_age" formControlName="father_age"
+                                     > 
+                                    
+                                    </td>
+                                    <td>              
+                                      <input class="form-control" type="text" id="example-father_general_health" formControlName="father_general_health"
+                                       > 
+                                     
+                                    </td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-father_disease" formControlName="father_disease"
+                                      > 
+                                    
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Sibling</td>
+                                    
+                          
+                          
+                          <td>
+                              <input class="form-control" type="text" id="example-sibling_1_age" formControlName="sibling_1_age"
+                             > 
+                             
+                            </td>
+                            <td>              
+                              <input class="form-control" type="text" id="example-sibling_1_general_health" formControlName="sibling_1_general_health"
+                              > 
+                             
+                            </td>
+                            <td>
+                              <input class="form-control" type="text" id="example-sibling_1_disease" formControlName="sibling_1_disease"
+                              > 
+                             
+                            </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Sibling</td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-sibling_2_age" formControlName="sibling_2_age"
+                                      > 
+                                     
+                                    </td>
+                                    <td>              
+                                      <input class="form-control" type="text" id="example-sibling_2_general_health" formControlName="sibling_2_general_health"
+                                       > 
+                                      
+                                    </td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-sibling_2_disease" formControlName="sibling_2_disease"
+                                       > 
+                                     
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Sibling</td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-sibling_3_age" formControlName="sibling_3_age"
+                                      > 
+                                     
+                                    </td>
+                                    <td>              
+                                      <input class="form-control" type="text" id="example-sibling_3_general_health" formControlName="sibling_3_general_health"
+                                      > 
+                                      
+                                    </td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-sibling_3_disease" formControlName="sibling_3_disease"
+                                       > 
+                                      
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Children</td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-children_age" formControlName="children_age"
+                                     > 
+                                     
+                                    </td>
+                                    <td>              
+                                      <input class="form-control" type="text" id="example-children_general_health" formControlName="children_general_health"
+                                      > 
+                                      
+                                    </td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-children_disease" formControlName="children_disease"
+                                       > 
+                                     
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Grandparent</td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-grandparent_1_age" formControlName="grandparent_1_age"
+                                       > 
+                                     
+                                    </td>
+                                    <td>              
+                                      <input class="form-control" type="text" id="example-grandparent_1_general_health" formControlName="grandparent_1_general_health"
+                                       > 
+                                     
+                                    </td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-grandparent_1_disease" formControlName="grandparent_1_disease"
+                                       > 
+                                    
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Grandparent</td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-grandparent_2_age" formControlName="grandparent_2_age"
+                                      > 
+                                      
+                                    </td>
+                                    <td>              
+                                      <input class="form-control" type="text" id="example-grandparent_2_general_health" formControlName="grandparent_2_general_health"
+                                     > 
+                                      
+                                    </td>
+                                    <td>
+                                      <input class="form-control" type="text" id="example-grandparent_2_disease" formControlName="grandparent_2_disease"
+                                     > 
+                                      
+                                    </td>
+                                  </tr>
+                                </table>
+                              
+                            </div>
+                            <div class="col-md-12" >
+                              <button type="submit" class="btn-btn">Save</button>
+                           </div>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="panel panel-default" >
+                    <div class="panel-heading" role="tab" id="headingFive"  style="border:1px solid #939293;padding:10px;">
+                      <h3 class="panel-title"> 
+                    <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+                     General Health Information
+                    </a>
+                  </h3>
+            
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                        <div class="panel-body">
+                          <form [formGroup]="editGeneralHealthInfoForm" (ngSubmit)="editGeneralHealthInfo()" ngNativeValidate>
+                            <div class="row">
+                            <div class="col-md-12">
+                             
+                              <div class="form-row">
+                                <div class="form-group col-md-3">
+                                  <label for="inputCity">Blood Type</label>
+                                  <input class="form-control" type="text" id="example-blood_type" formControlName="blood_type"
+                                > 
+                                
+                                </div>
+                                <div class="form-group col-md-3">
+                                  <label for="inputState">Weight</label>
+                                  <input class="form-control" type="text" id="example-weight" formControlName="weight"
+                                  > 
+                                 
+                               
+                                </div>
+                                <div class="form-group col-md-6">
+                                  <label for="inputZip">Weight Gain/Loss in last year? if so how much?</label>
+                                  <input class="form-control" type="text" id="example-weight_gain_or_loss" formControlName="weight_gain_or_loss"
+                                  > 
+                                  
+                                </div>
+                              </div>
+                        
+                              <div class="form-group row">
+                                <div class="col-6">
+                                    <label for="example-tel-input" style="" class=" col-form-label ">
+                                      What is your energy level like during the day? Please describe your best and worst times of the day
+                                      </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <input class="form-control" type="text" id="example-energy_level_during_day" formControlName="energy_level_during_day"
+                         > 
+                        
+                                    </div>
+                                </div>
+                        
+                                <div class="form-group row">
+                                  <div class="col-6">
+                                      <label for="example-tel-input" style="" class=" col-form-label ">
+                                       Bowel Health : Number of bowel movements
+                                        </label>
+                                      </div>
+                                      <div class="col-6">
+                                      <div class="row">
+                                       <div class="col">
+                                        <input class="form-control" type="text" id="example-no_of_bowel_movements_per_day" formControlName="no_of_bowel_movements_per_day"
+                                       > 
+                                       
+                                        <label>/ day</label>
+                                       </div>
+                                       <div class="col">
+                                        <input class="form-control" type="text" id="example-no_of_bowel_movements_per_week" formControlName="no_of_bowel_movements_per_week"
+                                        > 
+                                       
+                                        <label>/ week</label>
+                                       </div>
+                                         </div>
+                                      </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="col-4">
+                                      <div class="form-check">
+                                        <input type="radio" value="Constipation" formControlName="bowel_health_condition"> 
+                                         Constipation                                              
+                                      </div>
+                                      </div>
+                                      <div class="col-4">
+                                        <div class="form-check">
+                                          <input type="radio" value="Diarrhea" formControlName="bowel_health_condition"> 
+                                          Diarrhea                                              
+                                        </div>
+                                        </div>
+                                    
+                                  </div>
+                                 
+                        
+                                <div class="form-group row">
+                                  <div class="col-6">
+                                      <label for="example-tel-input" style="" class=" col-form-label ">
+                                        General colour of bowel movement
+                        
+                                        </label>
+                                      </div>
+                                      <div class="col-6">
+                                        <input class="form-control" type="text" id="example-color_of_bowel_movement" formControlName="color_of_bowel_movement"
+                                         > 
+                                       
+                                      </div>
+                                  </div>
+                        
+                                  <div class="form-group row">
+                                    <div class="col-6">
+                                        <label for="example-tel-input" style="" class=" col-form-label ">
+                                         Any digestive issues?(gas,bloating,cramping,constipation,etc)
+                                          </label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input class="form-control" type="text" id="example-digestive_issues" formControlName="digestive_issues"
+                                            > 
+                                            
+                                        </div>
+                                    </div>
+                        
+                                    <div class="femalesdiv" style="border:0px;"> 
+                                    <div class="form-row">
+                                      <div class="form-group col-md-12">
+                                        <h4>Have you experienced any of the following in the last year (or two)? Please check all that apply</h4>
+                                        <hr>
+                                         </div>
+                                     
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="form-check" style="padding:10px;" *ngFor="let exphp of experiencehealthprobarr ; let e = index">
+                                        <input type="checkbox" [checked]="exphp.checked" [value]="exphp.name" id="exphp.id" (change)="toggleVisibilityexphp($event,e)">
+                                        {{exphp.name}}
+                                        
+                                      </div>
+                                    </div>
+                                    <!-- <div class="form-row">
+                                      <div class="form-group col-md-4">
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="gridCheck">
+                                          <label class="form-check-label" for="gridCheck">
+                                            Weight loss
+                                          </label>
+                                        </div> 
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="gridCheck">
+                                          <label class="form-check-label" for="gridCheck">
+                                            Poor appetite 
+                                          </label>
+                                        </div>
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="gridCheck">
+                                          <label class="form-check-label" for="gridCheck">
+                                           Problems falling asleep
+                                          </label>
+                                        </div>
+                                      </div>
+                                     
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="form-group col-md-4">
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="gridCheck">
+                                          <label class="form-check-label" for="gridCheck">
+                                            Weight gain
+                                          </label>
+                                        </div> 
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="gridCheck">
+                                          <label class="form-check-label" for="gridCheck">
+                                            Bruise easily 
+                                          </label>
+                                        </div>
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="gridCheck">
+                                          <label class="form-check-label" for="gridCheck">
+                                           Issues staying asleep
+                                          </label>
+                                        </div>
+                                      </div>
+                                     
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="form-group col-md-4">
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="gridCheck">
+                                          <label class="form-check-label" for="gridCheck">
+                                            Change in appetite
+                                          </label>
+                                        </div> 
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="checkbox" id="gridCheck">
+                                          <label class="form-check-label" for="gridCheck">
+                                            Poor balance 
+                                          </label>
+                                        </div>
+                                      </div>
+                                     
+                                     
+                                    </div> -->
+                        
+                                      <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                          <h4>Have you ever been diagnosed with any of the following conditions?</h4>
+                                          <hr>
+                                           </div>
+                                       
+                                      </div>
+                                      <div class="form-row">
+                                        <div class="form-check" style="padding:10px;" *ngFor="let exdiag of experiencediagnosecondbarr ; let ed = index">
+                                          <input type="checkbox" [checked]="exdiag.checked" [value]="exdiag.name" id="exdiag.id" (change)="toggleVisibilityexdiagcond($event,ed)">
+                                          {{exdiag.name}}
+                                          
+                                        </div>
+                                      </div>
+                                      <!-- <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                              Arthritis
+                                            </label>
+                                          </div> 
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                             Diabetes
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                            Thyroid condition
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                             Pneumonia
+                                            </label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                              Anemia
+                                            </label>
+                                          </div> 
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                             Anorexia/Bulimia
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                           Appendicitis
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                             Seizures
+                                            </label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                              Emphysema
+                                            </label>
+                                          </div> 
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                             Epilepsy
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                           Hepatitis
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                             Eczema
+                                            </label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                              Heart condition
+                                            </label>
+                                          </div> 
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                             High/Low Blood Pressure
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                           Asthma
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                             Crohn's Disease
+                                            </label>
+                                          </div>
+                                        </div>
+                                      </div> -->
+                                      <!-- <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                             Irritable Bowel
+                                            </label>
+                                          </div> 
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                            Osteoporosis
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                           Hypoglycemia
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                            Gall Bladder problems
+                                            </label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                            Cancer
+                                            </label>
+                                          </div> 
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                            Prostate problems
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                           Endometriosis
+                                            </label>
+                                          </div>
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                            Psoriasis
+                                            </label>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                            Fibromyalgia
+                                            </label>
+                                          </div> 
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                          <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck">
+                                            <label class="form-check-label" for="gridCheck">
+                                            Chronic Fatigue Syndrome
+                                            </label>
+                                          </div>
+                                        </div>
+                                       
+                                      
+                                      </div> -->
+                        
+                                      <div class="form-group row">
+                                        <div class="col-3">
+                                            <label for="example-tel-input" style="" class=" col-form-label ">
+                                             Other (please specify)
+                        
+                                              </label>
+                                            </div>
+                                            <div class="col-9">
+                                              <!-- <textarea class="form-control"></textarea> -->
+                                              <textarea class="form-control" id="example-other_details" formControlName="other_details"
+                                             > </textarea>
+                                            
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                        
+                                  <div class="femalesdiv" style="margin-top:5px;"> 
+                                    <h5><strong>Females:</strong></h5>     
+                                  <div class="form-group row ">                                    
+                                    
+                                    <div class="col-6">
+                                      <label for="example-tel-input" style="" class=" col-form-label ">
+                                       Do you use birth control?
+                                        </label>
+                                      </div>
+                                      <div class="col-6">
+                                        <div class="form-group row" style="margin-top:10px;">
+                                        
+                                           <div class="col-3">
+                                            <div class="form-check"> 
+                                              <input type="radio" value="Yes" formControlName="female_birth_control">                                              
+                                               Yes                                             
+                                             </div>
+                                            </div> 
+                                            <div class="col-3">
+                                              <div class="form-check">
+                                                <input type="radio" value="No" formControlName="female_birth_control"> 
+                                                  No                                              
+                                              </div>
+                                              </div> 
+                        
+                                        </div>
+                                        </div>
+                                      
+                                 </div>
+                             
+                                <div class="col-12">
+                                  <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <div class="form-check">
+                                      
+                                      <label class="col-form-label" for="gridCheck">
+                                        If yes,what type (pills,condoms,etc)
+                                      </label>
+                                      
+                                    </div>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-control" type="text" id="example-type_of_female_birth_control" formControlName="type_of_female_birth_control"
+                                        > 
+                                       
+                                      
+                                    </div>
+                                  </div>
+                                  </div>
+                                </div>
+                          <div class="col-12">
+                            <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <div class="form-check">
+                                
+                                <label class="col-form-label" for="gridCheck">
+                                  Have your periods ever stopped? If yes,when and for how long?
+                                 
+                                </label>
+                                
+                              </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                              <div class="form-check">
+                                <input class="form-control" type="text" id="example-periods_stopped" formControlName="periods_stopped"
+                                 > 
+                               
+                                
+                              </div>
+                            </div>
+                            </div>
+                          </div>
+                          <div class="col-12">
+                            <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <div class="form-check">
+                                
+                                <label class="col-form-label" for="gridCheck">
+                                 How long is your entire cycle?
+                                 
+                                </label>
+                                
+                              </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                              <div class="form-check">
+                                <input class="form-control" type="text" id="example-periods_entire_cycle" formControlName="periods_entire_cycle"
+                                > 
+                                
+                                   
+                                
+                              </div>
+                            </div>
+                            </div>
+                          </div>
+                        
+                          <div class="col-12">
+                            <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <div class="form-check">
+                                
+                                <label class="col-form-label" for="gridCheck">
+                                Average number of days period lasts?
+                                 
+                                </label>
+                                
+                              </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                              <div class="form-check">
+                                <input class="form-control" type="text" id="example-avg_no_days_periods_last" formControlName="avg_no_days_periods_last"
+                               > 
+                               
+                                  
+                              </div>
+                            </div>
+                            </div>
+                          </div>
+                        
+                          <div class="form-group row ">                                    
+                                    
+                            <div class="col-6">
+                              <label for="example-tel-input" style="" class=" col-form-label ">
+                               Do you have PMS symptoms?
+                                </label>
+                              </div>
+                              <div class="col-6">
+                                <div class="form-group row" style="margin-top:10px;">
+                                  <div class="col-3">
+                                    <div class="form-check"> 
+                                      <input type="radio" value="Yes" formControlName="pms_symptoms">                                              
+                                       Yes                                             
+                                     </div>
+                                    </div> 
+                                    <div class="col-3">
+                                      <div class="form-check">
+                                        <input type="radio" value="No" formControlName="pms_symptoms"> 
+                                          No                                              
+                                      </div>
+                                      </div>
+                        
+                                </div>
+                                </div>
+                              
+                         </div>
+                        
+                         <div class="form-group row ">                                    
+                                    
+                          <div class="col-6">
+                            <label for="example-tel-input" style="" class=" col-form-label ">
+                              Do you have menopausal symptoms?
+                              </label>
+                            </div>
+                            <div class="col-6">
+                              <div class="form-group row" style="margin-top:10px;">
+                                <div class="col-3">
+                                  <div class="form-check"> 
+                                    <input type="radio" value="Yes" formControlName="menopausal_symptoms">                                              
+                                     Yes                                             
+                                   </div>
+                                  </div> 
+                                  <div class="col-3">
+                                    <div class="form-check">
+                                      <input type="radio" value="No" formControlName="menopausal_symptoms"> 
+                                        No                                              
+                                    </div>
+                                    </div>
+                        
+                              </div>
+                              </div>
+                            
+                        </div>
+                        
+                        </div>
+                        
+                        <div class="femalesdiv" style="border:0px;"> 
+                             
+                          <div class="col-12">
+                            <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <div class="form-check">
+                                
+                                <label class="col-form-label" for="gridCheck">
+                                  Do you smoke?
+                                 
+                                </label>
+                                
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <div class="form-group row" style="margin-top:10px;">
+                                <div class="col-3">
+                                  <div class="form-check"> 
+                                    <input type="radio" value="Yes" formControlName="do_u_smoke">                                              
+                                     Yes                                             
+                                   </div>
+                                  </div> 
+                                  <div class="col-3">
+                                    <div class="form-check">
+                                      <input type="radio" value="No" formControlName="do_u_smoke"> 
+                                        No                                              
+                                    </div>
+                                    </div>
+                        
+                              </div>
+                              </div>
+                            </div>
+                          </div>
+                        
+                        <div class="col-12">
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <div class="form-check">
+                            
+                            <label class="col-form-label" for="gridCheck">
+                              Have you smoked in the past?
+                            </label>
+                            
+                          </div>
+                        </div>
+                        <div class="col-6">
+                          <div class="form-group row" style="margin-top:10px;">
+                            <div class="col-3">
+                              <div class="form-check"> 
+                                <input type="radio" value="Yes" formControlName="smoke_in_past">                                              
+                                 Yes                                             
+                               </div>
+                              </div> 
+                              <div class="col-3">
+                                <div class="form-check">
+                                  <input type="radio" value="No" formControlName="smoke_in_past"> 
+                                    No                                              
+                                </div>
+                                </div>
+                        
+                          </div>
+                          </div>
+                        </div>
+                        </div>
+                        <div class="col-12">
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <div class="form-check">
+                        
+                        <label class="col-form-label" for="gridCheck">
+                        Are you exposed to second hand smoke?
+                        
+                        </label>
+                        
+                        </div>
+                        </div>
+                        <div class="col-6">
+                        <div class="form-group row" style="margin-top:10px;">
+                          <div class="col-3">
+                            <div class="form-check"> 
+                              <input type="radio" value="Yes" formControlName="exposed_to_second_hand_smoke">                                              
+                               Yes                                             
+                             </div>
+                            </div> 
+                            <div class="col-3">
+                              <div class="form-check">
+                                <input type="radio" value="No" formControlName="exposed_to_second_hand_smoke"> 
+                                  No                                              
+                              </div>
+                              </div>
+                        
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="col-12">
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <div class="form-check">
+                        
+                        <label class="col-form-label" for="gridCheck">
+                        Do you use recreational drugs?
+                        
+                        </label>
+                        
+                        </div>
+                        </div>
+                        <div class="col-6">
+                        <div class="form-group row" style="margin-top:10px;">
+                          <div class="col-3">
+                            <div class="form-check"> 
+                              <input type="radio" value="Yes" formControlName="do_u_use_recreational_drugs">                                              
+                               Yes                                             
+                             </div>
+                            </div> 
+                            <div class="col-3">
+                              <div class="form-check">
+                                <input type="radio" value="No" formControlName="do_u_use_recreational_drugs"> 
+                                  No                                              
+                              </div>
+                              </div>
+                        
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        
+                        <div class="col-12">
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <div class="form-check">
+                        
+                        <label class="col-form-label" for="gridCheck">
+                        How many silver amalgam fillings do you have?
+                        </label>
+                        
+                        </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                        <div class="form-check">
+                            <input class="form-control" type="text" id="example-silver_amalgam_fillings" formControlName="silver_amalgam_fillings"
+                             > 
+                            
+                        
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="col-12">
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <div class="form-check">
+                        
+                        <label class="col-form-label" for="gridCheck">
+                        How long have you had them?
+                        
+                        </label>
+                        
+                        </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                        <div class="form-check">
+                            <input class="form-control" type="text" id="example-how_long_u_take_silver_amalgam_fillings" formControlName="how_long_u_take_silver_amalgam_fillings"
+                             > 
+                           
+                        
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="col-12">
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <div class="form-check">
+                        
+                        <label class="col-form-label" for="gridCheck">
+                        How many root canals do you have?
+                        
+                        </label>
+                        
+                        </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                        <div class="form-check">
+                            <input class="form-control" type="text" id="example-root_canals" formControlName="root_canals"
+                             > 
+                            
+                        
+                        
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        
+                        <div class="col-12">
+                        <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <div class="form-check">
+                        
+                        <label class="col-form-label" for="gridCheck">
+                        Are you exposed to any chemicals or contaminants at work or elsewhere? Please list
+                        
+                        </label>
+                        
+                        </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                        <div class="form-check">
+                            <textarea class="form-control" id="example-exposed_to_any_chemicals" formControlName="exposed_to_any_chemicals"
+                            > </textarea>
+                           
+                        
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        
+                        <div class="form-row">
+                        <div class="form-group col-md-12">
+                        <h4>Do you use any of the following? Please check all that apply </h4>
+                        <hr>
+                        </div>
+                        
+                        </div>
+                        <div class="form-row">
+                          <div class="form-check" style="padding:10px;" *ngFor="let usehf of usehomefragrancearr ; let u = index">
+                            <input type="checkbox" [checked]="usehf.checked" [value]="usehf.name" id="usehf.id" (change)="toggleVisibilityusehf($event,u)">
+                            {{usehf.name}}
+                            
+                          </div>
+                        </div>
+                        <!-- <div class="form-row">
+                        <div class="form-group col-md-4">
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                        Perfume/Cologne
+                        </label>
+                        </div> 
+                        </div>
+                        <div class="form-group col-md-4">
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                        Aluminum cookware 
+                        </label>
+                        </div>
+                        </div>
+                        
+                        
+                        </div>
+                        <div class="form-row">
+                        <div class="form-group col-md-4">
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                        Artificial sweeteners
+                        </label>
+                        </div> 
+                        </div>
+                        <div class="form-group col-md-4">
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                        Household cleaners
+                        </label>
+                        </div>
+                        </div>
+                        
+                        
+                        </div>
+                        <div class="form-row">
+                        <div class="form-group col-md-4">
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                        Luncheon meats
+                        </label>
+                        </div> 
+                        </div>
+                        <div class="form-group col-md-4">
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                        Air freshners 
+                        </label>
+                        </div>
+                        </div>
+                        
+                        
+                        </div> -->
+                        <!-- <div class="form-row">
+                        <div class="form-group col-md-4">
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                        Margarine
+                        </label>
+                        </div> 
+                        </div>
+                        <div class="form-group col-md-4">
+                        <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck">
+                        <label class="form-check-label" for="gridCheck">
+                        Fast foods
+                        </label>
+                        </div>
+                        </div>
+                        
+                        
+                        </div> -->
+                        
+                        
+                        </div>
+                                      
+                            </div>
+                          </div>
+                          <div class="col-md-12" >
+                            <button type="submit" class="btn-btn">Save</button>
+                         </div>
+                              </form>
+                          
+                          </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default" >
+                  <div class="panel-heading" role="tab" id="headingSix"  style="border:1px solid #939293;padding:10px;">
+                    <h3 class="panel-title"> 
+                  <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
+                  Lifestyle Information
+                  </a>
+                </h3>
+          
+                  </div>
+                  <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                      <div class="panel-body">
+                        <form [formGroup]="editLifestyleInfoForm" (ngSubmit)="editLifestyleInfo()" ngNativeValidate>
+                          <div class="row">
+                            <div class="col-12">
+                              <div class="form-group">
+                                <div class="col-12">
+                                    <label for="example-tel-input" style="" class=" col-form-label ">
+                                    How many cups (an average) of each do you drink?
+                                      </label>
+                                    </div>
+                                  </div>
+                                  <div class="col-12">
+                                    <div class="form-group">
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="inputCity">Water</label>
+                                      <input class="form-control" type="text" id="example-cups_of_water" formControlName="cups_of_water" > 
+                                    
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="inputState">Cofee</label>
+                                      <input class="form-control" type="text" id="example-cups_of_coffee" formControlName="cups_of_coffee"> 
+                                    
+                                   
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="inputZip">Wine</label>
+                                      <input class="form-control" type="text" id="example-cups_of_wine" formControlName="cups_of_wine"> 
+                                     
+                                    </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="inputCity">Milk</label>
+                                      <input class="form-control" type="text" id="example-cups_of_milk" formControlName="cups_of_milk" > 
+                                    
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="inputState">Soft drink</label>
+                                      <input class="form-control" type="text" id="example-cups_of_soft_drink" formControlName="cups_of_soft_drink"> 
+                    
+                                   
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="inputZip">Liquor</label>
+                                      <input class="form-control" type="text" id="example-cups_of_liquor" formControlName="cups_of_liquor"> 
+                                     
+                                   </div> 
+                                  </div>
+                                </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="inputCity">Juice</label>
+                                      <input class="form-control" type="text" id="example-cups_of_juice" formControlName="cups_of_juice"> 
+                                  
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="inputState">Diet soft drink</label>
+                                      <input class="form-control" type="text" id="example-cups_of_diet_soft_drink" formControlName="cups_of_diet_soft_drink" > 
+                   
+                                   
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="inputZip">Beer</label>
+                                      <input class="form-control" type="text" id="example-cups_of_beer" formControlName="cups_of_beer" > 
+                                   
+                                    </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="inputCity">Tea</label>
+                                      <input class="form-control" type="text" id="example-cups_of_tea" formControlName="cups_of_tea"> 
+                                   
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="inputState">Herbal Tea</label>
+                                      <input class="form-control" type="text" id="example-cups_of_herbal_tea" formControlName="cups_of_herbal_tea"> 
+                                     
+                                   
+                                    </div>
+                                   
+                                  </div>
+                            </div>
+                            </div>
+                                 
+                      
+                            <div class="femalesdiv" style="border:0px;margin-top:5px;"> 
+                                   
+                            
+                       
+                          <div class="col-12">
+                            <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <div class="form-check">
+                                
+                                <label class="col-form-label" for="gridCheck">
+                                 How often do you eat in restaurants or eat take out?
+                                </label>
+                                
+                              </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                              <div class="form-check">
+                                  <input class="form-control" type="text" id="example-do_u_eat_out_or_restaurants" formControlName="do_u_eat_out_or_restaurants"> 
+                                
+                                
+                              </div>
+                            </div>
+                            </div>
+                          </div>
+                      <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          
+                          <label class="col-form-label" for="gridCheck">
+                            Who does the grocery shopping?
+                          </label>
+                          
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          <input class="form-control" type="text" id="example-who_does_grocery_shopping" formControlName="who_does_grocery_shopping"> 
+                    
+                          
+                        </div>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          
+                          <label class="col-form-label" for="gridCheck">
+                            Who does most of the cooking?
+                           
+                          </label>
+                          
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          <input class="form-control" type="text" id="example-who_does_cooking" formControlName="who_does_cooking"  > 
+                     
+                             
+                          
+                        </div>
+                      </div>
+                      </div>
+                      </div>
+                      
+                      <div class="form-group row ">                                    
+                              
+                      <div class="col-6">
+                        <label for="example-tel-input" style="" class=" col-form-label ">
+                         Do you eat late at night? (dinner after 8pm)
+                          </label>
+                        </div>
+                        <div class="col-6">
+                          <div class="form-group row" style="margin-top:10px;">
+                           
+                              <div class="col-3">
+                                <div class="form-check"> 
+                                  <input type="radio" value="Yes" formControlName="do_u_eat_late_night">                                              
+                                   Yes                                             
+                                 </div>
+                                </div> 
+                                <div class="col-3">
+                                  <div class="form-check">
+                                    <input type="radio" value="No" formControlName="do_u_eat_late_night"> 
+                                      No                                              
+                                  </div>
+                                  </div>
+                      
+                          </div>
+                          </div>
+                        
+                      </div>
+                      
+                      <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                      <div class="form-check">
+                        
+                        <label class="col-form-label" for="gridCheck">
+                          Foods you crave most
+                        </label>
+                        
+                      </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                      <div class="form-check">
+                          <input class="form-control" type="text" id="example-foods_u_crave_most" formControlName="foods_u_crave_most"> 
+                         
+                        
+                      </div>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          
+                          <label class="col-form-label" for="gridCheck">
+                            Foods you crave least
+                          </label>
+                          
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          <input class="form-control" type="text" id="example-foods_u_crave_least" formControlName="foods_u_crave_least" > 
+                    
+                          
+                        </div>
+                      </div>
+                      </div>
+                      </div>
+                      <!-- <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          
+                          <label class="col-form-label" for="gridCheck">
+                           5 foods you eat most often
+                          </label>
+                          
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          <input class="form-control" type="text" id="example-dietary_restrictions" formControlName="dietary_restrictions"
+                          [ngClass]="{'is-invalid': editLifestyleInfoForm.controls['dietary_restrictions'].invalid && (editLifestyleInfoForm.controls['dietary_restrictions'].dirty || editLifestyleInfoForm.controls['dietary_restrictions'].touched),'is-valid': editLifestyleInfoForm.controls['dietary_restrictions'].valid && (editLifestyleInfoForm.controls['dietary_restrictions'].dirty || editLifestyleInfoForm.controls['dietary_restrictions'].touched)}" > 
+                          <div class="" *ngIf="editLifestyleInfoForm.controls['dietary_restrictions'].invalid && (editLifestyleInfoForm.controls['dietary_restrictions'].dirty || editLifestyleInfoForm.controls['dietary_restrictions'].touched)" style="color:#ff0000">
+                            Enter a valid dietary_restrictions
+                          </div>
+                          
+                        </div>
+                      </div>
+                      </div>
+                      </div> -->
+                      <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          
+                          <label class="col-form-label" for="gridCheck">
+                           Dietary restrictions (vegeterian,vegan,no milk, etc)
+                          </label>
+                          
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          <input class="form-control" type="text" id="example-dietary_restrictions" formControlName="dietary_restrictions"
+                           > 
+                          
+                          
+                        </div>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          
+                          <label class="col-form-label" for="gridCheck">
+                            Do you currently exercise?
+                          </label>
+                          
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group row" style="margin-top:10px;">
+                         
+                            <div class="col-3">
+                              <div class="form-check"> 
+                                <input type="radio" value="Yes" formControlName="currently_exercise">                                              
+                                 Yes                                             
+                               </div>
+                              </div> 
+                              <div class="col-3">
+                                <div class="form-check">
+                                  <input type="radio" value="No" formControlName="currently_exercise"> 
+                                    No                                              
+                                </div>
+                                </div>
+                      
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          
+                          <label class="col-form-label" for="gridCheck">
+                           If yes, how long & how many times per week 
+                          </label>
+                          
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          <input class="form-control" type="text" id="example-exercise_for_how_long" formControlName="exercise_for_how_long" > 
+                 
+                          
+                        </div>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          
+                          <label class="col-form-label" for="gridCheck">
+                           What makes you happy?
+                          </label>
+                          
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          <input class="form-control" type="text" id="example-what_makes_u_happy" formControlName="what_makes_u_happy" > 
+                    
+                          
+                        </div>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          
+                          <label class="col-form-label" for="gridCheck">
+                            What makes you worry? 
+                          </label>
+                          
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          <input class="form-control" type="text" id="example-what_makes_u_worry" formControlName="what_makes_u_worry" > 
+                     
+                          
+                        </div>
+                      </div>
+                      </div>
+                      </div>
+                      <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          
+                          <label class="col-form-label" for="gridCheck">
+                            How many hours of sleep do you usually get each night? 
+                          </label>
+                          
+                        </div>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          <input class="form-control" type="text" id="example-take_sleep_each_night" formControlName="take_sleep_each_night"
+                         > 
+                        
+                          
+                        </div>
+                      </div>
+                      </div>
+                      </div>
+                      
+                      <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          
+                          <label class="col-form-label" for="gridCheck">
+                          How would you describe the quality of your sleep?
+                          </label>
+                          
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group row" style="margin-top:10px;">
+                         
+                            <div class="col-3">
+                              <div class="form-check"> 
+                                <input type="radio" value="Restful" formControlName="describe_quality_of_sleep">                                              
+                               Restful                                            
+                               </div>
+                              </div> 
+                              <div class="col-4">
+                                <div class="form-check">
+                                  <input type="radio" value="Somewhat" formControlName="describe_quality_of_sleep"> 
+                                    Somewhat Restful                                              
+                                </div>
+                                </div>
+                                <div class="col-4">
+                                  <div class="form-check">
+                                    <input type="radio" value="Disrupted" formControlName="describe_quality_of_sleep"> 
+                                      Disrupted / Restless                                              
+                                  </div>
+                                  </div>
+                            
+                      
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          
+                          <label class="col-form-label" for="gridCheck">
+                            Do you wake up feeling rested?
+                          </label>
+                          
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group row" style="margin-top:10px;">
+                         
+                            <div class="col-3">
+                              <div class="form-check"> 
+                                <input type="radio" value="Yes" formControlName="do_u_wake_up_feeling_rested">                                              
+                                 Yes                                             
+                               </div>
+                              </div> 
+                              <div class="col-3">
+                                <div class="form-check">
+                                  <input type="radio" value="No" formControlName="do_u_wake_up_feeling_rested"> 
+                                    No                                              
+                                </div>
+                                </div>
+                      
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="col-12">
+                      <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <div class="form-check">
+                          
+                          <label class="col-form-label" for="gridCheck">
+                            Do you have a hard time falling asleep?
+                          </label>
+                          
+                        </div>
+                      </div>
+                      <div class="col-6">
+                        <div class="form-group row" style="margin-top:10px;">
+                          
+                            <div class="col-3">
+                              <div class="form-check"> 
+                                <input type="radio" value="Yes" formControlName="do_u_falling_asleep">                                              
+                                 Yes                                             
+                               </div>
+                              </div> 
+                              <div class="col-3">
+                                <div class="form-check">
+                                  <input type="radio" value="No" formControlName="do_u_falling_asleep"> 
+                                    No                                              
+                                </div>
+                                </div>
+                      
+                        </div>
+                        </div>
+                      </div>
+                      </div>
+                      <div class="form-group">
+                      <div class="col-12">
+                          <label for="example-tel-input" style="" class=" col-form-label ">
+                          What are your expectations of this program?
+                            </label>
+                          </div>
+                          <div class="col-12">
+                              <textarea class="form-control" id="example-expectations_of_this_prog" formControlName="expectations_of_this_prog"> </textarea>
+                              
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-12">
+                            <label for="example-tel-input" style="" class=" col-form-label ">
+                             Are there any programs you have tried in the past that worked for you? Why did you succeed?
+                              </label>
+                            </div>
+                            <div class="col-12">
+                              <textarea class="form-control" id="example-experience_of_past_of_this_prog" formControlName="experience_of_past_of_this_prog"
+                               > </textarea>
+                              
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-12">
+                              <label for="example-tel-input" style="" class=" col-form-label ">
+                              Is there anything else I should know? Do you have anything else you want to make sure is addressed in your sessions?
+                                </label>
+                              </div>
+                              <div class="col-12">
+                                  <textarea class="form-control" id="example-any_otherthing_u_need_to_address" formControlName="any_otherthing_u_need_to_address"> </textarea>
+                                
+                              </div>
+                          </div>
+                      
+                            </div>
+                          </div>
+                        
+                        <div class="col-md-12" >
+                          <button type="submit" class="btn-btn">Save</button>
+                       </div>
+                            </form>
+                                                   
+                        
+                        </div>
+                  </div>
+              </div>
+                </div>
+                </div>
+                </div>
+                </div>
+          </div>
+      </div>
+  </div>
+</div> 

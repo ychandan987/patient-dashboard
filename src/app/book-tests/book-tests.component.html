@@ -1,0 +1,55 @@
+<div class="row">    
+  <div class="page-header">
+    <h1>
+      All Tests  <span class="pull-right"><a routerLink="../book" class="btn btn-primary">Book Tests</a></span>
+    </h1>
+  </div>
+
+  <div class="container spec-dropdown">
+      <ng-multiselect-dropdown
+        [placeholder]="'Please select a category'"
+        [data]="specs"
+        [(ngModel)]="selectedItems"
+        [settings]="dropdownSettings"
+        (onSelect)="onSelect($event)"
+        (onDeSelect)="onSelect({id:0})">
+      </ng-multiselect-dropdown>
+  </div>
+
+  <table class="table table-hover" *ngIf="tests[0]">
+    <thead>
+      <tr class="bg-info text-white">
+        <th>ID</th>
+        <th>Test Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Description</th>
+        <!-- <th>Action</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let test of tests,let i=index">
+        <th scope="row" *ngIf="test.category_id==selectedSpec">{{i+1}}</th>
+        <td *ngIf="test.category_id==selectedSpec">{{test.test_name}}</td>
+        <td *ngIf="test.category_id==selectedSpec">{{test.category}}</td>
+        <td *ngIf="test.category_id==selectedSpec">{{test.price}}</td>
+        <td *ngIf="test.category_id==selectedSpec">{{test.description}}</td>
+        <!-- <td *ngIf="test.category_id==selectedSpec">
+          <a routerLink="book"  class="btn btn-primary">View</a>
+        </td> -->
+      </tr>
+    </tbody>
+    <tbody *ngIf="!selectedSpec">
+      <tr *ngFor="let test of tests,let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{test.test_name}}</td>
+        <td>{{test.category}}</td>
+        <td>{{test.price}}</td>
+        <td>{{test.description}}</td>
+        <!-- <td>
+          <a routerLink="book"  class="btn btn-primary">View</a>
+        </td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

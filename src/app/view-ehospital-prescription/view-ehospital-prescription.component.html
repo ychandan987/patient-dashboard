@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="page-header">
+      <h1>
+      Prescriptions
+      </h1>
+    </div>
+<table class="table table-hover">
+  <thead>
+    <tr class="bg-info text-white">
+      <th>ID</th>
+      <th>Prescription Id</th>
+      <th>Patient Id</th>
+      <th>Patient Name</th>
+      <th>Address</th>
+      <th>Booking Details</th>
+      <th>Diagnosis</th>    
+      <th>Prescription Path</th>
+      <th>Created On</th>
+    </tr>
+  </thead>
+  <tbody>
+  
+    
+      <tr *ngFor="let app of pres,let i=index">
+          <th scope="row">{{i+1}}</th>
+          <td>{{app.PrescriptionId}}</td>
+          <td>{{app.PatientId}}</td>
+          <td>{{app.PatientName}}</td>
+          <td>{{app.Address}}</td>
+          <td>{{app.BookingDetails}}</td>
+          <td>{{app.Diagnosis}}</td>
+          <td >
+            <a *ngIf="app.PrescriptionPath.includes('https')" href="{{app.PrescriptionPath}}" target="_blank"><img src="{{app.PrescriptionPath}}" width="150px" height="150px"></a>
+           
+            <a *ngIf="app.PrescriptionPath.includes('Uploads')==true" href="http://35.163.147.45{{app.PrescriptionPath}}" target="_blank"><img src="http://35.163.147.45{{app.PrescriptionPath}}" width="150px" height="150px"></a>
+             
+          </td>
+        
+          
+        <td>{{formatTime(app.Date)}}</td>
+      </tr>
+      <!-- <tr class='inline' *ngFor="let p of prescription_path_array,let i=index">
+          <td > <!--{{p}} -->
+
+              <!-- <a href="{{p}}" target="_blank"><img src="{{p}}" width="150px" height="150px"></a>
+           
+            </td>
+          </tr> -->
+  
+  </tbody>
+</table>
+</div> 

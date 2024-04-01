@@ -1,0 +1,119 @@
+<div class="row">
+  <div class="container-fluid">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h1>Appointment ID - {{posts.AppointmentId}}</h1>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <br>
+
+      <mat-card-content>
+        <div class="row">
+          <div class="container-fluid">
+            <h2>Details</h2>
+            <hr>
+            <div class="row">
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Doctor: </strong> {{posts.DoctorName}}
+              </div>
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Specialization: </strong> {{posts.Specialization}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Hospital: </strong> {{posts.HospitalName}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Hospital Address: </strong> {{posts.HospitalAddress}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Appointment Date: </strong> {{formatTime(posts.AppointmentDate)}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Appointment Time: </strong> {{posts.AppointmentTime}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Appointment Type: </strong> {{posts.AppointmentType}}
+              </div>
+              <div class="form-group col-md-6"  *ngIf="posts.isComplete == 'Yes                 ' " >
+                <strong class="mr-5">Status: </strong> <strong>Completed</strong>
+              </div>
+
+              <div class="form-group col-md-6"  *ngIf="posts.isComplete == null ">
+                  <strong class="mr-5">Status: </strong> {{posts.isConfirmed}}
+                </div>
+
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Description: </strong> {{posts.Description}}
+              </div>
+              <div class="form-group col-md-6">
+
+                <strong class="mr-5">Amount: </strong>
+
+               <span>{{posts.AppointmentAmount}}</span>
+               <!-- <span *ngIf="posts.AppointmentType == 'Video Consult'">{{posts.VideoFeesWithGSt}}</span>
+               <span *ngIf="posts.AppointmentType == 'Text Consult'">{{posts.TextFeesWithGSt}}</span>
+               <span *ngIf="posts.AppointmentType == 'Phone Consult'">{{posts.VoiceFeesWithGSt}}</span> -->
+
+               
+
+              </div>
+            </div>
+
+            <!-- <mat-divider></mat-divider> -->
+
+            <div class="row">
+              
+              <div class="form-group col-md-6">
+                   <strong class="mr-5">Payment Mode: </strong> 
+                  {{posts.payment_mode}}
+                  <!-- <span *ngIf="posts.payment_mode == 'COD'">Pay On Visit</span>
+                  <span *ngIf="posts.payment_mode != 'COD'">Online</span> -->
+                  <!-- <form [formGroup]="appFormGroup" (ngSubmit)="submit()">
+                      <mat-form-field class="full-width">
+                          <mat-select placeholder="Select Payment Mode" formControlName="payment_mode" (change)="changemode($event)" required> 
+                            
+                            <mat-option value="COD">Cash on Visit</mat-option>
+                            <mat-option value="ONLINE">Online</mat-option>
+                            
+                          </mat-select>
+                        </mat-form-field>
+                        </form> -->
+                </div>
+
+                <div class="form-group col-md-6">
+                    <strong class="mr-5">Payment Status: </strong> {{posts.paymentconfirmation}}
+                </div>
+            </div>
+            
+            
+
+            <mat-divider></mat-divider>
+
+            <mat-card-actions class="text-center">
+                <span *ngIf="posts.AppointmentType == 'Walk-In'">
+                  <button class="btn btn-primary" *ngIf="posts.paymentconfirmation==null && posts.WalkInFeesWithGSt" (click)="pay()">Proceed To Pay</button>
+                </span>
+                <span *ngIf="posts.AppointmentType == 'Video Consult'">                 
+                  <button class="btn btn-primary" *ngIf="posts.paymentconfirmation==null && posts.VideoFeesWithGSt" (click)="pay()">Proceed To Pay</button>
+                </span>
+                <span *ngIf="posts.AppointmentType == 'Text Consult'">                 
+                  <button class="btn btn-primary" *ngIf="posts.paymentconfirmation==null && posts.TextFeesWithGSt " (click)="pay()">Proceed To Pay</button>
+                </span>
+                <span *ngIf="posts.AppointmentType == 'Phone Consult'">              
+                  <button class="btn btn-primary" *ngIf="posts.paymentconfirmation==null && posts.VoiceFeesWithGSt " (click)="pay()">Proceed To Pay</button>
+                </span>
+ 
+             <!-- <a routerLink="view-ehospital-patient-prescriptions/{{posts.PatientId}}" class="btn btn-primary"> View Prescriptions </a> -->
+            </mat-card-actions>
+
+            <!-- <mat-divider></mat-divider> -->
+
+            
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> 

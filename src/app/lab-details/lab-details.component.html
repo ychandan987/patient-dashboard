@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card form" id="form1">
+            <div class="card-header">
+                <h3>
+                    <i class="fa fa-medkit fa-2x"></i>
+                    {{labDetails.lab_name}}
+                </h3>
+              </div>
+              <br>
+              
+            <div class="row mt-3">
+              <h5 class="col-12 mb-2">Lab Details
+                <div class="progress">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </h5>
+              <div class="col-md-12 mt-3">
+                <div class="row">
+                      <div class="form-group col-md-4">
+                          <strong class="mr-5">Lab Name: </strong>{{labDetails.lab_name}}
+                      </div>
+                      <div class="form-group col-md-4">
+                          <strong class="mr-5">Location: </strong> {{labDetails.location}}
+                      </div>
+                      <div class="form-group col-md-4">
+                          <strong class="mr-5">Address: </strong> {{labDetails.address}}
+                      </div>
+                      <div class="form-group col-md-4">
+                          <strong class="mr-5">City: </strong> {{labDetails.city}}
+                      </div>
+                      <div class="form-group col-md-4">
+                        <strong class="mr-5">State : </strong>{{labDetails.state}}
+                      </div>
+                      <div class="form-group col-md-4">
+                        <strong class="mr-5">Mobile : </strong>{{labDetails.mobile}}
+                      </div>
+                      <div class="form-group col-md-4">
+                          <strong class="mr-5">Telephone Number : </strong>{{labDetails.contact}}
+                      </div>
+                      <div class="form-group col-md-4">
+                          <strong class="mr-5">Email : </strong>{{labDetails.email}}
+                        </div>
+                      <div class="form-group col-md-4">
+                          <strong class="mr-5">Home Service Charges : </strong>{{labDetails.home_service_charges}}
+                      </div>
+                      <div class="form-group col-md-4">
+                          <strong class="mr-5">Home Service Contact : </strong>{{labDetails.home_service_contact}}
+                      </div>
+                </div>
+                <!-- <div class="row">
+                  <div class="d-block mx-auto">
+                    <button class="btn btn-primary">Book Appointment</button>
+                  </div>
+                </div> -->
+              </div>
+              <div class="col-md-12 mt-3">
+                <div class="row">
+                  <div class="d-block mx-auto">
+                  <a routerLink="/labs/{{labDetails.unique_id}}/tests">  <button class="btn btn-primary">Book Tests</button></a>
+                  
+                  <a routerLink="/lab/{{labDetails.unique_id}}/prescription-upload" class="btn btn-primary">Upload Prescription</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+           </div>
+           <br>
+             <div class="text-center">
+                <!-- <button  class="btn btn-info" *ngIf="docDetails.appointment_status_id==0" (click)="changeStatus(docDetails.id,1)">Confirm</button>
+                <button  class="btn btn-danger" *ngIf="(docDetails.appointment_status_id!=2)&&(docDetails.appointment_status_id!=3)" (click)="changeStatus(docDetails.id,2)">Cancel</button> -->
+              </div>
+          </div> 
+      </div>

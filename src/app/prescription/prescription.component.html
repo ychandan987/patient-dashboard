@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="page-header">
+        <h1>
+        Prescriptions
+        </h1>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr class="bg-info text-white">
+            <th>ID</th>
+            <th>Appointment ID</th>
+            <th>Prescription</th>
+            <th>Description</th>
+            <th>Appointment Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let app of pres,let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{app.appointment_id}}</td>
+            <td><a href="{{app.prescription_path}}" target="_blank"><img src="{{app.prescription_path}}" width="150px" height="150px"></a></td>
+            <td>{{app.description}}</td>
+            <td>{{formatTime(app.appointment_date)}}</td>
+            <td><a routerLink="/doctor-appointment/orders/details/{{app.appointment_id}}" class="btn btn-info">View Details</a></td>
+          </tr>
+        </tbody>
+      </table>
+</div> 

@@ -1,0 +1,15 @@
+
+.ng-invalid.ng-touched:not(form) {
+    border: 1px solid #0076a8 !important;
+    }
+    label.required::after {
+    content: "*";
+    padding:5px;
+    color: #0076a8 !important;
+    font-weight:bold;
+}
+small{
+    font-size: 9px;
+}
+
+    

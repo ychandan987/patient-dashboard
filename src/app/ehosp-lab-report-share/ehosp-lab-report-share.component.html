@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-12">
+    <!--***** PRODUCT INFO *****-->
+      <div class="card form" id="form1">
+          <div class="card-header">
+              <h3>
+                  <i class="fa fa-medkit"></i>Lab Report
+                  <!-- <a routerLink="/labtests"  class="btn btn-primary pull-right">
+                      <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+                      Go Back
+                  </a>   -->
+              </h3>
+          </div>
+          <br>
+          <form [formGroup]="reportsForm" (ngSubmit)="submit()" ngNativeValidate> 
+              <div class="row" style="padding: 50px">
+                  <div class="form-group">
+                      <!-- <label for="name">Select previous history</label>
+                      <select type="text" class="form-control" placeholder="Select history" [(ngModel)]="categoryId" (change)="getTests()" name="report_path">
+                          <option *ngFor='let category of upload_prev_hist' value="{{category.id}}">{{category.doc_path}}</option>
+                      </select> -->
+
+                      <label for="name">Select Lab Report</label>
+                      <select class="form-control" formControlName="MDoc_Id" id="example-tel-input" (change)="getReports()">
+                        <option *ngFor="let report of reports" value="{{report.id}}">Reports by {{report.lab_name}} sent on {{report.last_updated_on}}</option>
+                      </select>
+                  </div>
+
+
+                  
+              </div>
+              <hr>
+              
+
+              <div class="row" *ngIf="selectedReports">
+                    <h3 class="text-center">Selected Lab Report:</h3><br>
+                   <a href="{{selectedReports.report_path}}" target="_blank"><img src="{{selectedReports.report_path}}" width="200px" height="200px"></a>
+                  </div>
+              <div class="row">
+                  <div class="d-block mx-auto">
+                  <button class="btn-btn" style="cursor:pointer;">Submit</button>
+                  </div>
+              </div>
+          </form>
+      </div> 
+  </div>
+
+</div>

@@ -1,0 +1,1157 @@
+<div class="row mt-2" id="card-prof">
+  <div class="col-md-3">
+      <div class="card hovercard">
+          <div class="cardheader"></div>
+          <div class="avatar">
+                <div *ngIf="profile.profile_picture_path != ''">
+                        <img alt="" src="{{profile.profile_picture_path}}" class="img-fluid">
+                    </div>
+                      
+                      <div *ngIf="profile.profile_picture_path == ''">
+                            <img src="./assets/img/avatar-1.jpg" alt="..." class="img-fluid" >
+                      </div>
+          </div>
+          <div class="info">
+              <div class="title">
+                  <a target="_blank" routerLink="#">Username: {{currentUser.username}}</a>
+              </div>
+              <hr>
+              <strong class="mr-5">Unique Id:</strong>    {{currentUser.unique_id}}
+            
+            </div>
+             
+    
+      </div>
+  </div>
+  <div class="col-md-9">
+      <div class="card hovercard">
+          <div class="tab" role="tabpanel"> 
+              <ul class="nav nav-tabs" role="tablist">
+                
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/profile" role="tab" data-toggle="tab"><span><i class="fa fa-user"></i></span> My Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" routerLink="/profile/edit" role="tab" data-toggle="tab"><span><i class="fa fa-cog"></i></span> Edit Profile</a> 
+                </li>
+                 <li class="nav-item">
+                  <a class="nav-link " routerLink="/profile/healthnutritionalform" role="tab" data-toggle="tab"><span><i class="fa fa-medkit"></i></span> Health & Nutritional </a> 
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " routerLink="/profile/psychosocialform" role="tab" data-toggle="tab"><span><i class="fa fa-heartbeat"></i></span> Psychosocial </a> 
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " routerLink="/profile/initialclinicform" role="tab" data-toggle="tab"><span><i class="fa fa-hospital-o"></i></span> Initial Clinic </a> 
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/profile/upload-previous-history" role="tab" data-toggle="tab"><span><i class="fa fa-upload"></i></span> Upload Previous History</a> 
+                  </li>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content tabs">
+                 <div role="tabpanel" class="tab-pane fade   show active" id="references">
+                    
+                      <div class="row mx-2">
+                          <div class="col-md-12 panel-heading">
+                              <h3 class="panel-title"><i class="fa fa-comment"></i> Edit Additional Details</h3>
+                              <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                              </div><br>
+                          </div>
+                          <form [formGroup]="editProfileForm" (ngSubmit)="editProfile()" ngNativeValidate>
+                            <div class="row">
+                            <div class="col-md-6 ">
+                            <div class="form-group row">
+                                  <label for="example-tel-input" style="width: 100px;" class=" col-form-label ">Aadhaar No.</label>
+                                  <div class="col-8">
+                                      <input class="form-control" type="number" id="example-aadhar" formControlName="aadhaarNo"
+                                      [ngClass]="{'is-invalid': editProfileForm.controls['aadhaarNo'].invalid && (editProfileForm.controls['aadhaarNo'].dirty || editProfileForm.controls['aadhaarNo'].touched),'is-valid': editProfileForm.controls['aadhaarNo'].valid && (editProfileForm.controls['aadhaarNo'].dirty || editProfileForm.controls['aadhaarNo'].touched)}" onKeyPress="if(this.value.length==12) return false;" required> 
+                                      <div class="" *ngIf="editProfileForm.controls['aadhaarNo'].invalid && (editProfileForm.controls['aadhaarNo'].dirty || editProfileForm.controls['aadhaarNo'].touched)" style="color:#ff0000">
+                                        Enter a valid Aadhar No.
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="form-group row">
+                                  <label for="example-tel-input" style="width: 100px;" class=" col-form-label ">Address</label>
+                                  <div class="col-8">
+                                    <textarea class="form-control" formControlName="address" minlength="10" [ngClass]="{'is-invalid': editProfileForm.controls['address'].invalid && (editProfileForm.controls['address'].dirty || editProfileForm.controls['address'].touched),'is-valid': editProfileForm.controls['address'].valid && (editProfileForm.controls['address'].dirty || editProfileForm.controls['address'].touched)}" required> 
+                                    </textarea> 
+                                    <div class="" *ngIf="editProfileForm.controls['address'].invalid && (editProfileForm.controls['address'].dirty || editProfileForm.controls['address'].touched)" style="color:#ff0000">
+                                        Enter a valid Address.
+                                      </div>
+                                  </div>
+                              </div>
+                              
+                             <div class="form-group row">
+                                  <label for="example-tel-input" style="width: 100px;" class=" col-form-label ">City</label>
+                                  <div class="col-8">
+                                      <input class="form-control" type="text" id="example-aadhar" formControlName="city"
+                                      [ngClass]="{'is-invalid': editProfileForm.controls['city'].invalid && (editProfileForm.controls['city'].dirty || editProfileForm.controls['city'].touched),'is-valid': editProfileForm.controls['city'].valid && (editProfileForm.controls['city'].dirty || editProfileForm.controls['city'].touched)}" required>
+                                      <div class="" *ngIf="editProfileForm.controls['city'].invalid && (editProfileForm.controls['city'].dirty || editProfileForm.controls['city'].touched)" style="color:#ff0000">
+                                        Enter a valid City.
+                                      </div>
+                                    </div>
+                              </div>
+                              <div class="form-group row">
+                                  <label for="example-tel-input" style="width: 100px;" class=" col-form-label ">State</label>
+                                  <div class="col-8">
+                                      <input class="form-control" type="text" id="example-aadhar" formControlName="state"
+                                      [ngClass]="{'is-invalid': editProfileForm.controls['state'].invalid && (editProfileForm.controls['state'].dirty || editProfileForm.controls['state'].touched),'is-valid': editProfileForm.controls['state'].valid && (editProfileForm.controls['state'].dirty || editProfileForm.controls['state'].touched)}" required>
+                                      <div class="" *ngIf="editProfileForm.controls['state'].invalid && (editProfileForm.controls['state'].dirty || editProfileForm.controls['state'].touched)" style="color:#ff0000">
+                                        Enter a valid State.
+                                      </div>
+                                    </div>
+                              </div>
+                              <div class="form-group row">
+                                  <label for="example-tel-input" style="width: 100px;" class=" col-form-label ">Pincode</label>
+                                  <div class="col-8">
+                                      <input class="form-control" type="text" id="example-aadhar" formControlName="pincode"
+                                      [ngClass]="{'is-invalid': editProfileForm.controls['pincode'].invalid && (editProfileForm.controls['pincode'].dirty || editProfileForm.controls['pincode'].touched),'is-valid': editProfileForm.controls['pincode'].valid && (editProfileForm.controls['pincode'].dirty || editProfileForm.controls['pincode'].touched)}" pattern="[0-9]*" maxlength="6" minlength="6" (keypress)="keyPress($event)" required>
+                                      <div class="" *ngIf="editProfileForm.controls['pincode'].invalid && (editProfileForm.controls['pincode'].dirty || editProfileForm.controls['pincode'].touched)" style="color:#ff0000">
+                                        Enter a valid Pincode.
+                                      </div>
+                                    </div>
+                              </div>
+                              <div class="form-group row">
+                                  <label for="example-date-input" style="width: 100px;" class=" col-form-label ">Upload Profile Picture <span style="font-size:12px;">(Jpeg) </span></label>
+                                  <div class="col-8">
+                                      <input class="form-control" type="file" id="example-date-input" (change)="getFile($event.target.files)">
+                                 
+                                    </div>
+                              </div>
+                              <div class="form-group row">
+                                  <label for="example-text-input" style="width: 100px;" class=" col-form-label ">Gender</label>
+                                  <div class="col-8">
+                                      <select class="form-control" formControlName="gender">
+                                          <option value="Male">Male</option>
+                                          <option value="Female">Female</option>
+                                          <option value="Other">Other</option>
+                                      </select>
+                                  </div>
+                              </div>
+                               <!-- <div class="form-group row">
+                                  <label for="example-text-input" style="width: 100px;" class=" col-form-label ">Age</label>
+                                  <div class="col-8">
+                                      <input class="form-control" type="number" id="example-text-input" formControlName="age" value="age"
+                                      [ngClass]="{'is-invalid': editProfileForm.controls['age'].invalid && (editProfileForm.controls['age'].dirty || editProfileForm.controls['age'].touched),'is-valid': editProfileForm.controls['age'].valid && (editProfileForm.controls['age'].dirty || editProfileForm.controls['age'].touched)}" required>
+                                      <div class="" *ngIf="editProfileForm.controls['age'].invalid && (editProfileForm.controls['age'].dirty || editProfileForm.controls['age'].touched)" style="color:#ff0000">
+                                        Enter a valid Age.
+                                      </div>
+                                    </div>
+                              </div> -->
+                         
+                               
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label for="example-text-input" style="width: 115px;" class=" col-form-label ">Date Of Birth</label>
+                                    <div class="col-8">
+                                        <input class="form-control" type="date" [max]="today" id="example-text-input" formControlName="dob"
+                                        [ngClass]="{'is-invalid': editProfileForm.controls['dob'].invalid && (editProfileForm.controls['dob'].dirty || editProfileForm.controls['dob'].touched),'is-valid': editProfileForm.controls['dob'].valid && (editProfileForm.controls['dob'].dirty || editProfileForm.controls['dob'].touched)}" required>
+                                        <div class="" *ngIf="editProfileForm.controls['dob'].invalid && (editProfileForm.controls['dob'].dirty || editProfileForm.controls['dob'].touched)" onchange="datec()" style="color:#ff0000">
+                                            Enter a valid Date of Birth.
+                                          </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group row">
+                                  <label for="example-text-input" style="width: 115px;" class=" col-form-label">Blood  Group</label>
+                                  <div class="col-8">
+                                      <select class="form-control" formControlName="bloodGroup"
+                                      [ngClass]="{'is-invalid': editProfileForm.controls['bloodGroup'].invalid && (editProfileForm.controls['bloodGroup'].dirty || editProfileForm.controls['bloodGroup'].touched),'is-valid': editProfileForm.controls['bloodGroup'].valid && (editProfileForm.controls['bloodGroup'].dirty || editProfileForm.controls['bloodGroup'].touched)}">
+                                          <option value="A+">A+</option>
+                                          <option value="O+">O+</option>
+                                          <option value="B+">B+</option>
+                                          <option value="AB+">AB+</option>
+                                          <option value="A-">A-</option>
+                                          <option value="O-">O-</option>
+                                          <option value="B-">B-</option>
+                                          <option value="AB-">AB-</option>
+                                      </select>
+                                  </div>
+                              </div> 
+                             
+                              <div class="form-group row">
+                                  <label for="example-url-input" style="width: 115px;" class=" col-form-label">Height <span style="font-size:12px;">(In Centimeters)</span></label>
+                                  <div class="col-8">
+                                      <input class="form-control" type="number" id="example-url-input" formControlName="height"
+                                      [ngClass]="{'is-invalid': editProfileForm.controls['height'].invalid && (editProfileForm.controls['height'].dirty || editProfileForm.controls['height'].touched),'is-valid': editProfileForm.controls['height'].valid && (editProfileForm.controls['height'].dirty || editProfileForm.controls['height'].touched)}" onKeyPress="if(this.value.length==3) return false;" required>
+                                      
+                                      <div class="" *ngIf="editProfileForm.controls['height'].invalid && (editProfileForm.controls['height'].dirty || editProfileForm.controls['height'].touched)" style="color:#ff0000">
+                                        Enter a valid Height.
+                                      </div>
+                                    </div>
+                              </div>
+                              <div class="form-group row">
+                                  <label for="example-text-input" style="width: 115px;" class=" col-form-label">Weight <span style="font-size:12px;">(In KG)</span></label>
+                                  <div class="col-8">
+                                      <input class="form-control" type="number" id="example-text-input" formControlName="weight"
+                                      [ngClass]="{'is-invalid': editProfileForm.controls['weight'].invalid && (editProfileForm.controls['weight'].dirty || editProfileForm.controls['weight'].touched),'is-valid': editProfileForm.controls['weight'].valid && (editProfileForm.controls['weight'].dirty || editProfileForm.controls['weight'].touched)}" onKeyPress="if(this.value.length==3) return false;" required>
+                                      <div class="" *ngIf="editProfileForm.controls['weight'].invalid && (editProfileForm.controls['weight'].dirty || editProfileForm.controls['weight'].touched)" style="color:#ff0000">
+                                        Enter a valid Weight.
+                                      </div>
+                                  </div>
+                              </div>
+                             
+                              <!-- <div class="form-group row">
+                                  <label for="example-text-input" style="width: 115px;" class=" col-form-label">Upload Previous Medical Records</label>
+                                  <div class="col-8">
+                                      <input class="form-control" type="file" id="example-text-input">
+                                  </div>
+                              </div> -->
+                             
+                              <div class="form-group row">
+                                  <label for="example-date-input" style="width: 115px;" class=" col-form-label">Any Previous Ailments </label>
+                                  <div class="col-8">
+                                     <textarea rows="4" id="any-previous-ailments" class="form-control" cols="40"  formControlName="previousAilments" [ngClass]="{'is-invalid': editProfileForm.controls['previousAilments'].invalid && (editProfileForm.controls['previousAilments'].dirty || editProfileForm.controls['previousAilments'].touched),'is-valid': editProfileForm.controls['previousAilments'].valid && (editProfileForm.controls['previousAilments'].dirty || editProfileForm.controls['previousAilments'].touched)}" required></textarea>
+                                     <div class="" *ngIf="editProfileForm.controls['previousAilments'].invalid && (editProfileForm.controls['previousAilments'].dirty || editProfileForm.controls['previousAilments'].touched)" style="color:#ff0000">
+                                        Enter a valid Previous Ailments.
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="form-group row">
+                                  <label for="example-date-input" style="width: 115px;" class=" col-form-label">Family Medical History </label>
+                                  <div class="col-8">
+                                      <textarea rows="4" id="family-medical-history" class="form-control" cols="40"  formControlName="familyMedicalRecords"
+                                      [ngClass]="{'is-invalid': editProfileForm.controls['familyMedicalRecords'].invalid && (editProfileForm.controls['familyMedicalRecords'].dirty || editProfileForm.controls['familyMedicalRecords'].touched),'is-valid': editProfileForm.controls['familyMedicalRecords'].valid && (editProfileForm.controls['familyMedicalRecords'].dirty || editProfileForm.controls['familyMedicalRecords'].touched)}" required></textarea>
+                                      <div class="" *ngIf="editProfileForm.controls['familyMedicalRecords'].invalid && (editProfileForm.controls['familyMedicalRecords'].dirty || editProfileForm.controls['familyMedicalRecords'].touched)" style="color:#ff0000">
+                                        Enter a valid Family Medical History.
+                                      </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                              <button type="submit" class="btn-btn">Save</button>
+                          </div>
+                        </form>
+                      </div> 
+                     
+
+                   
+
+                  
+
+                      
+                  </div>
+              </div>
+
+              <div class="tab-content tabs">
+                
+                <div class="row">
+                  
+                <div class="col-lg-12">
+                <div class="panel-group text-left" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne" style="border:1px solid #939293;padding:10px;">
+                          <h3 class="panel-title"> 
+                        <a data-toggle="collapse" style="color:#939293;text-align:left" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Edit Work Details
+                         
+                        </a>
+                      </h3>
+                
+                        </div>
+
+                        
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                              
+                              <form [formGroup]="editUserWorkForm" (ngSubmit)="editUserWork()" ngNativeValidate>
+                                <div class="row">
+                                <div class="col-md-6 ">
+                                <div class="form-group row">
+                                      <label for="example-tel-input" style="width: 100px;" class=" col-form-label ">Place Of Work.</label>
+                                      <div class="col-8">
+                                        <input class="form-control" type="text" id="example-place_of_work" formControlName="place_of_work"
+                                       > 
+                                        
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="example-tel-input" style="width: 100px;" class=" col-form-label ">Office Address</label>
+                                      <div class="col-8">
+                                        <textarea class="form-control" formControlName="office_address" minlength="10" > 
+                                        </textarea> 
+                                       
+                                      </div>
+                                  </div>
+                                  
+                                 <div class="form-group row">
+                                      <label for="example-tel-input" style="width: 100px;" class=" col-form-label ">designation</label>
+                                      <div class="col-8">
+                                        <input class="form-control" type="text" id="example-designation" formControlName="designation"
+                                        >
+                                       
+                                        </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="example-tel-input" style="width: 100px;" class=" col-form-label ">Department</label>
+                                      <div class="col-8">
+                                        <input class="form-control" type="text" id="example-department" formControlName="department"
+                                        >
+                                       
+                                        </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      
+                                      <div class="col-8">
+                                          
+                                        </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      
+                                      <div class="col-8">
+                                         
+                                     
+                                        </div>
+                                  </div>
+                                  <div class="form-group row">
+                                     
+                                      <div class="col-8">
+                                         
+                                      </div>
+                                  </div>
+                                  
+                             
+                                   
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                
+                                 
+                                  <div class="form-group row">
+                                      <label for="example-url-input" style="width: 115px;" class=" col-form-label">Whatsapp Mobile No</label>
+                                      <div class="col-8">
+                                        <input class="form-control" type="number" id="example-whatsapp_mob_no-input" formControlName="whatsapp_mob_no"
+                                        >
+                                        
+                                      
+                                        </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="example-text-input" style="width: 115px;" class=" col-form-label">Office Email Id </label>
+                                      <div class="col-8">
+                                        <input class="form-control" type="text" id="example-office_email_id-input" formControlName="office_email_id"
+                                        >
+                                       
+                                      </div>
+                                  </div>
+                                 
+                                 
+                                  <div class="form-group row">
+                                      <label for="example-date-input" style="width: 115px;" class=" col-form-label">Permanent Address </label>
+                                      <div class="col-8">
+                                        <textarea rows="4" id="permant-address" class="form-control" cols="40"  formControlName="permanent_address" ></textarea>
+                                        
+                                      </div>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+                              <div class="col-md-12" >
+                                  <button type="submit" class="btn-btn">Save</button>
+                              </div>
+                             
+                            </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                      <div class="panel-heading" role="tab" id="headingTwo"  style="border:1px solid #939293;padding:10px;">
+                          <h3 class="panel-title">
+                            
+                        <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Edit Family Details
+                        </a>
+                      </h3>
+                  
+                        </div> 
+                  
+                     
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                              <form [formGroup]="editFDProfileForm" (ngSubmit)="editFamilyDetailsProfile()" ngNativeValidate>
+                                <div class="row">
+                                <div class="col-md-6 ">
+                                <div class="form-group row">
+                                      <label for="example-tel-input" style="width: 100px;" class=" col-form-label ">No. of Members
+                                        </label>
+                                      <div class="col-8">
+                                          <input class="form-control" type="text" id="example-no_of_member" formControlName="no_of_member"
+                                         > 
+                                         
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="example-tel-input" style="width: 100px;" class=" col-form-label ">Spouse Full Name</label>
+                                      <div class="col-8">
+                                        <input class="form-control" type="text" id="example-spouse_name" formControlName="spouse_name"
+                                          > 
+                                         
+                                      </div>
+                                  </div>
+                                  
+                                 <div class="form-group row">
+                                      <label for="example-tel-input" style="width: 100px;" class=" col-form-label ">Spouse DOB</label>
+                                      <div class="col-8">
+                                        <input class="form-control" type="date" id="example-spouse_dob" formControlName="spouse_dob" [max]="today" value="{{spouse_dob | date:'yyyy-MM-dd' }}" > 
+                                        
+                                        </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="example-tel-input" style="width: 100px;" class=" col-form-label ">Spouse MOB No.</label>
+                                      <div class="col-8">
+                                        <input class="form-control" type="number" id="example-spouse_mob" formControlName="spouse_mob"
+                                       > 
+                                        
+                                        </div>
+                                  </div>
+                                  <div class="form-group row">
+                                    <label for="example-url-input" style="width: 100px;" class=" col-form-label">Spouse Email ID</label>
+                                    <div class="col-8">
+                                      <input class="form-control" type="text" id="example-text-input" formControlName="spouse_email"
+                                     >
+                                      
+                                      </div>
+                                </div>
+                                <div class="form-group row">
+                                  <label for="example-text-input" style="width: 100px;" class=" col-form-label">Child Name 1</label>
+                                  <div class="col-8">
+                                    <input class="form-control" type="text" id="example-text-input" formControlName="child_name_1"
+                                    >
+                                   
+                                  </div>
+                              </div>
+                            
+                              <div class="form-group row">
+                                <label for="example-text-input" style="width: 100px;" class=" col-form-label">Child DOB 1</label>
+                                <div class="col-8">
+                                  <input class="form-control" type="date" id="example-text-input" formControlName="child_dob_1" [max]="today" value="{{child_dob_1 | date:'yyyy-MM-dd' }}"
+                                  >
+                                
+                                </div>
+                            </div> 
+                                  <div class="form-group row">
+                                      
+                                      <div class="col-8">
+                                         
+                                     
+                                        </div>
+                                  </div>
+                                  <div class="form-group row">
+                                     
+                                      <div class="col-8">
+                                         
+                                      </div>
+                                  </div>
+                                   <!-- <div class="form-group row">
+                                      <label for="example-text-input" style="width: 100px;" class=" col-form-label ">Age</label>
+                                      <div class="col-8">
+                                          <input class="form-control" type="number" id="example-text-input" formControlName="age" value="age"
+                                          [ngClass]="{'is-invalid': editFDProfileForm.controls['age'].invalid && (editFDProfileForm.controls['age'].dirty || editFDProfileForm.controls['age'].touched),'is-valid': editFDProfileForm.controls['age'].valid && (editFDProfileForm.controls['age'].dirty || editFDProfileForm.controls['age'].touched)}" required>
+                                          <div class="" *ngIf="editFDProfileForm.controls['age'].invalid && (editFDProfileForm.controls['age'].dirty || editFDProfileForm.controls['age'].touched)" style="color:#ff0000">
+                                            Enter a valid Age.
+                                          </div>
+                                        </div>
+                                  </div> -->
+                             
+                                   
+                                </div>
+                                <div class="col-md-6">
+                                    
+                                
+                                 
+                                  
+                                  <div class="form-group row">
+                                      <label for="example-text-input" style="width: 100px;" class=" col-form-label">Child Name 2</label>
+                                      <div class="col-8">
+                                        <input class="form-control" type="text" id="example-text-input" formControlName="child_name_2"
+                                      >
+                                      
+                                      </div>
+                                  </div>
+                            
+                                  <div class="form-group row">
+                                    <label for="example-text-input" style="width: 100px;" class=" col-form-label">Child DOB 2</label>
+                                    <div class="col-8">
+                                      <input class="form-control" [max]="today" type="date" id="example-text-input" formControlName="child_dob_2" value="{{child_dob_2 | date:'yyyy-MM-dd' }}"
+                                      >
+                                      
+                                    </div>
+                                </div>                     
+                            
+                             
+                            
+                            <div class="form-group row">
+                              <label for="example-text-input" style="width: 100px;" class=" col-form-label">Father's Name</label>
+                              <div class="col-8">
+                                <input class="form-control" type="text" id="example-text-input" formControlName="father_name"
+                                >
+                                
+                              </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                            <label for="example-text-input" style="width: 100px;" class=" col-form-label">Father's DOB</label>
+                            <div class="col-8">
+                              <input class="form-control" type="date" id="example-text-input" formControlName="father_dob" [max]="today" value="{{father_dob | date:'yyyy-MM-dd' }}"
+                              >
+                             
+                            </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                            <label for="example-text-input" style="width: 100px;" class=" col-form-label">Mothers's Name</label>
+                            <div class="col-8">
+                              <input class="form-control"  type="text" id="example-text-input" formControlName="mother_name"
+                              >
+                              
+                            </div>
+                            </div>
+                            
+                            <div class="form-group row">
+                            <label for="example-text-input" style="width: 100px;" class=" col-form-label">Mother's DOB</label>
+                            <div class="col-8">
+                              <input class="form-control" type="date" id="example-text-input" formControlName="mother_dob" [max]="today" value="{{mother_dob | date:'yyyy-MM-dd' }}"
+                             >
+                              
+                            </div>
+                            </div>
+                            
+                            
+                                 
+                                  <!-- <div class="form-group row">
+                                      <label for="example-text-input" style="width: 115px;" class=" col-form-label">Upload Previous Medical Records</label>
+                                      <div class="col-8">
+                                          <input class="form-control" type="file" id="example-text-input">
+                                      </div>
+                                  </div> -->
+                                 
+                                  <!-- <div class="form-group row">
+                                      <label for="example-date-input" style="width: 115px;" class=" col-form-label">Status </label>
+                                      <div class="col-8">
+                                         <textarea rows="4" id="any-previous-ailments" class="form-control" cols="40"  formControlName="previousAilments" [ngClass]="{'is-invalid': editFDProfileForm.controls['previousAilments'].invalid && (editFDProfileForm.controls['previousAilments'].dirty || editFDProfileForm.controls['previousAilments'].touched),'is-valid': editFDProfileForm.controls['previousAilments'].valid && (editFDProfileForm.controls['previousAilments'].dirty || editFDProfileForm.controls['previousAilments'].touched)}" required></textarea>
+                                         <div class="" *ngIf="editFDProfileForm.controls['previousAilments'].invalid && (editFDProfileForm.controls['previousAilments'].dirty || editFDProfileForm.controls['previousAilments'].touched)" style="color:#ff0000">
+                                            Enter a valid Permanent Address.
+                                          </div>
+                                      </div>
+                                  </div> -->
+                                  
+                                </div>
+                              </div>
+                              <div class="col-md-12">
+                                  <button type="submit" class="btn-btn">Save</button>
+                              </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default" >
+                      <div class="panel-heading" role="tab" id="headingThree"  style="border:1px solid #939293;padding:10px;">
+                        <h3 class="panel-title">
+                      <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Personal Health Insurance
+                      </a>
+                    </h3>
+                  
+                      </div>
+                      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                          <div class="panel-body">
+                            <form [formGroup]="editPersonalHealthInsForm" (ngSubmit)="editPersonalHealthIns()" ngNativeValidate>
+                              <div class="row">
+                              <div class="col-md-12">
+                              <div class="form-group row">
+                                <div class="col-6">
+                                    <label for="example-tel-input" style="" class=" col-form-label ">
+                                      Any of your 'working'
+                                      family members have
+                                      you covered from their
+                                      companies side
+                                      </label>
+                                    </div>
+                                    <div class="col-6">
+                                      <input class="form-control" placeholder="Please input in YES or NO" type="text" id="example-family_members_covered" formControlName="family_members_covered"
+                                      > 
+                                     
+                                    </div>
+                                </div>
+                          
+                                <div class="form-group row">
+                                  
+                                    <div class="col-6">
+                                      <label for="example-tel-input" style="" class=" col-form-label ">
+                                        Do you have any personal
+                                        Health Insurance for
+                                        yourself and your family
+                                        </label>
+                                      </div>
+                                  <div class="col-6">
+                                      <input class="form-control" placeholder="Please input in YES or NO" type="text" id="example-personal_health_insurance" formControlName="personal_health_insurance"
+                                      > 
+                                      
+                                  </div>
+                              </div>
+                          
+                              <div class="form-group row">
+                                <div class="col-6">
+                                  <label for="example-tel-input" style="" class=" col-form-label ">
+                                    If Yes, then please mention
+                                    the Insurance Companies
+                                    Name
+                                    </label>
+                                  </div>
+                               
+                                <div class="col-6">
+                                  <input class="form-control" type="text" id="example-insurance_company_name" formControlName="insurance_company_name"
+                          > 
+                         
+                                </div>
+                            </div>
+                          
+                            <div class="form-group row">
+                              
+                                <div class="col-6">
+                                  <label for="example-tel-input" style="" class=" col-form-label ">
+                                    Please mention the name
+                                    of policy plan bought
+                                    </label>
+                                  </div>
+                              <div class="col-6">
+                                  <input class="form-control" type="text" id="example-policy_name" formControlName="policy_name"
+                                  > 
+                                  
+                              </div>
+                              </div>
+                              
+                              
+                               
+                              <div class="form-group row">
+                              
+                                <div class="col-6">
+                                  <label for="example-tel-input" style="" class=" col-form-label ">
+                                    What is the inpatient
+                                    coverage limit (INR Lakhs)
+                                    </label>
+                                  </div>
+                              <div class="col-6">
+                                  <input class="form-control" type="text" id="example-inpatient_coverage_limit" formControlName="inpatient_coverage_limit"
+                          > 
+                        
+                              </div>
+                            </div>
+                              <div class="form-group row">
+                              
+                                <div class="col-6">
+                                  <label for="example-tel-input" style="" class=" col-form-label ">
+                                    Does the plan include
+                                    any outpatient coverage
+                                    (consultation, diagnostics,
+                                    medicine, etc.?)
+                          
+                                    </label>
+                                  </div>
+                              <div class="col-6">
+                                  <input class="form-control" type="text" id="example-policy_plan_include_outpatient_coverage" formControlName="policy_plan_include_outpatient_coverage"
+                                  > 
+                                 
+                              </div>
+                              
+                          </div>
+                          
+                          <div class="form-group row">
+                              
+                            <div class="col-6">
+                              <label for="example-tel-input" style="" class=" col-form-label ">
+                                If Yes, then please mention
+                                the coverage details (INR
+                                Thousands)
+                          
+                                </label>
+                              </div>
+                          <div class="col-6">
+                              <input class="form-control" type="text" id="example-coverage_details_inr" formControlName="coverage_details_inr"
+                          > 
+                         
+                          </div>
+                          
+                          </div>
+                          
+                          
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <button type="submit" class="btn-btn">Save</button>
+                          </div>
+                                </form>
+                            
+                            </div>
+                      </div>
+                  </div>
+
+                    <div class="panel panel-default" >
+                      <div class="panel-heading" role="tab" id="headingFour"  style="border:1px solid #939293;padding:10px;">
+                        <h3 class="panel-title">
+                      <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                        Medical-Preferences
+                      </a>
+                    </h3>
+                  
+                      </div>
+                      <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                          <div class="panel-body">
+                            <form [formGroup]="editMedicalPrefForm" (ngSubmit)="editMedicalPref()" ngNativeValidate>
+                              <div class="row">
+                              <div class="col-md-12">
+                              <div class="form-group row">
+                                <div class="col-6">
+                                    <label for="example-tel-input" style="" class=" col-form-label ">
+                                      Do you have a fixed Family
+                                          Physician / General
+                                          Physician 
+                                      </label>
+                                    </div>
+                                    <div class="col-6">
+                                      <input class="form-control" type="text" id="example-fixed_family_physician" formControlName="fixed_family_physician"
+                                      > 
+                                     
+                                    </div>
+                                </div>
+                          
+                                <div class="form-group row">
+                                  <div class="col-6">
+                                      <label for="example-tel-input" style="" class=" col-form-label ">
+                                        Name of the Doctor 
+                                        </label>
+                                      </div>
+                                      
+                                  </div>
+                                  <div class="form-group row">
+                                    <ul>
+                                      <li>
+                                        <div class="form-group row">
+                                        <div class="col-6">
+                                          <label for="example-tel-input" style="" class=" col-form-label ">
+                                            Family Physician
+                                            </label>
+                                          </div>
+                                          <div class="col-6">
+                                            <label for="example-tel-input" style="" class=" col-form-label ">
+                                              <input class="form-control" type="text" id="example-family_physician" formControlName="family_physician"
+                                             > 
+                                             
+                                              </label>
+                                            </div>
+                                            <!-- <div class="col-3">
+                                              <label for="example-tel-input" style="" class=" col-form-label ">
+                                                <input class="form-control" type="text" id="example-NoofMembers" formControlName="NoofMembers"
+                                                [ngClass]="{'is-invalid': editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched),'is-valid': editMedicalPrefForm.controls['NoofMembers'].valid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)}" required> 
+                                                <div class="" *ngIf="editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)" style="color:#ff0000">
+                                                  Enter a valid No. of Members
+                                                </div>
+                                                </label>
+                                              </div> -->
+                                            </div>
+                                      </li>
+                          
+                                      <li>
+                                        <div class="form-group row">
+                                        <div class="col-6">
+                                          <label for="example-tel-input" style="" class=" col-form-label ">
+                                            General Physician
+                                            </label>
+                                          </div>
+                                          <div class="col-6">
+                                            <label for="example-tel-input" style="" class=" col-form-label ">
+                                              <input class="form-control" type="text" id="example-general_physician" formControlName="general_physician"
+                                              > 
+                                            
+                                              </label>
+                                            </div>
+                                            <!-- <div class="col-3">
+                                              <label for="example-tel-input" style="" class=" col-form-label ">
+                                                <input class="form-control" type="text" id="example-NoofMembers" formControlName="NoofMembers"
+                                                [ngClass]="{'is-invalid': editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched),'is-valid': editMedicalPrefForm.controls['NoofMembers'].valid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)}" required> 
+                                                <div class="" *ngIf="editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)" style="color:#ff0000">
+                                                  Enter a valid No. of Members
+                                                </div>
+                                                </label>
+                                              </div> -->
+                                        </div>
+                                      </li>
+                          
+                                      <li>
+                                        <div class="form-group row">
+                                        <div class="col-6">
+                                          <label for="example-tel-input" style="" class=" col-form-label ">
+                                            Gynecologist
+                                            </label>
+                                          </div>
+                                          <div class="col-6">
+                                            <label for="example-tel-input" style="" class=" col-form-label ">
+                                              <input class="form-control" type="text" id="example-gynecologist" formControlName="gynecologist"
+                                              > 
+                                             
+                                              </label>
+                                            </div>
+                                            <!-- <div class="col-3">
+                                              <label for="example-tel-input" style="" class=" col-form-label ">
+                                                <input class="form-control" type="text" id="example-NoofMembers" formControlName="NoofMembers"
+                                                [ngClass]="{'is-invalid': editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched),'is-valid': editMedicalPrefForm.controls['NoofMembers'].valid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)}" required> 
+                                                <div class="" *ngIf="editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)" style="color:#ff0000">
+                                                  Enter a valid No. of Members
+                                                </div>
+                                                </label>
+                                              </div> -->
+                                          </div>
+                                      </li>
+                          
+                                      <li>
+                                        <div class="form-group row">
+                                        <div class="col-6">
+                                          <label for="example-tel-input" style="" class=" col-form-label ">
+                                            Pediatrician
+                                            </label>
+                                          </div>
+                                          <div class="col-6">
+                                            <label for="example-tel-input" style="" class=" col-form-label ">
+                                              <input class="form-control" type="text" id="example-peditrician" formControlName="peditrician"
+                                              > 
+                                             
+                                              </label>
+                                            </div>
+                                            <!-- <div class="col-3">
+                                              <label for="example-tel-input" style="" class=" col-form-label ">
+                                                <input class="form-control" type="text" id="example-NoofMembers" formControlName="NoofMembers"
+                                                [ngClass]="{'is-invalid': editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched),'is-valid': editMedicalPrefForm.controls['NoofMembers'].valid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)}" required> 
+                                                <div class="" *ngIf="editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)" style="color:#ff0000">
+                                                  Enter a valid No. of Members
+                                                </div>
+                                                </label>
+                                              </div> -->
+                                            </div>
+                                      </li>
+                                      <li>
+                                        <div class="form-group row">
+                                        <div class="col-6">
+                                          <label for="example-tel-input" style="" class=" col-form-label ">
+                                            Endocrinologist
+                                            </label>
+                                          </div>
+                                          <div class="col-6">
+                                            <label for="example-tel-input" style="" class=" col-form-label ">
+                                              <input class="form-control" type="text" id="example-endocrinologist" formControlName="endocrinologist"
+                                              > 
+                                            
+                                              </label>
+                                            </div>
+                                            <!-- <div class="col-3">
+                                              <label for="example-tel-input" style="" class=" col-form-label ">
+                                                <input class="form-control" type="text" id="example-NoofMembers" formControlName="NoofMembers"
+                                                [ngClass]="{'is-invalid': editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched),'is-valid': editMedicalPrefForm.controls['NoofMembers'].valid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)}" required> 
+                                                <div class="" *ngIf="editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)" style="color:#ff0000">
+                                                  Enter a valid No. of Members
+                                                </div>
+                                                </label>
+                                              </div> -->
+                                            </div>
+                                      </li>
+                                      <li>
+                                        <div class="form-group row">
+                                        <div class="col-6">
+                                          <label for="example-tel-input" style="" class=" col-form-label ">
+                                            Cardiologist
+                                            </label>
+                                          </div>
+                                          <div class="col-6">
+                                            <label for="example-tel-input" style="" class=" col-form-label ">
+                                              <input class="form-control" type="text" id="example-cardiologist" formControlName="cardiologist"
+                                              > 
+                                             
+                                              </label>
+                                            </div>
+                                            <!-- <div class="col-3">
+                                              <label for="example-tel-input" style="" class=" col-form-label ">
+                                                <input class="form-control" type="text" id="example-NoofMembers" formControlName="NoofMembers"
+                                                [ngClass]="{'is-invalid': editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched),'is-valid': editMedicalPrefForm.controls['NoofMembers'].valid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)}" required> 
+                                                <div class="" *ngIf="editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)" style="color:#ff0000">
+                                                  Enter a valid No. of Members
+                                                </div>
+                                                </label>
+                                              </div> -->
+                                            </div>
+                                      </li>
+                          
+                                    </ul>
+                                    </div>
+                          
+                                    <div class="form-group row">
+                                      <div class="col-6">
+                                          <label for="example-tel-input" style="" class=" col-form-label ">
+                                            Any preferred diagnostic
+                                            center for lab test etc.
+                                            </label>
+                                          </div>
+                                          <div class="col-6">
+                                              <input class="form-control" type="text" id="example-preferred_diagnostic_center" formControlName="preferred_diagnostic_center"
+                                              > 
+                                             
+                                          </div>
+                                      </div>
+                                      <!-- 4th -->
+                                      <div class="form-group row">
+                                        <div class="col-6">
+                                            <label for="example-tel-input" style="" class=" col-form-label ">
+                                              Name of the diagnostic
+                                              center 
+                                              </label>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-group row">
+                                          <ul>
+                                            <li>
+                                              <div class="form-group row">
+                                              <div class="col-6">
+                                                <label for="example-tel-input" style="" class=" col-form-label ">
+                                                  Diagnostic Center /
+                                                  Medical Center / Lab 1
+                                                  </label>
+                                                </div>
+                                                <div class="col-6">
+                                                  <label for="example-tel-input" style="" class=" col-form-label ">
+                                                      <input class="form-control" type="text" id="example-diagnostic_center_lab_1" formControlName="diagnostic_center_lab_1"
+                                                      > 
+                                                     
+                                                    </label>
+                                                  </div>
+                                                  <!-- <div class="col-3">
+                                                    <label for="example-tel-input" style="" class=" col-form-label ">
+                                                      <input class="form-control" type="text" id="example-diagnostic_center_lab_2" formControlName="diagnostic_center_lab_2"
+                                                      [ngClass]="{'is-invalid': editMedicalPrefForm.controls['diagnostic_center_lab_2'].invalid && (editMedicalPrefForm.controls['diagnostic_center_lab_2'].dirty || editMedicalPrefForm.controls['diagnostic_center_lab_2'].touched),'is-valid': editMedicalPrefForm.controls['diagnostic_center_lab_2'].valid && (editMedicalPrefForm.controls['diagnostic_center_lab_2'].dirty || editMedicalPrefForm.controls['diagnostic_center_lab_2'].touched)}" required> 
+                                                      <div class="" *ngIf="editMedicalPrefForm.controls['diagnostic_center_lab_2'].invalid && (editMedicalPrefForm.controls['diagnostic_center_lab_2'].dirty || editMedicalPrefForm.controls['diagnostic_center_lab_2'].touched)" style="color:#ff0000">
+                                                        Enter a valid diagnostic_center_lab_2
+                                                      </div>
+                                                      </label>
+                                                    </div> -->
+                                                  </div>
+                                            </li>
+                          
+                                            <li>
+                                              <div class="form-group row">
+                                              <div class="col-6">
+                                                <label for="example-tel-input" style="" class=" col-form-label ">
+                                                  Diagnostic Center /
+                                                  Medical Center / Lab 2
+                                                  </label>
+                                                </div>
+                                                <div class="col-6">
+                                                  <label for="example-tel-input" style="" class=" col-form-label ">
+                                                      <input class="form-control" type="text" id="example-diagnostic_center_lab_2" formControlName="diagnostic_center_lab_2"
+                                                      > 
+                                                     
+                                                    </label>
+                                                  </div>
+                                                  <!-- <div class="col-3">
+                                                    <label for="example-tel-input" style="" class=" col-form-label ">
+                                                      <input class="form-control" type="text" id="example-NoofMembers" formControlName="NoofMembers"
+                                                      [ngClass]="{'is-invalid': editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched),'is-valid': editMedicalPrefForm.controls['NoofMembers'].valid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)}" required> 
+                                                      <div class="" *ngIf="editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)" style="color:#ff0000">
+                                                        Enter a valid No. of Members
+                                                      </div>
+                                                      </label>
+                                                    </div> -->
+                                              </div>
+                                            </li>
+                          
+                                          </ul>
+                                          </div>
+                                      <!-- 5th -->
+                                      <div class="form-group row">
+                                        <div class="col-6">
+                                            <label for="example-tel-input" style="" class=" col-form-label ">
+                                              Any preferred Nursing
+                                              Home/ hospital in
+                                              case of hospitalization
+                                              requirements
+                                              </label>
+                                            </div>
+                                            <div class="col-6">
+                                              <input class="form-control" type="text" id="example-preferred_nursing_home" formControlName="preferred_nursing_home"
+                                              > 
+                                             
+                                            </div>
+                                        </div>
+                          
+                                        <!-- 6th -->
+                                        <div class="form-group row">
+                                          <div class="col-6">
+                                              <label for="example-tel-input" style="" class=" col-form-label ">
+                                                Name of the Nursing
+                                                Home / Hospitals 
+                                                </label>
+                                              </div>
+                                              
+                                          </div>
+                                          <div class="form-group row">
+                                            <ul>
+                                              <li>
+                                                <div class="form-group row">
+                                                <div class="col-6">
+                                                  <label for="example-tel-input" style="" class=" col-form-label ">
+                                                    Nursing Home / Hospital 1
+                                                    </label>
+                                                  </div>
+                                                  <div class="col-6">
+                                                    <label for="example-tel-input" style="" class=" col-form-label ">
+                                                      <input class="form-control" type="text" id="example-nursing_home_1" formControlName="nursing_home_1"
+                                                      > 
+                                                      
+                                                      </label>
+                                                    </div>
+                                                    <!-- <div class="col-3">
+                                                      <label for="example-tel-input" style="" class=" col-form-label ">
+                                                        <input class="form-control" type="text" id="example-NoofMembers" formControlName="NoofMembers"
+                                                        [ngClass]="{'is-invalid': editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched),'is-valid': editMedicalPrefForm.controls['NoofMembers'].valid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)}" required> 
+                                                        <div class="" *ngIf="editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)" style="color:#ff0000">
+                                                          Enter a valid No. of Members
+                                                        </div>
+                                                        </label>
+                                                      </div> -->
+                                                    </div>
+                                              </li>
+                          
+                                              <li>
+                                                <div class="form-group row">
+                                                <div class="col-6">
+                                                  <label for="example-tel-input" style="" class=" col-form-label ">
+                                                    Nursing Home / Hospital 2
+                                                    </label>
+                                                  </div>
+                                                  <div class="col-6">
+                                                    <label for="example-tel-input" style="" class=" col-form-label ">
+                                                      <input class="form-control" type="text" id="example-nursing_home_2" formControlName="nursing_home_2"
+                                                      > 
+                                                      
+                                                      </label>
+                                                    </div>
+                                                    <!-- <div class="col-3">
+                                                      <label for="example-tel-input" style="" class=" col-form-label ">
+                                                        <input class="form-control" type="text" id="example-NoofMembers" formControlName="NoofMembers"
+                                                        [ngClass]="{'is-invalid': editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched),'is-valid': editMedicalPrefForm.controls['NoofMembers'].valid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)}" required> 
+                                                        <div class="" *ngIf="editMedicalPrefForm.controls['NoofMembers'].invalid && (editMedicalPrefForm.controls['NoofMembers'].dirty || editMedicalPrefForm.controls['NoofMembers'].touched)" style="color:#ff0000">
+                                                          Enter a valid No. of Members
+                                                        </div>
+                                                        </label>
+                                                      </div> -->
+                                                </div>
+                                              </li>
+                          
+                                            </ul>
+                                            </div>
+                          
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <button type="submit" class="btn-btn">Save</button>
+                          </div>
+                            </form>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="panel panel-default" >
+                    <div class="panel-heading" role="tab" id="headingFive"  style="border:1px solid #939293;padding:10px;">
+                      <h3 class="panel-title"> 
+                    <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+                      Family Hospitalization
+                    </a>
+                  </h3>
+                
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                        <div class="panel-body">
+                          <form [formGroup]="editFamilyHospForm" (ngSubmit)="editFamilyHosp()" ngNativeValidate>
+                            <div class="row">
+                            <div class="col-md-12">
+                            <div class="form-group row">
+                              <div class="col-6">
+                                  <label for="example-tel-input" style="" class=" col-form-label ">
+                                    What was the last
+                                    hospitalization incidence
+                                    you remember among your
+                                    family members
+                                    </label>
+                                  </div>
+                                  <div class="col-6">
+                                  <input class="form-control" type="text" id="example-hospital_incidence" formControlName="hospital_incidence"
+                                  > 
+                                 
+                                  </div>
+                              </div>
+                
+                              <div class="form-group row">
+                                <div class="col-6">
+                                    <label for="example-tel-input" style="" class=" col-form-label ">
+                                      What was the primary
+                                      concern for getting
+                                      hospitalized
+                                      </label>
+                                    </div>
+                                    <div class="col-6">
+                                    <input class="form-control" type="text" id="example-pimary_concern_hospitalized" formControlName="pimary_concern_hospitalized"
+                                    > 
+                                   
+                                    </div>
+                                </div>
+                
+                                <div class="form-group row">
+                                  <div class="col-6">
+                                      <label for="example-tel-input" style="" class=" col-form-label ">
+                                        Which hospital did you choose
+                                        </label>
+                                      </div>
+                                      <div class="col-6">
+                                      <input class="form-control"  type="text" id="example-hospital_choosen" formControlName="hospital_choosen"
+                                      > 
+                                      
+                                      </div>
+                                  </div>
+                
+                                  <div class="form-group row">
+                                    <div class="col-6">
+                                        <label for="example-tel-input" style="" class=" col-form-label ">
+                                          What was the final bill
+                                          in INR (approximate)
+                                          </label>
+                                        </div>
+                                        <div class="col-6">
+                                        <input class="form-control"  type="text" id="example-final_bill" formControlName="final_bill"
+                                        > 
+                                       
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-md-12">
+                              <button type="submit" class="btn-btn">Save</button>
+                          </div>
+                          </div>
+
+                       
+                
+                              </form>
+                          
+                          </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+          </div>
+      </div>
+  </div>
+</div> 

@@ -1,0 +1,143 @@
+<div class="row">
+  <div class="col-md-12">
+    <!--***** PRODUCT INFO *****-->
+      <div class="card form" id="form1">
+          <div class="card-header">
+              <h3>
+                  <i class="fa fa-medkit"></i> Order Details
+              </h3>
+            </div>
+            <br>
+
+            <div class="row mt-3">
+                <h5 class="col-12 mb-2">Test Details
+                    <div class="progress">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </h5>
+                  <div class="col-12">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table borderless" style="border:2px solid #ccc">
+                            <thead>
+                                <tr class="bg-info text-white">
+                                    <td class="text-center"><strong>Test ID</strong></td>
+                                    <td class="text-center"><strong>Test Name</strong></td>
+                                    <td class="text-center"><strong>GST(in%)</strong></td>
+                                    <td class="text-center"><strong>Cost</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                <tr *ngFor='let test of appDetails.tests'>
+                                    <td class="text-center">{{test.test_id}}</td>
+                                    <td class="text-center">{{test.test_name}}</td>
+                                    <td class="text-center">{{test.gst}}</td>
+                                    <td class="text-center">{{test.price}}</td>
+                                </tr>
+                            
+                                
+                                <tr>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="text-right"><strong>Grand Total Cost (Including GST)</strong></td>
+                                    <td class="text-center">{{appDetails.total_cost}}</td>
+                                </tr>
+                            </tbody> 
+                          </table>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+
+            <div class="row mt-3">
+              <h5 class="col-12 mb-2">Appointment Details
+                <div class="progress">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </h5>
+              <div class="col-6">
+                <div class="col-6">
+                  <div class="form-group">
+                      <strong class="mr-5">Lab Name: </strong> {{appDetails.lab_name}}
+                  </div>
+                  <div class="form-group">
+                    <strong class="mr-5">Lab Address: </strong> {{appDetails.lab_address}}
+                  </div>
+                  <div class="form-group">
+                    <strong class="mr-5">Payment Status: </strong> {{appDetails.payment_status}}
+                  </div> 
+                  <div class="form-group">
+                    <strong class="mr-5">Payment Type: </strong> {{appDetails.payment_type}}
+                  </div> 
+                  <div class="form-group">
+                    <strong class="mr-5">Appointment Status: </strong> {{appDetails.appointment_status}}
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                    <strong class="mr-5">Appointment Description : </strong> {{appDetails.description}}
+                </div>
+                <div class="form-group">
+                    <strong class="mr-5">Consultation Type : </strong> {{appDetails.type}}
+                </div>
+                <div class="form-group">
+                    <strong class="mr-5">Date: </strong>  {{formatTime1(appDetails.appointment_date)}}
+                </div>
+                <div class="form-group">
+                  <strong class="mr-5">Time: </strong> {{appDetails.probable_start_time}}
+                </div> 
+              </div> 
+            </div>
+
+            <div class="row mt-3">
+              <h5 class="col-12 mb-2">Patient Details
+                <div class="progress">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </h5>
+              <div class="col-6">
+                  <!-- <div class="form-group">
+                      <strong class="mr-5">ID : </strong> {{appDetails.id}}
+                  </div> -->
+                    <div class="form-group">
+                      <strong class="mr-5">Name: </strong> {{appDetails.patient_details[0].name}}
+                  </div>
+                  <div class="form-group">
+                    <strong class="mr-5">Gender: </strong> {{appDetails.patient_details[0].gender}}
+                  </div>
+                  <div class="form-group">
+                    <strong class="mr-5">Age: </strong>{{appDetails.patient_details[0].age}}
+                 </div>
+                  <div class="form-group">
+                      <strong class="mr-5">Email ID: </strong> {{appDetails.patient_details[0].email}}
+                  </div>
+                  <div class="form-group">
+                    <strong class="mr-5">Contact No.: </strong> {{appDetails.patient_details[0].mobile}}
+                </div>
+                  
+             </div>
+             <div class="col-6">
+                <div class="form-group">
+                  <strong class="mr-5">Address: </strong> {{appDetails.patient_address[0].address}}
+                </div> 
+                <div class="form-group">
+                  <strong class="mr-5">Locality: </strong> {{appDetails.patient_address[0].locality}}
+                </div> 
+                <div class="form-group">
+                  <strong class="mr-5">Landmark: </strong> {{appDetails.patient_address[0].landmark}}
+                </div> 
+                <div class="form-group">
+                  <strong class="mr-5">Pincode: </strong> {{appDetails.patient_address[0].pincode}}
+                </div>
+            </div>
+          </div>
+        
+          
+           
+         <br>
+           <div class="text-center">
+              <button  class="btn btn-danger" (click)="pay()" *ngIf="appDetails.payment_type_id==2">Pay and Confirm Appointment</button>
+            </div>
+        </div> 
+    </div>

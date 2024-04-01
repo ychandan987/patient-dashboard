@@ -1,0 +1,128 @@
+<div class="row">
+    <div class="container-fluid">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Book Appointment
+          </mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <br>
+  
+        <mat-card-content>
+          <form [formGroup]="appFormGroup" (ngSubmit)="submit()">
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field class="full-width">
+                  <mat-label class="required">Member Name</mat-label>
+                  <input matInput type="text" placeholder="Member Name" formControlName="patientName" [ngClass]="{'is-invalid': appFormGroup.controls['patientName'].invalid && (appFormGroup.controls['patientName'].dirty || appFormGroup.controls['patientName'].touched),'is-valid': appFormGroup.controls['patientName'].valid && (appFormGroup.controls['patientName'].dirty || appFormGroup.controls['patientName'].touched)}" required> 
+                  <!-- <div class="" *ngIf="appFormGroup.controls['patientName'].invalid && (appFormGroup.controls['patientName'].dirty || appFormGroup.controls['patientName'].touched)" style="color:#ff0000" required>
+                    Enter a valid Name.
+                  </div> -->
+  
+                </mat-form-field>
+              </div>
+              
+              <!-- <div class="col-md-6">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Select Tests" formControlName="tests" multiple (selectionChange)="calculateCosts()" required>
+                    <mat-optgroup *ngFor="let group of categories" [label]="group.category">
+                      <mat-option *ngFor="let test of group.tests" [value]="test">
+                        {{test.test_name}}
+                      </mat-option>
+                    </mat-optgroup>
+                  </mat-select>
+                </mat-form-field>
+              </div> -->
+    
+              <div class="col-md-6">
+                  <mat-form-field class="full-width">
+                      <mat-label>Select appointment date</mat-label>
+                      <input matInput type="date" placeholder="Select an appointment date" formControlName="AppointmentDate" [min]="getCurrentDate()" (change)="onChange($event.target.value)">
+                    </mat-form-field>
+              </div>
+  
+              <div class="col-md-6">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Select appointment time" formControlName="AppointmentTime" (click)="check_dateselected()" >
+                      <mat-optgroup *ngFor="let test of new_sch; let i = index" >
+                          
+                         
+                          <mat-option [value]="test.Time1" *ngIf="test.Time1 !='' && show_time_flag_time1 != 1" > 
+                              {{test.Time1}}      
+                          </mat-option>
+                          <mat-option [value]="test.Time2" *ngIf="test.Time2 !='' && show_time_flag_time2 != 1 " > 
+                              {{test.Time2}}   
+                               <!-- {{date}}       -->
+                          </mat-option>
+                          <mat-option [value]="test.Time3" *ngIf="test.Time3 !=''  && show_time_flag_time3 != 1" > 
+                              {{test.Time3}}             
+                          </mat-option>
+                          <mat-option [value]="test.Time4" *ngIf="test.Time4 !='' && show_time_flag_time4 != 1 " > 
+                              {{test.Time4}}             
+                          </mat-option>
+                          <mat-option [value]="test.Time5" *ngIf="test.Time5 !='' && show_time_flag_time5 != 1 " > 
+                              {{test.Time5}}           
+                          </mat-option>
+                          <mat-option [value]="test.Time6" *ngIf="test.Time6 !='' && show_time_flag_time6 != 1 " > 
+                              {{test.Time6}}             
+                          </mat-option>
+                          <mat-option [value]="test.Time7" *ngIf="test.Time7 !='' && show_time_flag_time7 != 1 " > 
+                              {{test.Time7}}        
+                          </mat-option>
+                         
+                        </mat-optgroup>
+                    
+                    
+                  </mat-select>
+                </mat-form-field>
+              </div>
+  
+              <div class="col-md-6">
+                <mat-form-field class="full-width">
+                  <mat-select placeholder="Select appointment Type" formControlName="AppointmentIdType" [ngClass]="{'is-invalid': appFormGroup.controls['AppointmentIdType'].invalid && (appFormGroup.controls['AppointmentIdType'].dirty || appFormGroup.controls['AppointmentIdType'].touched),'is-valid': appFormGroup.controls['AppointmentIdType'].valid && (appFormGroup.controls['AppointmentIdType'].dirty || appFormGroup.controls['AppointmentIdType'].touched)}" required> 
+                    
+                    <mat-option value="Walk-In">Walk-In </mat-option>
+                    <mat-option value="Text Consult">Text Consult</mat-option>
+                    <mat-option value="Phone Consult">Phone Consult</mat-option>
+                    <mat-option value="Video Consult">Video Consult</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+    
+              <div class="col-md-6">
+                <mat-form-field class="full-width">
+                  <mat-label> Mobile</mat-label>
+                  <input matInput type="text" placeholder="Mobile" formControlName="mobileNumber" [ngClass]="{'is-invalid': appFormGroup.controls['mobileNumber'].invalid && (appFormGroup.controls['mobileNumber'].dirty || appFormGroup.controls['mobileNumber'].touched),'is-valid': appFormGroup.controls['mobileNumber'].valid && (appFormGroup.controls['mobileNumber'].dirty || appFormGroup.controls['mobileNumber'].touched)}" required> 
+                  <!-- <div class="" *ngIf="appFormGroup.controls['mobileNumber'].invalid && (appFormGroup.controls['mobileNumber'].dirty || appFormGroup.controls['mobileNumber'].touched)" style="color:#ff0000" required>
+                    Enter a valid Mobile No.
+                  </div> -->
+                </mat-form-field>
+              </div>
+  
+              <div class="col-md-6">
+                <mat-form-field class="full-width">
+                  <mat-label> Email</mat-label>
+                  <input matInput type="email" placeholder="Email" formControlName="emailId" [ngClass]="{'is-invalid': appFormGroup.controls['emailId'].invalid && (appFormGroup.controls['emailId'].dirty || appFormGroup.controls['emailId'].touched),'is-valid': appFormGroup.controls['emailId'].valid && (appFormGroup.controls['emailId'].dirty || appFormGroup.controls['emailId'].touched)}" required> 
+                  <!-- <div class="" *ngIf="appFormGroup.controls['emailId'].invalid && (appFormGroup.controls['emailId'].dirty || appFormGroup.controls['emailId'].touched)" style="color:#ff0000" required>
+                    Enter a valid Email Id.
+                  </div> -->
+                </mat-form-field>
+              </div>
+    
+              <div class="col-md-12">
+                <mat-form-field class="full-width">
+                    <mat-label>Description</mat-label>
+                  <textarea matInput formControlName="Description" ></textarea>
+                </mat-form-field>
+              </div>
+              <div class="col-md-12">
+                <input type="submit" color="primary" mat-raised-button value="Submit">
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div> 
+  

@@ -1,0 +1,209 @@
+<mat-card class="card-picture">
+  <mat-card-title>
+    Book Lab Tests
+  </mat-card-title>
+  <mat-divider></mat-divider>
+
+  <mat-horizontal-stepper linear #stepper>
+    <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Select Test</ng-template>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+                <mat-select placeholder="Select Prescription" formControlName="prescription_id" (change)="getPrescription()" required>
+                  <mat-option *ngFor="let pres of prescriptions" [value]="pres.id">Prescription by {{pres.doctor_name}} sent on {{formatTime(pres.appointment_date)}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+          <!-- <div class="col-md-6">
+            <b>Total Cost: </b>{{cost}}
+          </div> -->
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                  <mat-select placeholder="Select Consultation" formControlName="consultation_type_id" required>
+                    <mat-option *ngFor="let ct of consultationType" [value]="ct.id">{{ct.type}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+          </div>
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                  <mat-label>Select appointment date</mat-label>
+                  <input matInput type="date" placeholder="Select an appointment date" formControlName="appointment_date" [min]="getCurrentDate()">
+                </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                  <mat-label>Select appointment time</mat-label>
+                  <input matInput type="time"  placeholder="Select appointment time" formControlName="probable_start_time">
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-12">
+            <mat-form-field class="full-width">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field class="full-width">
+                <mat-label>Select Mode of Payment</mat-label>
+                <mat-select placeholder="Select Mode" formControlName="payment_type_id" required>
+                <mat-option value="1">Pay On Visit</mat-option>
+                <mat-option value="2">Online</mat-option>
+                </mat-select>
+            </mat-form-field>
+          </div>
+          <hr>
+          <div class="col-md-12" *ngIf="selectedPres">
+              <mat-label>Selected Prescription:</mat-label><br>
+            <img src="{{selectedPres.prescription_path}}" width="250px" height="250px"><br><br>
+          </div>
+          <div class="col-md-12">
+            <button color="primary" mat-raised-button matStepperNext>Next</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Add Personal Deatils</ng-template>
+        <div class="row">
+          <div class="col-md-12">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Name" formControlName="name" required>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Email" formControlName="email" required>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Mobile" formControlName="mobile" required>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Age" formControlName="age" required>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <mat-select placeholder="Gender" formControlName="gender" required>
+                        <mat-option value="Male">Male</mat-option>
+                        <mat-option value="Female">Female</mat-option>
+                        <mat-option value="Other">Other</mat-option>
+                        </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Address" formControlName="address" minlength="10" required>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="City" formControlName="locality" required>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="State" formControlName="landmark" required>
+              </mat-form-field>
+          </div>
+
+          <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Pincode" formControlName="pincode" required>
+              </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <button color="primary" mat-raised-button matStepperPrevious>Back</button>
+          <button color="warn" mat-raised-button (click)="submit()">Submit</button>
+          <!-- <button color="primary" mat-raised-button matStepperNext>Next</button> -->
+        </div>
+      </form>
+    </mat-step>
+
+  </mat-horizontal-stepper>
+
+</mat-card>
+
+<!-- <div class="row">
+  <div class="col-md-12">
+  
+      <div class="card form" id="form1">
+          <div class="card-header">
+              <h3>
+                  <i class="fa fa-medkit"></i> Prescription Upload
+              
+              </h3>
+          </div>
+          <br>
+          <form [formGroup]="prescriptionForm" (ngSubmit)="submit()" ngNativeValidate> 
+              <div class="row" style="padding: 50px">
+                  <div class="col-md-6">
+                      <div class="form-group row">
+                          <label for="example-tel-input" style="width: 150px;" class=" col-form-label">Name</label>
+                          <div class="col-8">
+                              <input class="form-control" type="text" formControlName="name" id="example-tel-input">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="example-tel-input" style="width: 150px;" class=" col-form-label">Mobile</label>
+                          <div class="col-8">
+                              <input class="form-control" type="text" formControlName="mobile" id="example-tel-input">
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="example-text-input" style="width: 150px;" class=" col-form-label">Email</label>
+                          <div class="col-8">
+                              <input class="form-control" type="email" formControlName="email" id="example-text-input">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group row">
+                          <label for="example-text-input" style="width: 150px;" class=" col-form-label">Description</label>
+                          <div class="col-8">
+                              <textarea formControlName="Description" style="width: 100%;" placeholder="Enter Description" rows="3"></textarea>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="example-tel-input" style="width: 150px;" class=" col-form-label">Prescription</label>
+                          <div class="col-8">
+                              <select class="form-control" formControlName="prescriptionId" id="example-tel-input" (change)="getPrescription()">
+                                  <option *ngFor="let pres of prescriptions" value="{{pres.id}}">Prescription by {{pres.doctor_name}} sent on {{pres.appointment_date}}</option>
+                              </select>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <hr>
+              <div class="row" *ngIf="selectedPres">
+                <h3 class="text-center">Selected Prescription:</h3><br>
+                <img src="{{selectedPres.prescription_path}}" width="250px" height="250px">
+              </div>
+              <div class="row">
+                  <div class="d-block mx-auto">
+                  <button class="btn-btn">Submit</button>
+                  </div>
+              </div>
+          </form>
+      </div> 
+  </div>
+</div> -->

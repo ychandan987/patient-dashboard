@@ -1,0 +1,150 @@
+<div class="row">
+  <div class="col-md-12">
+    <!--***** PRODUCT INFO *****-->
+      <div class="card form" id="form1">
+          <div class="card-header">
+              <h3>
+                  <i class="fa fa-medkit"></i> Order Details
+              </h3>
+            </div>
+            <br>
+
+            <div class="row mt-3">
+                <h5 class="col-12 mb-2">Order Details
+                    <div class="progress">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </h5>
+                  <div class="col-12">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table borderless" style="border:2px solid #ccc">
+                            <thead>
+                                <tr class="bg-info text-white">
+                                    <td class="text-center"><strong>Serial No</strong></td>
+                                    <td class="text-center"><strong>Medicine ID</strong></td>
+                                    <td class="text-center"><strong>Medicine Name</strong></td>
+                                    <td class="text-center"><strong>Cost</strong></td>
+                                    <td class="text-center"><strong>Quantity</strong></td>
+                                    <td class="text-center"><strong>GST</strong></td>
+                                    <td class="text-center"><strong>Total Price</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                <tr *ngFor='let medicine of appDetails.medicine_info, let i=index'>
+                                    <td class="text-center">{{i+1}}</td>
+                                    <td class="text-center">{{medicine.medicine_id}}</td>
+                                    <td class="text-center">{{medicine.med_name}}</td>
+                                    <td class="text-center">{{medicine.med_cost}}</td>
+                                    <td class="text-center">{{medicine.medicine_quantity}}</td>
+                                    <td class="text-center">{{medicine.med_gst}}%</td>
+                                    <td class="text-center">{{medicine.medicine_quantity * medicine.total_with_gst}}</td>
+                                </tr>
+                            </tbody> 
+                            <tbody>
+                              <tr class="bg-info text-white">
+                                  <td class="text-center"></td>                                  
+                                  <td class="text-center"></td>
+                                  <td class="text-center"></td>
+                                <td class="text-center">Total Cost(Including gst)</td>
+                                <td class="text-center"></td>
+                                <td class="text-center"></td>
+                                <td class="text-center"><strong>Rs. {{appDetails.cost}}</strong></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+
+           
+
+            <div class="row mt-3">
+              <h5 class="col-12 mb-2">Order Details
+                <div class="progress">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </h5>
+              <div class="col-6">
+                <div class="col-6">
+                  <div class="form-group">
+                      <strong class="mr-5">Pharmacy Name: </strong> {{appDetails.pharmacy_name}}
+                  </div>
+                  <div class="form-group">
+                    <strong class="mr-5">Pharmacy Address: </strong> {{appDetails.address}}
+                  </div>
+                  <div class="form-group">
+                    <strong class="mr-5">Payment Status: </strong> {{appDetails.payment_status}}
+                  </div> 
+                  <div class="form-group">
+                    <strong class="mr-5">Payment Type: </strong> {{appDetails.payment_type}}
+                  </div> 
+                  <div class="form-group">
+                    <strong class="mr-5">Appointment Status: </strong> {{appDetails.appointment_status}}
+                  </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                    <strong class="mr-5">Order Description : </strong> {{appDetails.description}}
+                </div>
+                <div class="form-group">
+                    <strong class="mr-5">Service Type : </strong> {{appDetails.consultation_type}}
+                </div>
+              </div> 
+            </div>
+
+            <div class="row mt-3">
+              <h5 class="col-12 mb-2">User Details
+                <div class="progress">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </h5>
+              <div class="col-6">
+                  <!-- <div class="form-group">
+                      <strong class="mr-5">ID : </strong> {{appDetails.id}}
+                  </div> -->
+                    <div class="form-group">
+                      <strong class="mr-5">Name: </strong> {{appDetails.name}}
+                  </div>
+                  <!-- <div class="form-group">
+                    <strong class="mr-5">Gender: </strong> {{appDetails.gender}}
+                  </div>
+                  <div class="form-group">
+                    <strong class="mr-5">Age: </strong>{{appDetails.age}}
+                 </div> -->
+                  <div class="form-group">
+                      <strong class="mr-5">Email ID: </strong> {{appDetails.email}}
+                  </div>
+                  <div class="form-group">
+                    <strong class="mr-5">Contact No.: </strong> {{appDetails.mobile}}
+                </div>
+                  
+             </div>
+             <div class="col-6">
+                <div class="form-group">
+                  <strong class="mr-5">Address: </strong> {{appDetails.address}}
+                </div> 
+                <div class="form-group">
+                  <strong class="mr-5">Locality: </strong> {{appDetails.locality}}
+                </div> 
+                <div class="form-group">
+                  <strong class="mr-5">Landmark: </strong> {{appDetails.landmark}}
+                </div> 
+                <div class="form-group">
+                  <strong class="mr-5">Pincode: </strong> {{appDetails.pincode}}
+                </div>
+            </div>
+          </div>
+
+          
+        
+          
+           
+         <br>
+           <div class="text-center">
+              <button class="btn btn-danger" (click)="pay()" *ngIf="appDetails.payment_type_id==2">Pay and Confirm Order</button>
+            </div>
+        </div> 
+    </div>

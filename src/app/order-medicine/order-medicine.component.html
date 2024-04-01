@@ -1,0 +1,181 @@
+<div class="row">
+  <div class="col-md-8">
+    <table class="table table-hover" *ngIf="!checkout">
+      <thead>
+        <tr class="bg-info text-white">
+          <th>ID</th>
+          <th>Medicine Name</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Expiry Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let medicine of medicines">
+          <th scope="row">{{medicine.id}}</th>
+          <td>{{medicine.med_name}}</td>
+          <td>{{medicine.med_cost}}</td>
+          <td>{{medicine.med_desc}}</td>
+          <td>{{formatTime(medicine.med_expiry_date)}} </td>
+          <td><button class="btn btn-primary" (click)="addToCart(medicine)">Add to Cart</button></td>
+        </tr>
+     </tbody>
+    </table>
+
+    <div *ngIf="checkout">
+      <div class="card form" id="form1">
+        <div class="card-header">
+          <h3>
+              Add details
+          </h3>
+        </div>
+        <br>
+          
+    
+          <div class="col-md-12">
+            <form [formGroup]="orderForm" (ngSubmit)="submit()" ngNativeValidate>
+              <div class="form-group">
+                <label for="name" class="required">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name" formControlName="name"  [ngClass]="{'is-invalid': orderForm.controls['name'].invalid && (orderForm.controls['name'].dirty || orderForm.controls['name'].touched),
+                'is-valid': orderForm.controls['name'].valid && (orderForm.controls['name'].dirty || orderForm.controls['name'].touched)}" required>
+                <p *ngIf="orderForm.controls['name'].invalid && (orderForm.controls['name'].dirty || orderForm.controls['name'].touched)" style="color:#ff0000">Please enter a valid Name!</p>
+
+              </div>
+              <div class="form-group" >
+                <label for="mobile" class="required">Mobile</label>
+                <input class="form-control" type="text" id="example-mobile-input" placeholder="Enter mobile" formControlName="mobile"  [ngClass]="{'is-invalid': orderForm.controls['mobile'].invalid && (orderForm.controls['mobile'].dirty || orderForm.controls['mobile'].touched),
+                'is-valid': orderForm.controls['mobile'].valid && (orderForm.controls['mobile'].dirty || orderForm.controls['mobile'].touched)}" (keypress)="keyPress($event)"  maxlength="14" minlength="10" required>
+                <p *ngIf="orderForm.controls['mobile'].invalid && (orderForm.controls['mobile'].dirty || orderForm.controls['mobile'].touched)" style="color:#ff0000">Please enter a valid Mobile No!</p>  
+              </div>
+              <div class="form-group">
+                <label for="email" class="required">Email</label>
+                <input class="form-control" type="email" id="example-email-input" placeholder="Enter email" formControlName="email" [ngClass]="{'is-invalid': orderForm.controls['email'].invalid && (orderForm.controls['email'].dirty || orderForm.controls['email'].touched),
+                'is-valid': orderForm.controls['email'].valid && (orderForm.controls['email'].dirty || orderForm.controls['email'].touched)}" required>
+                <p *ngIf="orderForm.controls['email'].invalid && (orderForm.controls['email'].dirty || orderForm.controls['email'].touched)" style="color:#ff0000">Please enter a valid Email Id!</p>  
+              </div>
+              <div class="form-group">
+                <label for="address" class="required">Address</label>
+                <textarea class="form-control" id="address" placeholder="Enter address" formControlName="address"  minlength="10" [ngClass]="{'is-invalid': orderForm.controls['address'].invalid && (orderForm.controls['address'].dirty || orderForm.controls['address'].touched),
+                'is-valid': orderForm.controls['address'].valid && (orderForm.controls['address'].dirty || orderForm.controls['address'].touched)}" required></textarea>
+                <p *ngIf="orderForm.controls['address'].invalid && (orderForm.controls['address'].dirty || orderForm.controls['address'].touched)" style="color:#ff0000">Please enter address greater than 10 character!</p> 
+              </div>
+              <div class="form-group">
+                <label for="locality" class="required">Locality</label>
+                <input type="text" class="form-control" id="locality" placeholder="Enter locality" formControlName="locality"  [ngClass]="{'is-invalid': orderForm.controls['locality'].invalid && (orderForm.controls['locality'].dirty || orderForm.controls['locality'].touched),
+                'is-valid': orderForm.controls['locality'].valid && (orderForm.controls['locality'].dirty || orderForm.controls['locality'].touched)}" required>
+                <p *ngIf="orderForm.controls['locality'].invalid && (orderForm.controls['locality'].dirty || orderForm.controls['locality'].touched)" style="color:#ff0000">Please enter a valid Locality!</p> 
+              </div>
+              <div class="form-group">
+                <label for="landmark" class="required">Landmark</label>
+                <input type="text" class="form-control" id="landmark" placeholder="Enter landmark" formControlName="landmark" [ngClass]="{'is-invalid': orderForm.controls['landmark'].invalid && (orderForm.controls['landmark'].dirty || orderForm.controls['landmark'].touched),
+                'is-valid': orderForm.controls['landmark'].valid && (orderForm.controls['landmark'].dirty || orderForm.controls['landmark'].touched)}" required>
+                <p *ngIf="orderForm.controls['landmark'].invalid && (orderForm.controls['landmark'].dirty || orderForm.controls['landmark'].touched)" style="color:#ff0000">Please enter a valid LandMark!</p> 
+              </div>
+              <div class="form-group">
+                <label for="pincode" class="required">Pincode</label>
+                <input type="number" class="form-control" id="pincode" placeholder="Enter pincode" formControlName="pincode" [ngClass]="{'is-invalid': orderForm.controls['pincode'].invalid && (orderForm.controls['pincode'].dirty || orderForm.controls['pincode'].touched),
+                'is-valid': orderForm.controls['pincode'].valid && (orderForm.controls['pincode'].dirty || orderForm.controls['pincode'].touched)}" required>
+                <p *ngIf="orderForm.controls['pincode'].invalid && (orderForm.controls['pincode'].dirty || orderForm.controls['pincode'].touched)" style="color:#ff0000">Please enter a valid Pincode!</p> 
+              </div>
+              <div class="form-group">
+                <label for="description" class="required">Description</label>
+                <!-- <input type="text" class="form-control" id="pincode" placeholder="Enter pincode" formControlName="pincode" >  -->
+                <textarea formControlName="description" id="description" class="form-control" [ngClass]="{'is-invalid': orderForm.controls['description'].invalid && (orderForm.controls['description'].dirty || orderForm.controls['description'].touched),
+                'is-valid': orderForm.controls['description'].valid && (orderForm.controls['description'].dirty || orderForm.controls['description'].touched)}" required> </textarea>
+                <p *ngIf="orderForm.controls['description'].invalid && (orderForm.controls['description'].dirty || orderForm.controls['description'].touched)" style="color:#ff0000">Please enter a valid Description!</p> 
+  
+              </div>
+              <div class="form-group">
+                <label for="consultation_type" class="required">Service type</label>
+                <select class="form-control" formControlName="consultation_type" required>
+                  <option>Select a service type</option>
+                  <option value="1">Pick-up</option>
+                  <option value="5">Home Delivery</option>
+                </select>
+              </div>
+              <div class="form-group">
+                  <label for="consultation_type">Select Prescription</label>
+                  <select class="form-control" formControlName="prescription_id" (change)="getPrescription()">
+                   
+                    <option *ngFor="let pres of prescriptions" [value]="pres.id">Prescription by {{pres.doctor_name}} sent on {{formatTime(pres.appointment_date)}}</option>
+                   
+                  </select>
+                </div>
+              <div class="col-md-6">
+                <div class="form-group row">
+                        <label for="payment_type_id" style="width: 150px;" class=" col-form-label required">Select Payment Mode</label>
+                        <div class="col-8">
+                            <select class="form-control" formControlName="payment_type_id" id="example-tel-input" required>
+                                <option value="1">Cash On Delivery</option>
+                                <option value="2">Online</option>
+                                
+                            </select>
+                        </div>
+                    </div>
+            </div>
+            
+              <button type="submit" class="btn btn-general btn-blue" role="button">Submit</button>
+            </form>
+          </div>
+         
+    
+       </div>
+    </div>
+
+
+  </div>
+
+  <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-12">
+          <div class="card form" id="form1">
+            <div class="card-header">
+              <h3>
+                  <i class="fa fa-medkit fa-2x"></i>
+                  Cart
+              </h3>
+            </div>
+            <br>
+                
+            <div class="row mt-3">
+              <h5 class="col-12 mb-2">Items
+                <div class="progress">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </h5>
+              <div class="col-md-12">
+                <div *ngIf="cart">
+                  <div class="row" *ngFor="let item of cart; let i=index">
+                    <span class="col-md-6">{{item.med_name}}</span>
+                    <span class="col-md-6">
+                      <button  class="button circle" (click)="decQuan(item)" *ngIf="!checkout">
+                        <i class="fa fa-minus" aria-hidden="true"></i>
+                      </button>
+                      <span>{{item.quantity}}</span>
+                      <button  class="button circle" (click)="incQuan(item)" *ngIf="!checkout">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                      </button>
+                    </span>
+                    <hr>
+                  </div>
+                  <b>Cart Total:</b>{{cartTotal}}
+                </div>
+              </div>
+              <div class="col-md-12 mt-3">
+                  <hr>
+                <div class="row">
+                  <div class="d-block mx-auto">
+                  <button class="btn btn-primary" (click)="checkoutFunc()">Checkout</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+            </div>
+            <br>
+            
+      </div>
+    </div>
+  </div> 
+</div>

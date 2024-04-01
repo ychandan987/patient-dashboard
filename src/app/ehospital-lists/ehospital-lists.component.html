@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="container-fluid">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title><h1>E-hospital Lists</h1></mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <br>
+
+      <mat-card-content>
+        <table class="table table-hover">
+          <thead>
+            <tr class="bg-info text-white">
+              <th>ID</th>
+              <th>Hospital Name</th>
+              <th>Address</th>
+              <th>Phone no.</th>
+              <th>Action</th>
+              <!-- <th>Select Lab</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let hosp of posts,let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{hosp.hospitalname}}</td>
+              <td>{{hosp.address}}</td>
+              <td>{{hosp.phoneoffice}}</td>
+              <td><a routerLink="{{hosp.hospitalid}}/specializations"class="btn btn-primary">Select</a></td>
+              <!-- <td><a routerLink="{{hosp.hospitalid}}/specializations"class="btn btn-primary">Select Lab</a></td> -->
+            </tr>
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> 

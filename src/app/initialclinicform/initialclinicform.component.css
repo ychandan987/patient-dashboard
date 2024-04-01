@@ -1,0 +1,80 @@
+label.required::after {
+    content: "*";
+    padding:5px;
+    color: rgb(245, 6, 6) !important;
+    font-weight:bold;
+    }
+
+   /* // @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
+   */
+    /* @import '~font-awesome/scss/font-awesome.scss';  */
+
+    .panel-title > a:before {
+    float: right;
+    font-family: FontAwesome;
+    content:"\f068";
+    padding-right: 25px;
+    
+    /* padding-left: 50px; */
+   
+}
+.panel-title > a.collapsed:before {
+    float: right;
+    content:"\f067";
+   
+}
+.panel-title > a:hover, 
+.panel-title > a:active, 
+.panel-title > a:focus  {
+    text-decoration:none;
+}
+.panel-title>a {
+    display: flex;   
+     justify-content: left;
+    /*align-items: left; */
+  }
+.panel-default
+{
+    width:100%;
+    margin-top:50px;
+}
+
+.panel-heading
+{
+    width:100%;
+    margin-top:20px;
+}
+  
+
+.panel-body
+{
+    width:100%;
+    margin-top:20px;
+}
+.femalesdiv
+{
+    border:1px solid black;
+    
+}
+.femalesdiv .form-group
+{
+    padding:0px;
+    margin:0px;
+    
+}
+
+table, td, th {
+  border: 1px solid black;
+  padding:4px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size:18px;
+}
+
+th {
+  height: 50px;
+  text-align: center;
+}

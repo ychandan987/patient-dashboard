@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="container-fluid">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title><h1>E-hospital Lists</h1></mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <br>
+
+      <mat-card-content>
+        <table class="table table-hover">
+          <thead>
+            <tr class="bg-info text-white">
+              <th>ID</th>
+              <th>Hospital Name</th>
+              <th>Address</th>
+              <th>Phone no.</th>
+              <th>Action</th>
+              <!-- <th *ngIf="!isPTS">View Prescription</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let hosp of posts,let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td *ngIf="!isPTS">{{hosp.hospitalname}}</td>
+              <td *ngIf="isPTS">{{hosp.hospitalName}}</td>
+              <td>{{hosp.address}}</td>
+              <td>{{hosp.phoneoffice}}</td>
+              <td *ngIf="!isPTS"><a routerLink="../{{hosp.hospitalId}}/list" class="btn btn-primary">Select</a></td>
+              <td *ngIf="isPTS"><a routerLink="../{{hosp.pts_id}}/{{hosp.pts_transaction_id}}" class="btn btn-primary">Select</a></td>
+              <!-- <td *ngIf="!isPTS"> <a routerLink="../{{hosp.hospitalId}}/view-ehospital-prescription" class="btn btn-primary">View Prescription</a> </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> 

@@ -1,0 +1,41 @@
+<div class="row">    
+  <div class="page-header">
+    <h1>
+      Book an appointment
+    </h1>
+  </div>
+
+  <div class="container spec-dropdown">
+      <ng-multiselect-dropdown
+        [placeholder]="'Please select a speciality'"
+        [data]="specs"
+        [(ngModel)]="selectedItems"
+        [settings]="dropdownSettings"
+        (onSelect)="onSelect($event)"
+        (onDeSelect)="onSelect({id:0})">
+      </ng-multiselect-dropdown>
+  </div>
+
+  <table class="table table-hover" *ngIf="doctors[0]">
+    <thead>
+      <tr class="bg-info text-white">
+        <th>ID</th>
+        <th>Dr. Name</th>
+        <th>Degree</th>
+        <th>Total Experience</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let doc of doctors,let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{doc.doctor_name}}</td>
+        <td>{{doc.degree[0].degree}}</td>
+        <td>{{doc.total_experience + ' years'}}</td>
+        <td>
+          <a routerLink="/book-appointment/{{doc.doctor_id}}" class="btn btn-primary">View</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

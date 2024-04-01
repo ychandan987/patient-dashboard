@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="container-fluid">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h1>{{'Dr. ' + docDetails.doctorname}}
+            <div class="specs">
+              <span>{{docDetails.qualification}}</span>
+            </div>
+          </h1>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <br>
+
+      <mat-card-content>
+        <div class="row">
+          <div class="container-fluid">
+            <h2>Details</h2>
+            <hr>
+            <div class="row">
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Doctor Address : </strong> {{docDetails.doctoraddress}}
+              </div>
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Phone : </strong> {{docDetails.doctorphone}}
+              </div>
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Walkin Fees(<i class="fa fa-inr" ></i>) : </strong> {{docDetails.WalkInFees}}
+              </div>
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Alternate Phone : </strong> {{docDetails.doctoralternatephone}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Voice Fees(<i class="fa fa-inr" ></i>) : </strong> {{docDetails.VoiceFees}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Email  : </strong> {{docDetails.doctoremail}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Text Fees (<i class="fa fa-inr"></i>) : </strong> {{docDetails.TextFees}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Experience : </strong> {{docDetails.experienceinyears + ' years'}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Video Fees (<i class="fa fa-inr"></i>) : </strong> {{docDetails.VideoFees}}
+              </div>
+
+              
+
+
+            </div>
+
+            <h2>About</h2>
+            <hr>
+            <div class="row">
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Gender : </strong> {{docDetails.gender}}
+              </div>
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Awards and Recognitions : </strong> {{docDetails.awardsandrecognition}}
+              </div>
+            </div>
+            <div class="row">
+              
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Summary : </strong> {{docDetails.aboutdoctor}}
+              </div>
+
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Doctor Specialization : </strong> {{appDetails.specialization}}
+            </div>
+              
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <mat-card-actions class="text-center">
+                <a routerLink="book/{{docDetails.WalkInFees}}/{{docDetails.VoiceFees}}/{{docDetails.TextFees}}/{{docDetails.VideoFees}}" class="btn btn-primary">Book Appointment</a>
+            </mat-card-actions>
+
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> 

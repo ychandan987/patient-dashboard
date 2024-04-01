@@ -1,0 +1,45 @@
+<mat-progress-bar color="info" mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+<section class="hero-area">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 ">
+          <div class="contact-h-cont-blue">
+              <div style="text-align:center;"><strong>Member Dashboard</strong></div><br>
+            <h3 class="text-center"><img src="../assets/img/logo.jpg" class="img-fluid" alt=""></h3><br>
+            <div class="alert alert-danger" role="alert" *ngIf="loginFailed">
+              {{msg}}
+            </div>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+            
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Enter Username" formControlName="username" [ngClass]="{'is-invalid': loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched),
+                'is-valid': loginForm.controls['username'].valid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)}"> 
+                <div class="" *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)" style="color:#ff0000">
+                  Please provide a valid username.
+                </div>
+              </div>  
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" value="hunter2" id="example-password-input" placeholder="Enter Password" formControlName="password" [ngClass]="{'is-invalid': loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched),
+                'is-valid': loginForm.controls['password'].valid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)}"> 
+                <div class="" *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" style="color:#ff0000">
+                  Please provide a valid password.
+                </div>
+                
+              </div>   
+            
+             <button type="submit" class="btn btn-general btn-blue" role="button"  [disabled]="loginForm.invalid"><i fa fa-right-arrow></i>Login</button>
+             <a routerLink="/forgot-password"><button class="btn btn-general btn-blue" role="button"><i fa fa-right-arrow></i>Forgot Password</button></a>
+             <a routerLink="/sign-up"><button class="btn btn-general btn-blue" role="button"><i fa fa-right-arrow></i>Sign Up</button></a>
+             <!-- <a routerLink="/sign-up-new"><button class="btn btn-general btn-blue" role="button"><i fa fa-right-arrow></i>HOH</button></a> -->
+          </form><br/>
+          <div style="text-align:center;">
+              <a href="https://arkaahealth.com" class="homebtn"> Home Page</a>
+              </div>
+          </div>
+      </div>
+    </div>  
+  </div>
+</section>

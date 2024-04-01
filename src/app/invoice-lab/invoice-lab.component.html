@@ -1,0 +1,114 @@
+<div class="container-fluid content-inner ">
+  <div class="row">
+          <div class="col-md-12">
+              <div class="row">
+                  <div class="col-md-4">
+                    <div class="invoice-title ">
+                        <div><img src="/assets/img/logo.png" alt=""></div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                          <div class="invoice-title text-center">
+                              <div><h2>Arkaa Healthcare</h2></div>
+                              <div><h2>Unit : {{posts.lab_name}} Lab</h2></div>
+                          </div>
+                      </div>
+                      <div class="col-md-4">
+                              <div class="invoice-title ">
+                                  <div><strong class="pull-right mt-3">{{posts.order_id}}</strong></div>
+                                  
+                              </div>
+                          </div>
+                  </div>
+                  <hr>
+                  <div class="panel-heading">
+                      <h3 class="panel-title"><strong>Patient details</strong></h3>
+                  </div>
+                  <div class="row">
+                          <div class="col-md-4">
+                              <address>
+                                  <strong>Patient UID: </strong> {{posts.user_uid}}<br>
+                                  <strong>Patient Name : </strong> Mr. {{posts.patient_details[0].name}}  <br>
+                                  <strong>Contact No. : </strong> {{posts.patient_details[0].mobile}}<br>
+                                  <strong>Transaction Id : </strong> {{posts.payment_id}}
+                              </address>
+                          </div>
+                          <div class="col-md-4">
+                                  <address>
+                                      <strong>Lab Name :</strong>{{posts.lab_name}}<br>
+                                      <strong>Lab UID : </strong> {{posts.lab_uid}}<br>
+                                      <strong>Address : </strong> {{posts.lab_address}} , {{posts.lab_location}}<br>
+                                      <strong>Payment Type : </strong> 
+                                      <span  *ngIf="posts.payment_type != 'Cash On Delivery' " >{{posts.payment_type}}</span>
+                                      <span  *ngIf="posts.payment_type == 'Cash On Delivery' " >Pay On Visit</span>
+                                  </address>
+                          </div>
+                          <div class="col-md-4">
+                                  <address>
+                                      <strong>Order Date : </strong>{{formatTime(posts.last_updated_on)}}<br>
+                                      <strong>Bill No. : </strong> #{{posts.id}}<br>
+                                      <strong>Consultation Type. : </strong> {{posts.type}}<br>
+                                      <strong>Order Id : </strong> {{posts.order_id}} 
+                                  </address>
+                              </div>
+               </div>
+               <div class="row">
+                      <div class="col-md-12">
+                          <div class="panel panel-default">
+                              <div class="panel-heading">
+                                  <h3 class="panel-title"><strong>Order summary</strong></h3>
+                              </div>
+                              <div class="panel-body">
+                                  <div class="table-responsive">
+                                      <table class="table borderless">
+                                          <thead>
+                                              <tr class="bg-info text-white">
+                                                  <td><strong>Sr No.</strong></td>                                                          
+                                                  <td><strong>Bill Item</strong></td>                        <td><strong>GST(in %)</strong></td>                       <td class="text-center"><strong>Price</strong></td> 
+                                                  <td class="text-center"><strong>GST Cost</strong></td>
+                                                  <td><strong>Total Cost</strong></td>                                                        
+                                              </tr>
+                                          </thead>
+                                          <tbody> 
+                                              <tr *ngFor='let test of posts.tests,let i=index'>
+                                                  <td>{{i+1}}</td>
+                                                  <td>{{test.test_name}}</td>
+                                                  <td>{{test.gst}}</td>
+                                                  <td class="text-center">{{test.price}}</td> 
+                                                  <td class="text-center">{{((test.price * test.gst) / 100)}}</td> 
+                                                  <td class="text-center">{{(test.price + (test.price * test.gst) / 100  )}}</td>                                                        
+                                              </tr>
+                                              
+                                              <tr>   
+                                                  <td class="thick-line"></td> 
+                                                  <td class="thick-line"></td>
+                                                  <td class="thick-line"></td>  
+                                                  <td class="thick-line"></td>                
+                                                  <td class="thick-line"><strong>Grand Total Cost (Including GST):</strong></td>
+                                                  <td class="thick-line text-center">{{posts.total_cost}}</td>
+                                              </tr>
+                                          </tbody> 
+                                      </table>
+                                      <div class="row">
+                                          <div class="col-md-6">
+                                              <div class="text-left">
+                                                  <strong>Signature</strong><br>
+                                                  <strong>Billed By :</strong> Arkaa Healthcare
+                                              </div>
+                                            </div>
+                                          <div class="col-md-6">
+                                              <div class="text-right">
+                                                  <!-- <button class="btn btn-general btn-blue mr-3" onclick="javascript:window.print();"><i class="fa fa-print"></i> Print</button> -->
+                                                  <!-- <button class="btn btn-general btn-white">Submit The Invoice</button> -->
+                                              </div>
+                                            </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+               </div>
+       </div>
+</div>
+

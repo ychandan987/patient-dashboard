@@ -1,0 +1,108 @@
+<div class="row">
+  <div class="page-header">
+    <h1>
+      E-hospital Appointment Lists
+    </h1>
+    
+  </div>
+  
+  <hr>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+  </mat-form-field>
+  <hr>
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+
+   <!-- <ng-container matColumnDef="id" *ngFor="let i=index">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+    <td mat-cell *matCellDef="let element" > {{i+1}} </td>
+  </ng-container> -->
+
+    <!-- Patient UID Column -->
+    <ng-container matColumnDef="appid">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Appointment ID </th>
+      <td mat-cell *matCellDef="let element" > {{element.AppointmentId}} </td>
+    </ng-container>
+  
+    <!-- UserName Column -->
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Member Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.PatientName}} </td>
+    </ng-container>
+  
+    <!-- Firstname Column -->
+    <ng-container matColumnDef="doctorname">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Doctor Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.DoctorName}} </td>
+    </ng-container>
+  
+    <!-- Lastname Column -->
+    <ng-container matColumnDef="hospitalname">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Hospital Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.HospitalName}} </td>
+    </ng-container>
+  
+    <!-- Created On Column -->
+    <ng-container matColumnDef="created_on">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointment Date </th>
+      <td mat-cell *matCellDef="let element"> {{formatTime(element.AppointmentDate)}} </td>
+    </ng-container>
+
+    <!-- Lastname Column -->
+    <ng-container matColumnDef="appTime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointment Time </th>
+      <td mat-cell *matCellDef="let element"> {{element.AppointmentTime}} </td>
+    </ng-container>
+
+
+   <!-- Lastname Column Status-->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.isConfirmed}} </td>
+    </ng-container>
+
+  <!-- Action Column -->
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Action </th>
+    <!-- <td mat-cell *matCellDef="let element" *ngIf="element.isComplete=='Yes' "> 
+        <a routerLink="/e-hospital/appointments/{{element.hospitalID}}/{{element.AppointmentId}}/details"> Completed</a>
+    </td> -->
+    <td mat-cell *matCellDef="let element"> 
+        <div id="div1" *ngIf="element.isComplete == 'Yes                 ' ">
+             <a routerLink="/e-hospital/appointments/{{element.hospitalID}}/{{element.AppointmentId}}/details" class="btn btn-primary" > Completed</a>
+          </div>
+      <div id="div2" *ngIf="element.isComplete == null">
+          <a routerLink="/e-hospital/appointments/{{element.hospitalID}}/{{element.AppointmentId}}/details" *ngIf="(element.paymentconfirmation==true) && (element.isConfirmed=='confirm' || element.isConfirmed=='Confirm')" class="btn btn-primary" > Already Paid</a>
+
+          <a routerLink="/reschedule/{{element.AppointmentId}}/{{element.hospitalID}}" *ngIf="element.isConfirmed=='reschedule' || element.isConfirmed=='Reschedule'" class="btn btn-primary" > Rescheduled</a>
+    
+          <button  *ngIf="element.isConfirmed=='cancel'" class="btn btn-primary"> Cancelled</button>
+  
+          <button  *ngIf="element.isConfirmed!='confirm' && element.isConfirmed!='reschedule' && element.isConfirmed!='Confirm' && element.isConfirmed!='Reschedule' && element.isConfirmed!='cancel'" class="btn btn-white" > Appointment Pending</button> 
+  
+          <button  *ngIf="element.isConfirmed!='confirm' && element.isConfirmed!='reschedule' && element.isConfirmed!='Confirm' && element.isConfirmed!='Reschedule' && element.AppointmentId=='000378'" class="btn btn-white" > PTS Appointment Done</button>
+
+          <a routerLink="/e-hospital/payment-mode/{{element.hospitalID}}/{{element.AppointmentId}}" *ngIf="(element.paymentconfirmation!=true) && (element.isConfirmed=='confirm' || element.isConfirmed=='Confirm') && (element.payment_mode=='ONLINE' || element.payment_mode==null || element.payment_mode=='')" class="btn btn-primary" > Proceed to Pay</a>
+    
+            <a routerLink="/e-hospital/appointments/{{element.hospitalID}}/{{element.AppointmentId}}/details" *ngIf="((element.payment_mode=='OFFLINE') && (element.paymentconfirmation!=true) && (element.isConfirmed=='confirm' || element.isConfirmed=='Confirm'))" class="btn btn-primary" >Pay On Visit</a>
+      </div>
+      
+  </ng-container>
+
+  <!-- Lastname Column Status-->
+  <ng-container matColumnDef="report">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Report </th>
+    <td mat-cell *matCellDef="let element">
+        <a routerLink="/ehosp/report/share/{{element.AppointmentId}}/{{element.DoctorId}}" *ngIf="element.isConfirmed!='cancel' && (element.isConfirmed=='confirm' || element.isConfirmed=='Confirm')" class="btn btn-primary">Share Report for Follow-up Appt.</a>
+     </td>
+  </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  
+</div> 

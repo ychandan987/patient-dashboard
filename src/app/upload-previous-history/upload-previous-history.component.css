@@ -1,0 +1,11 @@
+.form-group
+{
+    padding:20px;
+}
+.btn-blue
+{
+    background: linear-gradient(to left, rgba(0, 118, 168), rgba(0, 118, 168));
+    color:white;
+    border: 1px;
+    font-size: 20px;
+}

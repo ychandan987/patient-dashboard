@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="page-header">
+        <h1>
+         Doctor Appointments
+        </h1>
+      </div>
+  <!-- <table class="table table-hover">
+    <thead>
+      <tr class="bg-info text-white">
+        <th>ID</th>
+        <th>Dr. Name</th>
+        <th>Degree</th>
+        <th>Consultation Type</th>
+        <th>Appointment Date</th>
+        <th>Appointment Time</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let app of apps,let i=index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{app.doctor_name}}</td>
+        <td>{{app.degree[0].degree}}</td>
+        <td>{{app.consultation_type}}</td>
+        <td>{{formatTime(app.appointment_date)}}</td>
+        <td>{{app.probable_start_time}}</td>
+        <td>
+          <button routerLink="/reports/share/{{app.id}}" class="btn btn-general"> Share Reports </button>
+        </td>
+      </tr>
+    </tbody>
+  </table> -->
+
+
+  <hr>
+  <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+    <hr>
+    
+    
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+     <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let element,let i=index" >  {{i+1}}</td>
+    </ng-container> 
+           
+      <ng-container matColumnDef="labname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Dr. Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.doctor_name}} </td>
+      </ng-container>    
+     
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Degree</th>
+        <td mat-cell *matCellDef="let element"> 
+            {{element.degree[0].degree}}
+        </td>
+      </ng-container>  
+      
+      
+      <ng-container matColumnDef="fees">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Consultation Type </th>
+          <td mat-cell *matCellDef="let element"> {{element.consultation_type}} </td>
+        </ng-container> 
+
+    <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Appointment Date </th>
+        <td mat-cell *matCellDef="let element"> {{formatTime(element.appointment_date)}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="appdate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Appointment Time </th>
+          <td mat-cell *matCellDef="let element"> {{element.probable_start_time}} </td>
+        </ng-container>
+
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+      <td mat-cell *matCellDef="let element"> 
+          <button routerLink="/reports/share/{{element.id}}" class="btn btn-general"> Share Reports </button>
+
+      </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+     
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+   
+</div> 

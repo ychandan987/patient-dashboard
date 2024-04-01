@@ -1,0 +1,122 @@
+<div class="row">
+    <div class="col-md-12">
+      <!--***** PRODUCT INFO *****-->
+        <div class="card form" id="form1">
+            <div class="card-header">
+                <h3>
+                    <i class="fa fa-medkit"></i> Pharmacy Quote Details
+                    <!-- <a routerLink="/labtests"  class="btn btn-primary pull-right">
+                        <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+                        Go Back
+                    </a>   -->
+                </h3>
+              </div>
+              <br>
+              <div class="row mt-3">
+                <h5 class="col-12 mb-2">Pharmacy Details
+                  <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </h5>
+                <div class="col-6">
+                    <!-- <div class="form-group">
+                        <strong class="mr-5">ID : </strong> {{posts.id}}
+                    </div> -->
+                      <div class="form-group">
+                        <strong class="mr-5">UID: </strong> {{posts.pharmacy_uid}}
+                    </div>
+                    <div class="form-group">
+                        <strong class="mr-5">Order Date: </strong> {{formatTime1(posts.order_taken_date)}}
+                      </div> 
+                    <div class="form-group">
+                      <strong class="mr-5">Name: </strong> {{posts.pharmacy_name}}
+                    </div>
+                    <div class="form-group">
+                      <strong class="mr-5">Quote Cost: </strong>{{posts.quote_cost}}
+                   </div>
+                   <div class="form-group">
+                    <strong class="mr-5">Quote Description: </strong>{{posts.quote_description}}
+                 </div>
+                 <div class="form-group">
+                    <strong class="mr-5">Order Description: </strong> {{posts.order_description}}
+                  </div> 
+
+                  <div class="form-group">
+                    <strong class="mr-5">Payment Type: </strong> {{posts.payment_type}}
+                  </div> 
+               </div>
+               <div class="col-6">
+                  <div class="form-group">
+                    <strong class="mr-5">Prescription: </strong> <a href="{{posts.prescription_path}}" target="_blank"><img src="{{posts.prescription_path}}" width="100px"></a>
+                  </div> 
+               </div>
+            </div>
+         
+            <div class="row mt-3">
+                <h5 class="col-12 mb-2">Quotation Details
+                    <div class="progress">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </h5>
+                  <div class="col-12">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table borderless" style="border:2px solid #ccc">
+                            <thead>
+                                <tr class="bg-info text-white">
+                                    <td><strong>ID</strong></td>
+                                    <td><strong>Medicine Id</strong></td>
+                                    <td><strong>Medicine Name</strong></td>
+                                    <td class="text-center"><strong>Manufacturer Name</strong></td>
+                                    <td class="text-center"><strong>Expiry Date</strong></td>
+                                    <td class="text-center"><strong>Quantity</strong></td>
+                                    <td class="text-center"><strong>Cost</strong></td>
+                                    <td class="text-center"><strong>GST</strong></td>
+                                    <td class="text-center"><strong>Total Price</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                <tr *ngFor='let test of posts.medicine_info,let i = index'>
+                                    <td>{{i+1}}</td>
+                                    <td>{{test.medicine_id}}</td>
+                                    <td>{{test.med_name}}</td>
+                                    <td class="text-center">{{test.med_manufacturer_name}}</td>
+                                    <td class="text-center">{{test.med_expiry_date}}</td>
+                                    <td class="text-center">{{test.medicine_quantity}}</td>
+                                    <td class="text-center">{{test.med_cost}}</td>
+                                    <td class="text-center">{{test.med_gst}}%</td>
+                                    <td class="text-center">{{test.total_with_gst*test.medicine_quantity}}</td>
+                                </tr>
+<!--                             
+                                <tr>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="text-center"><strong>Total Tax</strong></td>
+                                    <td class="text-center">{{posts.medicine_info[0].med_gst}}%</td>
+                                </tr> -->
+                                <tr>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="text-center"><strong>Grand Total Cost(Incliding GST)</strong></td>
+                                    <td class="no-line"></td>
+                                    <td class="no-line"></td>
+                                    <td class="text-center">Rs. {{posts.quote_cost}}</td>
+                                </tr>
+                            </tbody> 
+                          </table>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <br>
+                <div class="text-center">
+                    <button  class="btn btn-danger" *ngIf="(posts.appointment_status_id!=2)&&(posts.appointment_status_id!=3)" (click)="changeStatus(posts.pharmacy_order_id,2)">Cancel</button>
+                    <button  class="btn btn-general" *ngIf="(posts.payment_type!='Cash On Delivery')" (click)="pay()">Confirm & Pay</button>
+                  </div>
+              </div> 
+      </div>

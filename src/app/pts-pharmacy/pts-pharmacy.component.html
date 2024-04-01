@@ -1,0 +1,133 @@
+<div class="row">
+    <div class="container-fluid">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title><h1>PTS Pharmacy</h1></mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <br>
+  
+        <mat-card-content>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Pharmacy Name: </strong> {{posts[0].pts_medicine_ch_PharmacyName}}
+              </div>
+
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Pharmacy Email: </strong> {{posts[0].pharmacy_email}}
+              </div>
+
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Pharmacy Phone: </strong> {{posts[0].pharmacy_phone}}
+              </div>
+
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Pharmacy Address: </strong> {{posts[0].pharmacy_address}},{{posts[0].pharmacy_pincode}}
+              </div>
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Member Name: </strong> {{commonData.pts_medicine_patientName}}
+                </div>
+                <!-- <div class="form-group col-md-6">
+                    <strong class="mr-5">Mobile: </strong> {{commonData.pts_medicine_mobile}}
+                  </div> -->
+                  <div class="form-group col-md-6">
+                      <strong class="mr-5">Mobile: </strong> {{commonData.pts_medicine_mobile}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <strong class="mr-5">Email: </strong> {{commonData.pts_medicine_email}}
+                      </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Address: </strong> {{commonData.pts_medicine_address}}
+              </div>
+              <div class="form-group col-md-6" *ngIf="commonData.pts_medicine_date == '1900-01-01T00:00:00' ">
+                <strong class="mr-5">Delivery Date: </strong> 
+              </div>
+
+              <div class="form-group col-md-6" *ngIf="commonData.pts_medicine_date != '1900-01-01T00:00:00' ">
+                  <strong class="mr-5">Delivery Date: </strong> {{formatTime(commonData.pts_medicine_date)}}
+                </div>
+
+
+              <div class="form-group col-md-6">
+                <strong class="mr-5"> Delivery Time: </strong> {{commonData.pts_medicine_deliveryTime}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Total Amount: </strong> {{posts[0].TotalFinalPrice}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Payment Status: </strong> {{commonData.paymentconfirmation}}
+              </div>
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Payment Mode: </strong> {{commonData.payment_mode}}
+                </div>
+              <div class="form-group col-md-6" *ngIf="commonData.pts_medicine_deliveryTime != ''">
+                <strong class="mr-5">Service Type:</strong>  Home Delivery
+              </div>
+
+              <div class="form-group col-md-6" *ngIf="commonData.pts_medicine_deliveryTime == '' || commonData.pts_medicine_deliveryTime == 'null'">
+                <strong class="mr-5">Service Type:</strong>  Self Pickup
+              </div>
+            </div>
+  
+          <mat-divider></mat-divider>
+          <br>
+          <table class="table table-hover">
+            <thead>
+              <tr class="bg-info text-white">
+                <th>ID</th>
+                <th>Medicine</th>
+                <!-- <th>Brand</th>
+                <th>Manufacturer</th>
+                <th>Qty</th> -->
+                <th>Dosage</th>
+                <!-- <th>Days</th> -->
+                <th>Price</th>
+                <!-- <th>Discount</th> -->
+                <th>GST</th>
+                <th>Total Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let app of posts,let i=index">
+                <th scope="row">{{i+1}}</th>
+                <td>{{app.medicine_name}}</td>
+                <!-- <td>{{app.pts_medicine_ch_brand}}</td>
+                <td>{{app.manufacturer}}</td>
+                <td>{{app.pts_medicine_ch_qty}}</td> -->
+                <td>{{app.pts_medicine_ch_dosage}}</td>
+                <!-- <td>{{app.pts_medicine_ch_days}}</td> -->
+                <td>{{app.pts_medicine_ch_price}}</td>
+                <!-- <td>{{app.pts_medicine_ch_discount}}</td> -->
+                <td>{{app.pts_medicine_ch_gst}} % </td>
+                <td>{{app.pts_medicine_ch_FinalPrice}}</td>
+              </tr>
+              <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <!-- <td></td>
+                <td></td> -->
+                <td><strong>Grand Total Cost(Including gst)</strong> </td>
+                <td><h3>{{posts[0].TotalFinalPrice}}</h3></td>
+              </tr>
+            </tbody>
+          </table>
+  
+          <mat-divider></mat-divider>
+  
+          <!-- <mat-card-actions class="text-center">
+              <button  class="btn btn-primary" *ngIf="(commonData.paymentconfirmation==null) || !commonData.paymentconfirmation" (click)="pay()">Proceed To Pay</button>
+          </mat-card-actions>
+          <mat-divider></mat-divider> -->
+
+          <mat-card-actions class="text-center">
+              <button  class="btn btn-primary" *ngIf="(commonData.paymentconfirmation==null) || (!commonData.paymentconfirmation) && (commonData.payment_mode != 'OFFLINE' && commonData.payment_mode != 'ONLINE' )" (click)="submit()">Pay Offline</button>
+              <button  class="btn btn-primary" *ngIf="(commonData.paymentconfirmation==null) || !commonData.paymentconfirmation && (commonData.payment_mode != 'OFFLINE' && commonData.payment_mode != 'ONLINE' )" (click)="pay()">Pay Online</button>
+          </mat-card-actions>
+  
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div> 
+  

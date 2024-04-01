@@ -1,0 +1,152 @@
+<!-- Message: {{ message }}
+    <app-pts-app-details></app-pts-app-details> -->
+<div class="row">
+  <div class="container-fluid">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title><h1>PTS LAB</h1></mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <br>
+
+      <mat-card-content>
+          <mat-card-title><h4> LAB Details</h4></mat-card-title>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <strong class="mr-5">Lab Name: </strong> {{posts[0].pts_lab_labName}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Lab Email: </strong> {{posts[0].lab_email}}
+              </div>
+
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Lab Phone: </strong> {{posts[0].lab_phone}}
+              </div>
+
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Lab Address: </strong> {{posts[0].lab_address}},{{posts[0].lab_pincode}}
+              </div>
+
+          <div class="form-group col-md-6">
+            <strong class="mr-5">Member Name: </strong> {{commonData.pts_lab_patientName}}
+          </div>
+          <div class="form-group col-md-6">
+            <strong class="mr-5">Mobile: </strong> {{commonData.pts_lab_mobile}}
+          </div>
+          <!-- <div class="form-group col-md-6">
+            <strong class="mr-5">Landline: </strong> {{commonData.pts_lab_mobile}}
+          </div> -->
+          <div class="form-group col-md-6">
+            <strong class="mr-5">Email: </strong> {{commonData.pts_lab_email}}
+          </div>
+          <div class="form-group col-md-6">
+              <strong class="mr-5">Address: </strong> {{commonData.pts_lab_address}}
+            </div>
+          <div class="form-group col-md-6">
+            <strong class="mr-5">Lab Phlebotomist Name: </strong> {{commonData.labotomistName}}
+          </div>
+          <div class="form-group col-md-6">
+            <strong class="mr-5">Lab Phlebotomist Mobile: </strong> {{commonData.labotomistMobile}}
+          </div>
+          <div class="form-group col-md-6">
+            <strong class="mr-5">Lab Phlebotomist Email: </strong> {{commonData.labotomistEmail}}
+          </div>
+
+          <div class="form-group col-md-6">
+            <strong class="mr-5">Service Type: </strong> {{commonData.serviceType}}
+          </div>
+        
+          </div>
+
+      </mat-card-content>
+
+      <mat-divider></mat-divider>
+<br/>
+      <mat-card-content>
+          <div class="row">
+              
+          <!-- <div class="form-group col-md-6">
+              <strong class="mr-5">Lab Test Name: </strong> {{posts[0].pts_lab_ch_testname}}
+            </div>
+            <div class="form-group col-md-6">
+                <strong class="mr-5">Lab Test Price: </strong> {{posts[0].pts_lab_ch_price}}
+              </div>
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Lab Discount: </strong> {{posts[0].pts_lab_ch_discount}}
+                </div>
+                <div class="form-group col-md-6">
+                    <strong class="mr-5">Lab GST: </strong> {{posts[0].pts_lab_ch_GST}}
+                  </div>
+                  <div class="form-group col-md-6">
+                      <strong class="mr-5">Total Amount:  {{posts[0].TotalFinalPrice}}</strong>
+                    </div> -->
+            <div class="form-group col-md-6">
+              <strong class="mr-5">Appointment Date: </strong> {{formatTime(commonData.pts_lab_date)}}
+            </div>
+            <div class="form-group col-md-6">
+              <strong class="mr-5">Lab Delivery Time: </strong> {{commonData.pts_lab_deliveryTime}}
+            </div>            
+            
+            <div class="form-group col-md-6">
+              <strong class="mr-5">Payment Status: </strong> {{commonData.paymentconfirmation}}
+            </div>
+            <div class="form-group col-md-6">
+              <strong class="mr-5">Payment Mode: </strong> {{commonData.payment_mode}}
+            </div>
+          </div>
+
+        <mat-divider></mat-divider>
+        <br>
+        <table class="table table-hover">
+          <thead>
+            <tr class="bg-info text-white">
+              <th>ID</th>
+              <th>Test Name</th>
+              <th>Details</th>
+              <th>Price</th>
+              <th>Discount(in %)</th>
+              <th>GST</th>
+              <th>Total Price (Including GST)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let app of posts,let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{app.pts_lab_ch_testname}}</td>
+              <td>{{app.pts_lab_ch_details}}</td>
+              <td>{{app.pts_lab_ch_price}}</td>
+              <td>{{app.pts_lab_ch_discount}}</td>
+              <td>{{app.pts_lab_ch_GST}} %</td>
+              <td>{{app.pts_lab_ch_FinalPrice}}</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>                              
+              <td><strong>Grand Total Cost(Including gst)</strong> </td>
+              <td>{{posts[0].TotalFinalPrice}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <mat-divider></mat-divider>
+
+        <mat-card-actions class="text-center">
+            <button  class="btn btn-primary" *ngIf="(commonData.paymentconfirmation==null) || (!commonData.paymentconfirmation) && (commonData.payment_mode != 'OFFLINE' && commonData.payment_mode != 'ONLINE' )" (click)="submit()"> Pay Offline </button>
+            <button  class="btn btn-primary" *ngIf="(commonData.paymentconfirmation==null) || !commonData.paymentconfirmation && (commonData.payment_mode != 'OFFLINE' && commonData.payment_mode != 'ONLINE' )" (click)="pay()">Pay Online</button>
+            <!-- <button  class="btn btn-info" *ngIf="(commonData.paymentconfirmation==true)"><a *ngIf="(commonData.paymentconfirmation==true)" href="http://35.163.147.45{{commonData.labReport}}" target="_blank" style="font-color:black;"><b>View Lab Report</b></a></button> -->
+            <a *ngIf="(commonData.paymentconfirmation==true) && (commonData.labReport!=null) " href="http://35.163.147.45{{commonData.labReport}}" target="_blank" style="font-color:black;"><b>View Lab Report</b></a>
+            <button style="cursor:pointer;"  class="btn btn-primary" *ngIf="(commonData.paymentconfirmation==true) && (alreadyShared != 0) && (commonData.labReport!=null) && followUpDocId != null" (click)="share()">Share Lab Report To Doctor</button>
+            <!-- <button  class="btn btn-primary" *ngIf="(commonData.paymentconfirmation==true) && (alreadyShared != 0) && (commonData.labReport!=null)">Already Shared</button> -->
+
+            <!-- <button  class="btn btn-primary" style="cursor:pointer;" *ngIf="(commonData.labReport!=null)">Save Report</button> -->
+            
+        </mat-card-actions>
+
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> 

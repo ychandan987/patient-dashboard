@@ -1,0 +1,2483 @@
+<div class="row mt-2" id="card-prof">
+  <div class="col-md-3">
+      <div class="card hovercard">
+          <div class="cardheader"></div>
+          <div class="avatar">
+                <div *ngIf="profile.profile_picture_path != ''">
+                        <img alt="" src="{{profile.profile_picture_path}}" class="img-fluid">
+                    </div>
+                      
+                      <div *ngIf="profile.profile_picture_path == ''">
+                            <img src="./assets/img/avatar-1.jpg" alt="..." class="img-fluid" >
+                      </div>
+          </div>
+          <div class="info">
+              <div class="title">
+                  <a target="_blank" routerLink="#">Username: {{currentUser.username}}</a>
+              </div>
+              <hr>
+              <strong class="mr-5">Unique Id:</strong>    {{currentUser.unique_id}}
+            
+            </div>
+             
+    
+      </div>
+  </div>
+  <div class="col-md-9">
+      <div class="card hovercard">
+          <div class="tab" role="tabpanel"> 
+              <ul class="nav nav-tabs" role="tablist">
+                
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/profile" role="tab" data-toggle="tab"><span><i class="fa fa-user"></i></span> My Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/profile/edit" role="tab" data-toggle="tab"><span><i class="fa fa-cog"></i></span> Edit Profile</a> 
+                </li>
+                 <li class="nav-item">
+                  <a class="nav-link " routerLink="/profile/healthnutritionalform" role="tab" data-toggle="tab"><span><i class="fa fa-medkit"></i></span> Health & Nutritional </a> 
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" routerLink="/profile/psychosocialform" role="tab" data-toggle="tab"><span><i class="fa fa-heartbeat"></i></span> Psychosocial </a> 
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " routerLink="/profile/initialclinicform" role="tab" data-toggle="tab"><span><i class="fa fa-hospital-o"></i></span> Initial Clinic </a> 
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/profile/upload-previous-history" role="tab" data-toggle="tab"><span><i class="fa fa-upload"></i></span> Upload Previous History</a> 
+                  </li>
+              </ul>
+
+            
+
+              <div class="tab-content tabs">
+                
+                <div class="row">
+                  
+                <div class="col-lg-12">
+                <div class="panel-group text-left" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne" style="border:1px solid #939293;padding:10px;">
+                          <h3 class="panel-title"> 
+                        <a data-toggle="collapse" style="color:#939293;text-align:left" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          Edit Assessment Form
+                         
+                        </a>
+                      </h3>
+                
+                        </div>
+
+                        
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                              
+                                
+                              <form [formGroup]="editpsycosocialassessmentForm" (ngSubmit)="editpsycosocialassessment()" ngNativeValidate>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="uuid">UUID</label>
+                                    <input class="form-control" value="{{user_uuid}}" type="text" id="example-uuid" disabled>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="prescription_no">Prescription No.</label>
+                                    <input type="text" class="form-control" id="prescription_no" formControlName="prescription_no">
+                                 
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="membership_no">Membership No.</label>
+                                    <input type="text" class="form-control" id="membership_no" formControlName="membership_no">
+                                  </div>
+                                </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Date of Assessment</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="date_of_assessment">Date of Assessment</label>
+                                      <input type="date" class="form-control" id="date_of_assessment" formControlName="date_of_assessment" [max]="today" value="{{date_of_assessment | date:'yyyy-MM-dd' }}">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="time_of_assessment">Time of Assessment</label>
+                                      <input type="time" class="form-control" id="time_of_assessment" formControlName="time_of_assessment">
+                                   
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="mode_of_assessment">Assessment Mode</label>
+                                      <input type="text" class="form-control" id="mode_of_assessment" formControlName="mode_of_assessment">
+                                    </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Name</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="first_name">First</label>
+                                      <input class="form-control" type="text" value="{{first_name}}" id="example-first_name" disabled>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="middle_name">Middle</label>
+                                      <input type="text" class="form-control" id="middle_name" formControlName="middle_name">
+                                   
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="last_name">Last</label>
+                                      <input class="form-control" type="text" value="{{last_name}}" id="example-last_name" disabled>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <input class="form-control" type="text" value="{{gender}}" id="example-last_name" disabled>
+                                   </div>
+                                   <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Date of Birth</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                      <label for="dob">Date of Birth</label>
+                                      <input class="form-control" type="date" value="{{dob}}" placeholder="DD/MM/YY" id="example-dob" value="{{dob | date:'yyyy-MM-dd' }}">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                      <label for="age">Age (Years)</label>
+                                      <input class="form-control" type="text" value="{{age}}" id="example-age" disabled>
+                                   
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                      <label for="married_unmarried">Married / Unmarried</label>
+                                      <input type="text" class="form-control" id="married_unmarried" formControlName="married_unmarried">
+                                    </div> 
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Dependent Details</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="dependent_name">Name</label>
+                                      <input type="text" class="form-control" id="dependent_name" formControlName="dependent_name">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="dependent_relationship">Relationship</label>
+                                      <input type="text" class="form-control" id="dependent_relationship" formControlName="dependent_relationship">
+                                   
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="dependent_contact">Contact</label>
+                                      <input type="text" class="form-control" id="dependent_contact" formControlName="dependent_contact">
+                                    </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Address</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-group">
+                                    <!-- <label for="inputAddress2">Building, Street/Area </label> -->
+                                    <input class="form-control" type="text" value="{{address}}" id="example-address" placeholder="Building, Street/Area" disabled>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                      <label for="city">City</label>
+                                      <input class="form-control" type="text" value="{{city}}" id="example-city" disabled>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="state">State</label>
+                                      <input class="form-control" type="text" value="{{state}}" id="example-state" disabled>
+                                    
+                                      <!-- <select id="state" class="form-control" formControlName="state">
+                                        <option selected>Choose...</option>
+                                        <option>Maharashtra</option>
+                                      </select> -->
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                      <label for="zip">Zip</label>
+                                      <input class="form-control" type="text" value="{{pincode}}" id="example-zip" disabled>
+                                    </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Contact Details</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                      <label for="home_telephone">Home Phone</label>
+                                      <input class="form-control" type="text" value="{{mobile_no}}" id="example-home_telephone" disabled>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                      <label for="email">Email</label>
+                                      <input class="form-control" type="text" value="{{email}}" id="example-email" disabled>
+                                   
+                                    </div>
+                                   
+                                  </div>
+                                 
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Occupation</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                      <label for="occupation_designation">Designation</label>
+                                      <input type="text" class="form-control" id="occupation_designation" formControlName="occupation_designation">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                      <label for="occupation_company_name">Company Name</label>
+                                      <input type="text" class="form-control" id="occupation_company_name" formControlName="occupation_company_name">
+                                   
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                      <label for="occupation_address">Address</label>
+                                      <input type="text" class="form-control" id="occupation_address" formControlName="occupation_address">
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                      <label for="occupation_work_phone">Work Phone</label>
+                                      <input type="text" class="form-control" id="occupation_work_phone" formControlName="occupation_work_phone">
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                      <label for="occupation_work_email">Work Email</label>
+                                      <input type="text" class="form-control" id="occupation_work_email" formControlName="occupation_work_email">
+                                    </div>
+                                  </div> 
+                                
+                                 
+                            
+                                    <div class="form-row">
+                                      <div class="form-group col-md-12">
+                                        <h4>Other Details</h4>
+                                        <hr>
+                                         </div>
+                                     
+                                    </div>
+                                    <div class="form-row">
+                                      <div class="form-group col-md-4">
+                                        <label for="do_have_children">Do You Have Children</label>
+                                        <input type="text" class="form-control" id="do_have_children" formControlName="do_have_children">
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="how_many_children">How Many</label>
+                                        <input type="text" class="form-control" id="how_many_children" formControlName="how_many_children">
+                                     
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="age_of_children">Age of Children</label>
+                                        <input type="text" class="form-control" id="age_of_children" formControlName="age_of_children">
+                                      </div>
+                                    </div>
+                            
+                                    <div class="form-row">
+                                      <div class="form-group col-md-4">
+                                        <label for="height">Height in CMS</label>
+                                        <input type="text" class="form-control" id="height" formControlName="height">
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="weight">Weight in KGS</label>
+                                        <input type="text" class="form-control" id="weight" formControlName="weight">
+                                     
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="bmi">BMI</label>
+                                        <input type="text" class="form-control" id="bmi" formControlName="bmi">
+                                      </div>
+                                    </div>
+                            
+                                    <div class="form-row">
+                                      <div class="form-group col-md-4">
+                                        <label for="are_u_pegrant">Are you Pregrant?</label>
+                                        <input type="text" class="form-control" id="are_u_pegrant" formControlName="are_u_pegrant">
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                        <label for="due_date_of_pregrant">Due Date of Pregnancy?</label>
+                                        <input type="text" class="form-control" id="due_date_of_pregrant" formControlName="due_date_of_pregrant" >
+                                     
+                                      </div>
+                                     
+                                    </div>
+                            
+                                  
+                              
+                              <div class="col-md-12" >
+                                  <button type="submit" class="btn-btn">Save</button>
+                              </div>
+                             
+                            </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" >
+                      <div class="panel-heading" role="tab" id="headingTwo"  style="border:1px solid #939293;padding:10px;">
+                        <h3 class="panel-title">
+                      <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Mental Status Assessment 
+                      </a>
+                    </h3>
+              
+                      </div>
+                      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                          <div class="panel-body">
+                            <form [formGroup]="editpsycosocialmentalassesmentForm" (ngSubmit)="editpsycosocialmentalassesment()" ngNativeValidate>
+                              <div class="row">
+                              <div class="col-md-12">
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Appearance</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="well_groomed_appearance">Well groomed</label>
+                                    <input type="text" class="form-control" id="well_groomed_appearance" formControlName="well_groomed_appearance">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="disheveled_appearance">Disheveled</label>
+                                    <input type="text" class="form-control" id="disheveled_appearance" formControlName="disheveled_appearance">
+                                 
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="bizarre_appearance">Bizarre</label>
+                                    <input type="text" class="form-control" id="bizarre_appearance" formControlName="bizarre_appearance">
+                                  </div>
+                                </div>
+                          
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="other_appearance">Other</label>
+                                    <input type="text" class="form-control" id="other_appearance" formControlName="other_appearance">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_appearance">Describe</label>
+                                    <input type="text" class="form-control" id="describe_appearance" formControlName="describe_appearance">
+                                 
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Mood</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="normal_mood">Normal</label>
+                                    <input type="text" class="form-control" id="normal_mood" formControlName="normal_mood">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="euphoric_mood">Euphoric</label>
+                                    <input type="text" class="form-control" id="euphoric_mood" formControlName="euphoric_mood">
+                                 
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="depressed_mood">Depressed</label>
+                                    <input type="text" class="form-control" id="depressed_mood" formControlName="depressed_mood">
+                                  </div>
+                                </div>
+                          
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="irritable_mood">Irritable</label>
+                                    <input type="text" class="form-control" id="irritable_mood" formControlName="irritable_mood">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="anxious_mood">Anxious</label>
+                                    <input type="text" class="form-control" id="anxious_mood" formControlName="anxious_mood">
+                                 
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="other_mood">Other</label>
+                                    <input type="text" class="form-control" id="other_mood" formControlName="other_mood">
+                                 
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_mood">Describe</label>
+                                    <input type="text" class="form-control" id="describe_mood" formControlName="describe_mood">
+                                  </div>
+                                 
+                                  
+                                </div>
+                          
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Anxious</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="cooperative_anxious">Cooperative</label>
+                                    <input type="text" class="form-control" id="cooperative_anxious" formControlName="cooperative_anxious">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="uncooperative_anxious">Uncooperative</label>
+                                    <input type="text" class="form-control" id="uncooperative_anxious" formControlName="uncooperative_anxious">
+                                 
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Speech</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="normal_speech">Normal</label>
+                                    <input type="text" class="form-control" id="normal_speech" formControlName="normal_speech">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="slurred_speech">Slurred</label>
+                                    <input type="text" class="form-control" id="slurred_speech" formControlName="slurred_speech">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="soft_speech">Soft</label>
+                                    <input type="text" class="form-control" id="soft_speech" formControlName="soft_speech">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="nonverbal_speech">Nonverbal</label>
+                                    <input type="text" class="form-control" id="nonverbal_speech" formControlName="nonverbal_speech">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="loud_speech">Loud</label>
+                                    <input type="text" class="form-control" id="loud_speech" formControlName="loud_speech">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="limited_comm_skills_speech">Limited communication skills</label>
+                                    <input type="text" class="form-control" id="limited_comm_skills_speech" formControlName="limited_comm_skills_speech">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="pressured_speech">Pressured</label>
+                                    <input type="text" class="form-control" id="pressured_speech" formControlName="pressured_speech">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="uses_yes_no_only_speech">Uses yes/no only</label>
+                                    <input type="text" class="form-control" id="uses_yes_no_only_speech" formControlName="uses_yes_no_only_speech">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="halting_speech">Halting</label>
+                                    <input type="text" class="form-control" id="halting_speech" formControlName="halting_speech">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="uses_a_picture_board_speech">Uses a picture board</label>
+                                    <input type="text" class="form-control" id="uses_a_picture_board_speech" formControlName="uses_a_picture_board_speech">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="incoherent_speech">Incoherent</label>
+                                    <input type="text" class="form-control" id="incoherent_speech" formControlName="incoherent_speech">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="other_speech">Other</label>
+                                    <input type="text" class="form-control" id="other_speech" formControlName="other_speech">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_speech">Describe</label>
+                                    <input type="text" class="form-control" id="describe_speech" formControlName="describe_speech">
+                                  </div>                               
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Suspicious</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="guarded_suspicious">Guarded</label>
+                                    <input type="text" class="form-control" id="guarded_suspicious" formControlName="guarded_suspicious">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="belligerent_hostile_suspicious">Belligerent / Hostile</label>
+                                    <input type="text" class="form-control" id="belligerent_hostile_suspicious" formControlName="belligerent_hostile_suspicious">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="other_suspicious">Other</label>
+                                    <input type="text" class="form-control" id="other_suspicious" formControlName="other_suspicious">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_suspicious">Describe</label>
+                                    <input type="text" class="form-control" id="describe_suspicious" formControlName="describe_suspicious">
+                                  </div>                               
+                                  
+                                </div>
+                          
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Motor Activity </h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="calm_motor_activity">Calm</label>
+                                    <input type="text" class="form-control" id="calm_motor_activity" formControlName="calm_motor_activity">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="tremor_tics_motor_activity">Tremor / Tics</label>
+                                    <input type="text" class="form-control" id="tremor_tics_motor_activity" formControlName="tremor_tics_motor_activity">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="hyperactive_motor_activity">Hyperactive</label>
+                                    <input type="text" class="form-control" id="hyperactive_motor_activity" formControlName="hyperactive_motor_activity">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="lethargic_motor_activity">Lethargic</label>
+                                    <input type="text" class="form-control" id="lethargic_motor_activity" formControlName="lethargic_motor_activity">
+                                  </div>   
+                                  <div class="form-group col-md-4">
+                                    <label for="agitated_motor_activity">Agitated</label>
+                                    <input type="text" class="form-control" id="agitated_motor_activity" formControlName="agitated_motor_activity">
+                                  </div> 
+                                  <div class="form-group col-md-4">
+                                    <label for="other_motor_activity">Other</label>
+                                    <input type="text" class="form-control" id="other_motor_activity" formControlName="other_motor_activity">
+                                  </div>                             
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_motor_activity">Describe</label>
+                                    <input type="text" class="form-control" id="describe_motor_activity" formControlName="describe_motor_activity">
+                                  </div>                    
+                                  
+                                </div>
+                          
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Thought Process</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="intact_tangential_thought_process">Intact Tangential
+                                      </label>
+                                    <input type="text" class="form-control" id="intact_tangential_thought_process" formControlName="intact_tangential_thought_process">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="flight_of_ideas_thought_process">Flight of ideas</label>
+                                    <input type="text" class="form-control" id="flight_of_ideas_thought_process" formControlName="flight_of_ideas_thought_process">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="circumstantial_thought_process">Circumstantial</label>
+                                    <input type="text" class="form-control" id="circumstantial_thought_process" formControlName="circumstantial_thought_process">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="inability_to_abstract_thought_process">Inability to abstract</label>
+                                    <input type="text" class="form-control" id="inability_to_abstract_thought_process" formControlName="inability_to_abstract_thought_process">
+                                  </div>   
+                                  <div class="form-group col-md-4">
+                                    <label for="loose_associations_thought_process">Loose Associations</label>
+                                    <input type="text" class="form-control" id="loose_associations_thought_process" formControlName="loose_associations_thought_process">
+                                  </div> 
+                                  <div class="form-group col-md-4">
+                                    <label for="can_only_follow_1_step_directions_thought_process">Can only follow 1 step directions</label>
+                                    <input type="text" class="form-control" id="can_only_follow_1_step_directions_thought_process" formControlName="can_only_follow_1_step_directions_thought_process">
+                                  </div>                             
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="other_thought_process">Other</label>
+                                    <input type="text" class="form-control" id="other_thought_process" formControlName="other_thought_process">
+                                  </div> 
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_thought_process">Describe</label>
+                                    <input type="text" class="form-control" id="describe_thought_process" formControlName="describe_thought_process">
+                                  </div>                    
+                                  
+                                </div>
+                          
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Affect</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="appropriate_affect">Appropriate
+                                      
+                                      </label>
+                                    <input type="text" class="form-control" id="appropriate_affect" formControlName="appropriate_affect">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="inappropriate_affect">Inappropriate</label>
+                                    <input type="text" class="form-control" id="inappropriate_affect" formControlName="inappropriate_affect">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="sad_affect">Sad</label>
+                                    <input type="text" class="form-control" id="sad_affect" formControlName="sad_affect">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="angry_affect">Angry                                     
+                                      </label>
+                                    <input type="text" class="form-control" id="angry_affect" formControlName="angry_affect">
+                                  </div>   
+                                  <div class="form-group col-md-4">
+                                    <label for="flat_affect">Flat</label>
+                                    <input type="text" class="form-control" id="flat_affect" formControlName="flat_affect">
+                                  </div> 
+                                  <div class="form-group col-md-4">
+                                    <label for="constricted_affect">Constricted</label>
+                                    <input type="text" class="form-control" id="constricted_affect" formControlName="constricted_affect">
+                                  </div>                             
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="anxious_affect">Anxious</label>
+                                    <input type="text" class="form-control" id="anxious_affect" formControlName="anxious_affect">
+                                  </div> 
+                                  <div class="form-group col-md-4">
+                                    <label for="labile_affect">Labile</label>
+                                    <input type="text" class="form-control" id="labile_affect" formControlName="labile_affect">
+                                  </div> 
+                                  <div class="form-group col-md-4">
+                                    <label for="other_affect">Other</label>
+                                    <input type="text" class="form-control" id="other_affect" formControlName="other_affect">
+                                  </div>                     
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_affect">Describe</label>
+                                    <input type="text" class="form-control" id="describe_affect" formControlName="describe_affect">
+                                  </div> 
+                                </div>
+                          
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Thought Content</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="normal_morbid_thought_content">Normal Morbid                                    
+                                      
+                                      </label>
+                                    <input type="text" class="form-control" id="normal_morbid_thought_content" formControlName="normal_morbid_thought_content">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="paranoid_thought_content">Paranoid</label>
+                                    <input type="text" class="form-control" id="paranoid_thought_content" formControlName="paranoid_thought_content">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="somatic_complaints_thought_content">Somatic Complaints</label>
+                                    <input type="text" class="form-control" id="somatic_complaints_thought_content" formControlName="somatic_complaints_thought_content">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="phobias_thought_content">Phobias                                     
+                                      </label>
+                                    <input type="text" class="form-control" id="phobias_thought_content" formControlName="phobias_thought_content">
+                                  </div>   
+                                  <!-- <div class="form-group col-md-4">
+                                    <label for="obsessive_thought_content">Obsessive</label>
+                                    <input type="text" class="form-control" id="obsessive_thought_content" formControlName="obsessive_thought_content">
+                                  </div>  -->
+                                  <div class="form-group col-md-4">
+                                    <label for="aggressive_thought_content">Aggressive</label>
+                                    <input type="text" class="form-control" id="aggressive_thought_content" formControlName="aggressive_thought_content">
+                                  </div>                             
+                                  
+                                </div>
+                              
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="other_thought_content">Other</label>
+                                    <input type="text" class="form-control" id="other_thought_content" formControlName="other_thought_content">
+                                  </div> 
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_thought_content">Describe</label>
+                                    <input type="text" class="form-control" id="describe_thought_content" formControlName="describe_thought_content">
+                                  </div> 
+                                </div>
+                          
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Orientation</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="person_orientation">Person                                   
+                                      
+                                      </label>
+                                    <input type="text" class="form-control" id="person_orientation" formControlName="person_orientation">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="responds_to_name_orientation">Responds to name</label>
+                                    <input type="text" class="form-control" id="responds_to_name_orientation" formControlName="responds_to_name_orientation">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="place_orientation">Place </label>
+                                    <input type="text" class="form-control" id="place_orientation" formControlName="place_orientation">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="time_orientation">Time                                     
+                                      </label>
+                                    <input type="text" class="form-control" id="time_orientation" formControlName="time_orientation">
+                                  </div>   
+                                  <div class="form-group col-md-4">
+                                    <label for="recognizes_familiar_faces_places_orientation">Recognizes familiar faces/places </label>
+                                    <input type="text" class="form-control" id="recognizes_familiar_faces_places_orientation" formControlName="recognizes_familiar_faces_places_orientation">
+                                  </div> 
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_orientation">Describe</label>
+                                    <input type="text" class="form-control" id="describe_orientation" formControlName="describe_orientation">
+                                  </div>                             
+                                  
+                                </div>
+                          
+                                
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Psychosis</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="na_psychosis">N/A                                   
+                                      
+                                      </label>
+                                    <input type="text" class="form-control" id="na_psychosis" formControlName="na_psychosis">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_psychosis">Describe</label>
+                                    <input type="text" class="form-control" id="describe_psychosis" formControlName="describe_psychosis">
+                                   </div>
+                                  
+                                </div>
+                          
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Hallucinations</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="denies_hallucinations">Denies </label>
+                                    <input type="text" class="form-control" id="denies_hallucinations" formControlName="denies_hallucinations">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="auditory_hallucinations">Auditory</label>
+                                    <input type="text" class="form-control" id="auditory_hallucinations" formControlName="auditory_hallucinations">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="visual_hallucinations">Visual </label>
+                                    <input type="text" class="form-control" id="visual_hallucinations" formControlName="visual_hallucinations">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="other_hallucinations">Other                                     
+                                      </label>
+                                    <input type="text" class="form-control" id="other_hallucinations" formControlName="other_hallucinations">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_hallucinations">Describe</label>
+                                    <input type="text" class="form-control" id="describe_hallucinations" formControlName="describe_hallucinations">
+                                  </div>                             
+                                  
+                                </div>
+                          
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Command Hallucinations</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="denies_command_hallucinations">Denies </label>
+                                    <input type="text" class="form-control" id="denies_command_hallucinations" formControlName="denies_command_hallucinations">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="harm_to_self_command_hallucinations">Harm to self</label>
+                                    <input type="text" class="form-control" id="harm_to_self_command_hallucinations" formControlName="harm_to_self_command_hallucinations">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="harm_to_others_command_hallucinations">Harm to others </label>
+                                    <input type="text" class="form-control" id="harm_to_others_command_hallucinations" formControlName="harm_to_others_command_hallucinations">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="can_resist_commands_command_hallucinations">Can resist commands                                     
+                                      </label>
+                                    <input type="text" class="form-control" id="can_resist_commands_command_hallucinations" formControlName="can_resist_commands_command_hallucinations">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="other_command_hallucinations">Other                                     
+                                      </label>
+                                    <input type="text" class="form-control" id="other_command_hallucinations" formControlName="other_command_hallucinations">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_command_hallucinations">Describe</label>
+                                    <input type="text" class="form-control" id="describe_command_hallucinations" formControlName="describe_command_hallucinations">
+                                  </div>                             
+                                  
+                                </div>
+                          
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Bizarre Delusions</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="denies_bizarre_delusions">Denies </label>
+                                    <input type="text" class="form-control" id="denies_bizarre_delusions" formControlName="denies_bizarre_delusions">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="thought_broadcasting_bizarre_delusions">Thought Broadcasting</label>
+                                    <input type="text" class="form-control" id="thought_broadcasting_bizarre_delusions" formControlName="thought_broadcasting_bizarre_delusions">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="thought_insertion_bizarre_delusions">Thought Insertion </label>
+                                    <input type="text" class="form-control" id="thought_insertion_bizarre_delusions" formControlName="thought_insertion_bizarre_delusions">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="thought_withdrawal_bizarre_delusions">Thought Withdrawal                                    
+                                      </label>
+                                    <input type="text" class="form-control" id="thought_withdrawal_bizarre_delusions" formControlName="thought_withdrawal_bizarre_delusions">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="other_bizarre_delusions">Other                                     
+                                      </label>
+                                    <input type="text" class="form-control" id="other_bizarre_delusions" formControlName="other_bizarre_delusions">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_bizarre_delusions">Describe                                     
+                                      </label>
+                                    <input type="text" class="form-control" id="describe_bizarre_delusions" formControlName="describe_bizarre_delusions">
+                                  </div>
+                                </div>
+                          
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Delusional Beliefs</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <!-- <div class="form-group col-md-4">
+                                    <label for="denies_bizarre_delusions">Denies </label>
+                                    <input type="text" class="form-control" id="denies_bizarre_delusions" formControlName="denies_bizarre_delusions">
+                                  </div> -->
+                                  <div class="form-group col-md-4">
+                                    <label for="religious_delusional_beliefs">Religious</label>
+                                    <input type="text" class="form-control" id="religious_delusional_beliefs" formControlName="religious_delusional_beliefs">
+                                   </div>
+                                   <div class="form-group col-md-4">
+                                    <label for="somatic_delusional_beliefs">Somatic</label>
+                                    <input type="text" class="form-control" id="somatic_delusional_beliefs" formControlName="somatic_delusional_beliefs">
+                                  </div>
+                                  
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="persecutory_delusional_beliefs">Persecutory                                  
+                                      </label>
+                                    <input type="text" class="form-control" id="persecutory_delusional_beliefs" formControlName="persecutory_delusional_beliefs">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="grandiosity_delusional_beliefs">Grandiosity                                     
+                                      </label>
+                                    <input type="text" class="form-control" id="grandiosity_delusional_beliefs" formControlName="grandiosity_delusional_beliefs">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="being_controlled_delusional_beliefs">Being controlled                                     
+                                      </label>
+                                    <input type="text" class="form-control" id="being_controlled_delusional_beliefs" formControlName="being_controlled_delusional_beliefs">
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="ideas_of_reference_delusional_beliefs">Ideas of reference                                  
+                                      </label>
+                                    <input type="text" class="form-control" id="ideas_of_reference_delusional_beliefs" formControlName="ideas_of_reference_delusional_beliefs">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="describe_delusional_beliefs">Describe                                     
+                                      </label>
+                                    <input type="text" class="form-control" id="describe_delusional_beliefs" formControlName="describe_delusional_beliefs">
+                                  </div>
+                                 
+                                </div>
+                          
+                          
+                             
+                              <div class="form-group row">
+                                <div class="col-6">
+                                    <label for="summary_assessment_of_mental_status_exam_delusional_beliefs" style="" class=" col-form-label ">
+                                      Summary/Assessment of Mental Status Exam
+                                      </label>
+                                    </div>
+                                    <div class="col-6">
+                                        <textarea class="form-control" id="summary_assessment_of_mental_status_exam_delusional_beliefs" formControlName="summary_assessment_of_mental_status_exam_delusional_beliefs" > </textarea>
+                                      
+                                    </div>
+                                </div>
+                          
+                               
+                            
+                          
+                              </div>
+                            </div>
+
+                            <div class="col-md-12" >
+                              <button type="submit" class="btn-btn">Save</button>
+                          </div>
+                                
+                          </form> 
+                            
+                            </div>
+                      </div>
+                  </div>
+                    <div class="panel panel-default" >
+                        <div class="panel-heading" role="tab" id="headingThree"  style="border:1px solid #939293;padding:10px;">
+                          <h3 class="panel-title">
+                        <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                          Health and Safety 
+                        </a>
+                      </h3>
+                
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                            <div class="panel-body">
+                              <form [formGroup]="editpsycosocialhealthnsafetyForm" (ngSubmit)="editpsycosocialhealthnsafety()" ngNativeValidate>
+                                <div class="row">
+                                <div class="col-md-12">
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Identified Risk Factors</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="none_identified_risk_factors">None </label>
+                                       <input type="text" class="form-control" id="none_identified_risk_factors" formControlName="none_identified_risk_factors">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="unsafe_sex_practices">Unsafe Sex Practices</label>
+                                       <input type="text" class="form-control" id="unsafe_sex_practices" formControlName="unsafe_sex_practices">
+                                     </div>
+                                     <div class="form-group col-md-4">
+                                      <label for="physical_abuse">Physical Abuse</label>
+                                       <input type="text" class="form-control" id="physical_abuse" formControlName="physical_abuse">
+                                    </div>
+                                    
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="impulsivity">Impulsivity                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="impulsivity" formControlName="impulsivity">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="pregnancy">Pregnancy                                     
+                                        </label>
+                                       <input type="text" class="form-control" id="pregnancy" formControlName="pregnancy">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="residential_safety">Residential Safety                                     
+                                        </label>
+                                       <input type="text" class="form-control" id="residential_safety" formControlName="residential_safety">
+                                    </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="chronic_health_problems">Chronic Health Problems                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="chronic_health_problems" formControlName="chronic_health_problems">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="sexual_abuse">Sexual Abuse                                     
+                                        </label>
+                                       <input type="text" class="form-control" id="sexual_abuse" formControlName="sexual_abuse">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="iv_drug_abuse">IV Drug Abuse                                     
+                                        </label>
+                                       <input type="text" class="form-control" id="iv_drug_abuse" formControlName="iv_drug_abuse">
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="non_attentive">Non-Attentive                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="non_attentive" formControlName="non_attentive">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="alcohol_substance_abuse">Alcohol/Substance Abuse                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="alcohol_substance_abuse" formControlName="alcohol_substance_abuse">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="diet_nutrition">Diet/Nutrition                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="diet_nutrition" formControlName="diet_nutrition">
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="hygiene">Hygiene                                 
+                                        </label>
+                                       <input type="text" class="form-control" id="hygiene" formControlName="hygiene">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="self_harm">Self Harm                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="self_harm" formControlName="self_harm">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="nicotine_use">Nicotine Use                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="nicotine_use" formControlName="nicotine_use">
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="household_management">Household Management                                 
+                                        </label>
+                                       <input type="text" class="form-control" id="household_management" formControlName="household_management">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="aggression_toward_others">Aggression Toward Others                                   
+                                        </label>
+                                       <input type="text" class="form-control" id="aggression_toward_others" formControlName="aggression_toward_others">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="medication_interaction">Medication Interaction                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="medication_interaction" formControlName="medication_interaction">
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="physical_disability">Physical Disability                                 
+                                        </label>
+                                       <input type="text" class="form-control" id="physical_disability" formControlName="physical_disability">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="verbal_emotional_abuse">Verbal/Emotional Abuse                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="verbal_emotional_abuse" formControlName="verbal_emotional_abuse">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="medication_management">Medication Management                                   
+                                        </label>
+                                       <input type="text" class="form-control" id="medication_management" formControlName="medication_management">
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="recent_loss">Recent Loss                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="recent_loss" formControlName="recent_loss">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="children_at_risk">Children at Risk                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="children_at_risk" formControlName="children_at_risk">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="stress_related_to_parenting">Stress Related to Parenting                                   
+                                        </label>
+                                       <input type="text" class="form-control" id="stress_related_to_parenting" formControlName="stress_related_to_parenting">
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="psychosis">Psychosis                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="psychosis" formControlName="psychosis">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="evacuation_score">Evacuation Score                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="evacuation_score" formControlName="evacuation_score">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="community_safety">Community Safety                                   
+                                        </label>
+                                       <input type="text" class="form-control" id="community_safety" formControlName="community_safety">
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="other_identified_risk_factors">Other                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="other_identified_risk_factors" formControlName="other_identified_risk_factors">
+                                    </div>                                   
+                                  </div>
+                            
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Identified Needs</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="none_identified_needs">None </label>
+                                       <input type="text" class="form-control" id="none_identified_needs" formControlName="none_identified_needs">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="quarterly_td_screening">Quarterly TD Screening </label>
+                                       <input type="text" class="form-control" id="quarterly_td_screening" formControlName="quarterly_td_screening">
+                                     </div>
+                                     <div class="form-group col-md-4">
+                                      <label for="dental_exam">Dental Exam</label>
+                                       <input type="text" class="form-control" id="dental_exam" formControlName="dental_exam">
+                                    </div>
+                                    
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="vision_exam">Vision Exam                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="vision_exam" formControlName="vision_exam">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="labs_frequency">Labs - Frequency                                     
+                                        </label>
+                                       <input type="text" class="form-control" id="labs_frequency" formControlName="labs_frequency">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="coordination_of_care">Coordination of Care                                     
+                                        </label>
+                                       <input type="text" class="form-control" id="coordination_of_care" formControlName="coordination_of_care">
+                                    </div>
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="assistance_with_childrens_needs">Assistance With Children’s Needs                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="assistance_with_childrens_needs" formControlName="assistance_with_childrens_needs">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="health_care_assessment_yearly_checkup">Health Care Assessment/Yearly Checkup                                     
+                                        </label>
+                                       <input type="text" class="form-control" id="health_care_assessment_yearly_checkup" formControlName="health_care_assessment_yearly_checkup">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="other_identified_needs">Other                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="other_identified_needs" formControlName="other_identified_needs">
+                                    </div>
+                                   
+                                  </div>
+                            
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Able to meet basic needs?</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="na_basic_needs">N/A </label>
+                                       <input type="text" class="form-control" id="na_basic_needs" formControlName="na_basic_needs">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="food_basic_needs">Food</label>
+                                       <input type="text" class="form-control" id="food_basic_needs" formControlName="food_basic_needs">
+                                     </div>
+                                     <div class="form-group col-md-4">
+                                      <label for="shelter_basic_needs">Shelter</label>
+                                       <input type="text" class="form-control" id="shelter_basic_needs" formControlName="shelter_basic_needs">
+                                    </div>
+                                    
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="medical_basic_needs">Medical
+                                        </label>
+                                       <input type="text" class="form-control" id="medical_basic_needs" formControlName="medical_basic_needs">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="describe_basic_needs">Describe                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="describe_basic_needs" formControlName="describe_basic_needs">
+                                    </div>
+                                   
+                                  </div>
+                            
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>DANGEROUSNESS</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h5>A. Suicide Risk</h5>
+                                     
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="none_suicide_risk">None </label>
+                                       <input type="text" class="form-control" id="none_suicide_risk" formControlName="none_suicide_risk">
+                                    </div>
+                                   
+                                    
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h5>Describe History of Suicidality</h5>
+                                     
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="ideation_history_of_suicidality">Ideation                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="ideation_history_of_suicidality" formControlName="ideation_history_of_suicidality">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="chronic_history_of_suicidality">Chronic                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="chronic_history_of_suicidality" formControlName="chronic_history_of_suicidality">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="acute_history_of_suicidality">Acute                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="acute_history_of_suicidality" formControlName="acute_history_of_suicidality">
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="recent_suicidal_behavior">Recent suicidal behavior                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="recent_suicidal_behavior" formControlName="recent_suicidal_behavior">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="describe_history_of_suicidality">Describe                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="describe_history_of_suicidality" formControlName="describe_history_of_suicidality">
+                                    </div>                                  
+                                   
+                                  </div>
+                            
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h5>Presence of Risk Behavior</h5>
+                                     
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="none_presence_of_risk_behaviour">None                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="none_presence_of_risk_behaviour" formControlName="none_presence_of_risk_behaviour">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="note_presence_of_risk_behaviour">Note                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="note_presence_of_risk_behaviour" formControlName="note_presence_of_risk_behaviour">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="will_presence_of_risk_behaviour">Will                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="will_presence_of_risk_behaviour" formControlName="will_presence_of_risk_behaviour">
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="gives_possessions_away">Gives possessions away                                 
+                                        </label>
+                                       <input type="text" class="form-control" id="gives_possessions_away" formControlName="gives_possessions_away">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="other_presence_of_risk_behaviour">Other                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="other_presence_of_risk_behaviour" formControlName="other_presence_of_risk_behaviour">
+                                    </div>                                  
+                                   
+                                  </div>
+                            
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h5>Presence of Risk Factors</h5>
+                                     
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="intent_of_risk_factors">Intent                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="intent_of_risk_factors" formControlName="intent_of_risk_factors">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="none_prior_attempts">None Prior attempts
+                                                                            
+                                        </label>
+                                       <input type="text" class="form-control" id="none_prior_attempts" formControlName="none_prior_attempts">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="plan_of_risk_factors">Plan                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="plan_of_risk_factors" formControlName="plan_of_risk_factors">
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="means_to_carry_out_plan">Means to carry out plan                                
+                                        </label>
+                                       <input type="text" class="form-control" id="means_to_carry_out_plan" formControlName="means_to_carry_out_plan">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="lethality_of_risk_factors">Lethality                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="lethality_of_risk_factors" formControlName="lethality_of_risk_factors">
+                                    </div> 
+                                    <div class="form-group col-md-4">
+                                      <label for="likelihood_of_rescue">Likelihood of rescue                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="likelihood_of_rescue" formControlName="likelihood_of_rescue">
+                                    </div>                                 
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="access_to_gun">Access to gun                                
+                                        </label>
+                                       <input type="text" class="form-control" id="access_to_gun" formControlName="access_to_gun">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="describe_of_risk_factors">Describe                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="describe_of_risk_factors" formControlName="describe_of_risk_factors">
+                                    </div> 
+                                                                    
+                                   
+                                  </div>
+                            
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h5>B. Threat of Danger to Others </h5>
+                                     
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="thoughts_of_harm_to_threat_of_danger_to_others">Thoughts of harm to                                   
+                                        </label>
+                                       <input type="text" class="form-control" id="thoughts_of_harm_to_threat_of_danger_to_others" formControlName="thoughts_of_harm_to_threat_of_danger_to_others">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="recent_threatening_threat_of_danger_to_others">Recent threatening 
+                                                                            
+                                        </label>
+                                       <input type="text" class="form-control" id="recent_threatening_threat_of_danger_to_others" formControlName="recent_threatening_threat_of_danger_to_others">
+                                    </div>
+                                                                       
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="identified_target_threat_of_danger_to_others">Identified target                                
+                                        </label>
+                                       <input type="text" class="form-control" id="identified_target_threat_of_danger_to_others" formControlName="identified_target_threat_of_danger_to_others">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="intent_threat_of_danger_to_others">Intent                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="intent_threat_of_danger_to_others" formControlName="intent_threat_of_danger_to_others">
+                                    </div> 
+                                    <div class="form-group col-md-4">
+                                      <label for="can_thoughts_of_harm_be_managed_threat_of_danger_to_others">Can thoughts of harm be managed                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="can_thoughts_of_harm_be_managed_threat_of_danger_to_others" formControlName="can_thoughts_of_harm_be_managed_threat_of_danger_to_others">
+                                    </div>                                 
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="means_to_carry_out_plan_threat_of_danger_to_others">Means to carry out plan                               
+                                        </label>
+                                       <input type="text" class="form-control" id="means_to_carry_out_plan_threat_of_danger_to_others" formControlName="means_to_carry_out_plan_threat_of_danger_to_others">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="lethality_threat_of_danger_to_others">Lethality                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="lethality_threat_of_danger_to_others" formControlName="lethality_threat_of_danger_to_others">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="access_to_gun_threat_of_danger_to_others">Access to gun                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="access_to_gun_threat_of_danger_to_others" formControlName="access_to_gun_threat_of_danger_to_others">
+                                    </div> 
+                                                                    
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="prior_aggression_threat_of_danger_to_others">Prior Aggression                             
+                                        </label>
+                                       <input type="text" class="form-control" id="prior_aggression_threat_of_danger_to_others" formControlName="prior_aggression_threat_of_danger_to_others">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="plan_threat_of_danger_to_others">Plan                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="plan_threat_of_danger_to_others" formControlName="plan_threat_of_danger_to_others">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="describe_threat_of_danger_to_others">Describe                                   
+                                        </label>
+                                       <input type="text" class="form-control" id="describe_threat_of_danger_to_others" formControlName="describe_threat_of_danger_to_others">
+                                    </div> 
+                                                                    
+                                   
+                                  </div>
+                            
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h5>C. Presence of Other High Risk Behaviors </h5>
+                                     
+                                       </div>
+                                   
+                                  </div>
+                                 
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="none_presence_of_high_risk">None                                
+                                        </label>
+                                       <input type="text" class="form-control" id="none_presence_of_high_risk" formControlName="none_presence_of_high_risk">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="cutting_presence_of_high_risk">Cutting                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="cutting_presence_of_high_risk" formControlName="cutting_presence_of_high_risk">
+                                    </div> 
+                                    <div class="form-group col-md-4">
+                                      <label for="head_banging_presence_of_high_risk">Head banging                                   
+                                        </label>
+                                       <input type="text" class="form-control" id="head_banging_presence_of_high_risk" formControlName="head_banging_presence_of_high_risk">
+                                    </div>                                 
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="poor_or_dangerous_rel_presence_of_high_risk">Poor or dangerous relationship                              
+                                        </label>
+                                       <input type="text" class="form-control" id="poor_or_dangerous_rel_presence_of_high_risk" formControlName="poor_or_dangerous_rel_presence_of_high_risk">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="anorexia_bulimia_presence_of_high_risk">	Anorexia/Bulimia                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="anorexia_bulimia_presence_of_high_risk" formControlName="anorexia_bulimia_presence_of_high_risk">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="risk_taking_presence_of_high_risk">Risk taking                                   
+                                        </label>
+                                       <input type="text" class="form-control" id="risk_taking_presence_of_high_risk" formControlName="risk_taking_presence_of_high_risk">
+                                    </div> 
+                                                                    
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="other_self_injurious_beh_presence_of_high_risk">Other self-injurious behavior                             
+                                        </label>
+                                       <input type="text" class="form-control" id="other_self_injurious_beh_presence_of_high_risk" formControlName="other_self_injurious_beh_presence_of_high_risk">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="other_presence_of_high_risk">Other                                    
+                                        </label>
+                                       <input type="text" class="form-control" id="other_presence_of_high_risk" formControlName="other_presence_of_high_risk">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="describe_presence_of_high_risk">Describe                                   
+                                        </label>
+                                       <input type="text" class="form-control" id="describe_presence_of_high_risk" formControlName="describe_presence_of_high_risk">
+                                    </div> 
+                                  </div>
+                            
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h5>D. Presence of Deterrents </h5>
+                                     
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="na_presence_of_deterrents">N/A                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="na_presence_of_deterrents" formControlName="na_presence_of_deterrents">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="describe_presence_of_deterrents">Describe 
+                                                                            
+                                        </label>
+                                       <input type="text" class="form-control" id="describe_presence_of_deterrents" formControlName="describe_presence_of_deterrents">
+                                    </div>
+                                                                       
+                                  </div>
+                            
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h5>E. Other Safety Concerns </h5>
+                                     
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="none_other_safety_concerns">None                                  
+                                        </label>
+                                       <input type="text" class="form-control" id="none_other_safety_concerns" formControlName="none_other_safety_concerns">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="describe_other_safety_concerns">Describe 
+                                                                            
+                                        </label>
+                                       <input type="text" class="form-control" id="describe_other_safety_concerns" formControlName="describe_other_safety_concerns">
+                                    </div>
+                                                                       
+                                  </div>
+                            
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h5>F. Assessment of Risk </h5>
+                                     
+                                       </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      
+                                       <input type="text" class="form-control" id="assessment_of_risk" formControlName="assessment_of_risk">
+                                    </div>                              
+                                  </div>
+                            
+                                </div>
+                              </div>
+
+                              <div class="col-md-12" >
+                                <button type="submit" class="btn-btn">Save</button>
+                            </div>
+                                  </form> 
+                              
+                              </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default" >
+                      <div class="panel-heading" role="tab" id="headingFour"  style="border:1px solid #939293;padding:10px;">
+                        <h3 class="panel-title">
+                      <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                      Functional Summary 
+                      </a>
+                    </h3>
+              
+                      </div>
+                      <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                          <div class="panel-body">
+                          <form [formGroup]="editpsycosocialfunctionalsummaryForm" (ngSubmit)="editpsycosocialfunctionalsummary()" ngNativeValidate>
+                              <div class="row">
+                                <table>
+                                  <tr>
+                                    <th>Function</th>
+                                    <th>Not Applicable</th>
+                                    <th>Strength</th>
+                                    <th>Concern</th>
+                                  </tr>
+                                  <tr>
+                                    <td>Daily Activities</td>
+                                    <td>
+                                      <input class="form-control" type="text" id="daily_activities_na" formControlName="daily_activities_na"> 
+                                     </td>
+                                      <td>
+                                      <input class="form-control" type="text" id="daily_activities_strength" formControlName="daily_activities_strength"> 
+                                     </td>
+                                     <td>
+                                      <input class="form-control" type="text" id="daily_activities_concern" formControlName="daily_activities_concern"> 
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Family Relationships </td>
+                                    <td>
+                                      <input class="form-control" type="text" id="family_relationships_na" formControlName="family_relationships_na"> 
+                                     </td>
+                                    
+                                  <td>
+                                      <input class="form-control" type="text" id="family_relationships_strength" formControlName="family_relationships_strength">
+                                     </td>
+                                   <td>
+                                      <input class="form-control" type="text" id="family_relationships_concern" formControlName="family_relationships_concern"> 
+                                     </td>
+                                    </tr>
+                                  <tr>
+                                    <td>Social Relationships</td>
+                                     <td>
+                                      <input class="form-control" type="text" id="social_relationships_na" formControlName="social_relationships_na"> 
+                                     </td>
+                                  <td>
+                                      <input class="form-control" type="text" id="social_relationships_strength" formControlName="social_relationships_strength"> 
+                                     </td>
+                                   <td>
+                                      <input class="form-control" type="text" id="social_relationships_concern" formControlName="social_relationships_concern"> 
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td>School</td>
+                                     <td>
+                                      <input class="form-control" type="text" id="school_na" formControlName="school_na"> 
+                                     </td>
+                                  <td>
+                                      <input class="form-control" type="text" id="school_strength" formControlName="school_strength"> 
+                                     </td>
+                                   <td>
+                                      <input class="form-control" type="text" id="school_concern" formControlName="school_concern"> 
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Work</td>
+                                     <td>
+                                      <input class="form-control" type="text" id="work_na" formControlName="work_na"> 
+                                     </td>
+                                  <td>
+                                      <input class="form-control" type="text" id="work_strength" formControlName="work_strength"> 
+                                     </td>
+                                   <td>
+                                      <input class="form-control" type="text" id="work_concern" formControlName="work_concern"> 
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Finances</td>
+                                    <td>
+                                      <input class="form-control" type="text" id="finances_na" formControlName="finances_na"> 
+                                     </td>
+                                  <td>
+                                      <input class="form-control" type="text" id="finances_strength" formControlName="finances_strength"> 
+                                     </td>
+                                   <td>
+                                      <input class="form-control" type="text" id="finances_concern" formControlName="finances_concern"> 
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Physical Health</td>
+                                    <td>
+                                      <input class="form-control" type="text" id="physical_health_na" formControlName="physical_health_na"> 
+                                     </td>
+                                  <td>
+                                      <input class="form-control" type="text" id="physical_health_strength" formControlName="physical_health_strength"> 
+                                     </td>
+                                   <td>
+                                      <input class="form-control" type="text" id="physical_health_concern" formControlName="physical_health_concern"> 
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Safety</td>
+                                    <td>
+                                      <input class="form-control" type="text" id="safety_na" formControlName="safety_na"> 
+                                     </td>
+                                  <td>
+                                      <input class="form-control" type="text" id="safety_strength" formControlName="safety_strength"> 
+                                     </td>
+                                   <td>
+                                      <input class="form-control" type="text" id="safety_concern" formControlName="safety_concern"> 
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Legal</td>
+                                    <td>
+                                      <input class="form-control" type="text" id="legal_na" formControlName="legal_na"> 
+                                     </td>
+                                  <td>
+                                      <input class="form-control" type="text" id="legal_strength" formControlName="legal_strength"> 
+                                     </td>
+                                   <td>
+                                      <input class="form-control" type="text" id="legal_concern" formControlName="legal_concern"> 
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Cognitive Functioning</td>
+                                    <td>
+                                      <input class="form-control" type="text" id="cognitive_functioning_na" formControlName="cognitive_functioning_na"> 
+                                     </td>
+                                  <td>
+                                      <input class="form-control" type="text" id="cognitive_functioning_strength" formControlName="cognitive_functioning_strength"> 
+                                     </td>
+                                   <td>
+                                      <input class="form-control" type="text" id="cognitive_functioning_concern" formControlName="cognitive_functioning_concern"> 
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Housing</td>
+                                   <td>
+                                      <input class="form-control" type="text" id="housing_na" formControlName="housing_na"> 
+                                     </td>
+                                  <td>
+                                      <input class="form-control" type="text" id="housing_strength" formControlName="housing_strength"> 
+                                     </td>
+                                   <td>
+                                      <input class="form-control" type="text" id="housing_concern" formControlName="housing_concern"> 
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Social Skills</td>
+                                     <td>
+                                      <input class="form-control" type="text" id="social_skills_na" formControlName="social_skills_na"> 
+                                     </td>
+                                  <td>
+                                      <input class="form-control" type="text" id="social_skills_strength" formControlName="social_skills_strength"> 
+                                     </td>
+                                   <td>
+                                      <input class="form-control" type="text" id="social_skills_concern" formControlName="social_skills_concern"> 
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Impulse Control</td>
+                                      <td>
+                                      <input class="form-control" type="text" id="impulse_control_na" formControlName="impulse_control_na"> 
+                                     </td>
+                                  <td>
+                                      <input class="form-control" type="text" id="impulse_control_strength" formControlName="impulse_control_strength"> 
+                                     </td>
+                                   <td>
+                                      <input class="form-control" type="text" id="impulse_control_concern" formControlName="impulse_control_concern"> 
+                                     </td>
+                                  </tr>
+                                  <tr>
+                                    <td>Responsibility</td>
+                                     <td>
+                                      <input class="form-control" type="text" id="responsibility_na" formControlName="responsibility_na"> 
+                                     </td>
+                                  <td>
+                                      <input class="form-control" type="text" id="responsibility_strength" formControlName="responsibility_strength"> 
+                                     </td>
+                                   <td>
+                                      <input class="form-control" type="text" id="responsibility_concern" formControlName="responsibility_concern"> 
+                                     </td>
+                                  </tr>
+                                </table>
+                                
+                            </div>
+                             <div class="col-md-12" >
+                                  <button type="submit" class="btn-btn">Save</button>
+                              </div>
+                            </form>  
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="panel panel-default" >
+                    <div class="panel-heading" role="tab" id="headingFive"  style="border:1px solid #939293;padding:10px;">
+                      <h3 class="panel-title"> 
+                    <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+                     Summary of Strengths, Abilities, Needs & Preferences 
+                    </a>
+                  </h3>
+            
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                        <div class="panel-body">
+                         <form [formGroup]="editpsycosocialsummarystrengthForm" (ngSubmit)="editpsycosocialsummarystrength()" ngNativeValidate>
+                            <div class="row">
+                            <div class="col-md-12">
+                           
+                              <textarea class="form-control" formControlName="summary_of_strengths_abilities_details"></textarea>
+                            </div>
+                          </div>
+
+                          <div class="col-md-12" >
+                            <button type="submit" class="btn-btn">Save</button>
+                        </div>
+                       
+                        
+                              </form>
+                          
+                          </div>
+                    </div>
+                </div>
+                 <div class="panel panel-default" >
+                    <div class="panel-heading" role="tab" id="headingSix"  style="border:1px solid #939293;padding:10px;">
+                      <h3 class="panel-title"> 
+                    <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
+                      Obstacles/Barriers to Successful Outcomes  
+                    </a>
+                  </h3>
+            
+                    </div>
+                    <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                        <div class="panel-body">
+                         <form [formGroup]="editpsycosocialobstaclesbarriersForm" (ngSubmit)="editpsycosocialobstaclesbarriers()" ngNativeValidate>
+                            <div class="row">
+                              <div class="col-md-12">
+                             
+                                <textarea class="form-control" formControlName="obstacles_barriers_details"></textarea>
+                              </div>
+                            </div>
+                            <div class="col-md-12" >
+                              <button type="submit" class="btn-btn">Save</button>
+                          </div>
+                              </form> 
+                          
+                          </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default" >
+                  <div class="panel-heading" role="tab" id="headingEight"  style="border:1px solid #939293;padding:10px;">
+                    <h3 class="panel-title"> 
+                  <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    Diagnostic Information   
+                  </a>
+                </h3>
+          
+                  </div>
+                  <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+                      <div class="panel-body">
+                        <form [formGroup]="editpsycosocialdiagnosticinfoForm" (ngSubmit)="editpsycosocialdiagnosticinfo()" ngNativeValidate>
+                          <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-row">
+                              <div class="form-group col-md-12">
+                                <h4>Designate “P” for primary diagnosis  </h4>
+                                <hr>
+                                 </div>
+                             
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="designate_p_code">Code </label>
+                                <input type="text" class="form-control" id="designate_p_code" formControlName="designate_p_code">
+                              </div>                          
+                             
+                              
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-12">
+                                <h4>AXIS I</h4>
+                                <hr>
+                               </div>
+                             
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="axis_1_code_1">Code                                
+                                  </label>
+                                <input type="text" class="form-control" id="axis_1_code_1" formControlName="axis_1_code_1">
+                              </div>
+                                <div class="form-group col-md-4">
+                                <label for="axis_1_code_2">Code           
+                                  </label>
+                                <input type="text" class="form-control" id="axis_1_code_2" formControlName="axis_1_code_2">
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="axis_1_code_3">Code         
+                                  </label>
+                                <input type="text" class="form-control" id="axis_1_code_3" formControlName="axis_1_code_3">
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="axis_1_code_4">Code                  
+                                  </label>
+                                <input type="text" class="form-control" id="axis_1_code_4" formControlName="axis_1_code_4">
+                              </div>                        
+                             
+                            </div>
+  
+                             <div class="form-row">
+                              <div class="form-group col-md-12">
+                                <h4>AXIS II</h4>
+                                <hr>
+                               </div>
+                             
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="axis_2_code_1">Code                                
+                                  </label>
+                                <input type="text" class="form-control" id="axis_2_code_1" formControlName="axis_2_code_1">
+                              </div>
+                                <div class="form-group col-md-4">
+                                <label for="axis_2_code_2">Code           
+                                  </label>
+                                <input type="text" class="form-control" id="axis_2_code_2" formControlName="axis_2_code_2">
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="axis_2_code_3">Code         
+                                  </label>
+                                <input type="text" class="form-control" id="axis_2_code_3" formControlName="axis_2_code_3">
+                              </div>
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="axis_2_code_4">Code                  
+                                  </label>
+                                <input type="text" class="form-control" id="axis_2_code_4" formControlName="axis_2_code_4">
+                              </div>                        
+                             
+                            </div>
+                             <div class="form-row">
+                              <div class="form-group col-md-12">
+                                <h4>AXIS III</h4>
+                                <hr>
+                               </div>
+                             
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="axis_3_code_1">Code                                
+                                  </label>
+                                <input type="text" class="form-control" id="axis_3_code_1" formControlName="axis_3_code_1">
+                              </div>
+                                <div class="form-group col-md-4">
+                                <label for="axis_3_code_2">Code           
+                                  </label>
+                                <input type="text" class="form-control" id="axis_3_code_2" formControlName="axis_3_code_2">
+                              </div>
+                            
+                            </div>
+  
+                             <div class="form-row">
+                              <div class="form-group col-md-12">
+                                <h4>AXIS IV</h4>
+                                <hr>
+                               </div>
+                             
+                            </div>
+                           
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="axis_4_prob_primary_supp_grp">Problems with primary support group
+                                  </label>
+                                <input type="text" class="form-control" id="axis_4_prob_primary_supp_grp" formControlName="axis_4_prob_primary_supp_grp">
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="axis_4_problems_related_to_the_social_environment">Problems related to the social environment                  
+                                  </label>
+                                <input type="text" class="form-control" id="axis_4_problems_related_to_the_social_environment" formControlName="axis_4_problems_related_to_the_social_environment">
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="axis_4_educational_problems">Educational problems
+                                  </label>
+                                <input type="text" class="form-control" id="axis_4_educational_problems" formControlName="axis_4_educational_problems">
+                              </div>
+                             
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="axis_4_occupational_problems">Occupational problems         
+                                  </label>
+                                <input type="text" class="form-control" id="axis_4_occupational_problems" formControlName="axis_4_occupational_problems">
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="axis_4_housing_problems">Housing problems
+                                  </label>
+                                <input type="text" class="form-control" id="axis_4_housing_problems" formControlName="axis_4_housing_problems">
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="axis_4_economic_problems">Economic problems
+                                  </label>
+                                <input type="text" class="form-control" id="axis_4_economic_problems" formControlName="axis_4_economic_problems">
+                              </div>
+                             
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="axis_4_problems_with_access_to_health_care_services">Problems with access to health care services
+                                  </label>
+                                <input type="text" class="form-control" id="axis_4_problems_with_access_to_health_care_services" formControlName="axis_4_problems_with_access_to_health_care_services">
+                              </div>
+  
+                              <div class="form-group col-md-4">
+                                <label for="axis_4_problems_related_to_interaction_legal_system_crime">Problems related to interaction with the legal system / crime
+                                  </label>
+                                <input type="text" class="form-control" id="axis_4_problems_related_to_interaction_legal_system_crime" formControlName="axis_4_problems_related_to_interaction_legal_system_crime">
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="axis_4_other_psychosocial_environmental_problems">Other psychosocial & environmental problems
+                                  </label>
+                                <input type="text" class="form-control" id="axis_4_other_psychosocial_environmental_problems" formControlName="axis_4_other_psychosocial_environmental_problems">
+                              </div>
+                             
+                            </div>
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="axis_4_none">None
+                                  </label>
+                                <input type="text" class="form-control" id="axis_4_none" formControlName="axis_4_none">
+                              </div>
+  
+                            </div>
+  
+                             <div class="form-row">
+                              <div class="form-group col-md-12">
+                                <h4>AXIS V</h4>
+                                <hr>
+                                 <h4>OUTCOMES:</h4>
+                                 <input type="text" class="form-control" id="axis_5_outcomes" formControlName="axis_5_outcomes">
+                               </div>
+                             
+                            </div>
+  
+                            <div class="form-row">
+                              <div class="form-group col-md-4">
+                                <label for="axis_5_gaf_gas">GAF/GAS
+                                  </label>
+                                <input type="text" class="form-control" id="axis_5_gaf_gas" formControlName="axis_5_gaf_gas">
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="axis_5_cafas">CAFAS               
+                                  </label>
+                                <input type="text" class="form-control" id="axis_5_cafas" formControlName="axis_5_cafas">
+                              </div>
+                              <div class="form-group col-md-4">
+                                <label for="axis_5_multnomah">Multnomah
+                          
+                                  </label>
+                                <input type="text" class="form-control" id="axis_5_multnomah" formControlName="axis_5_multnomah">
+                              </div>
+                             
+                            </div>
+                           
+                           
+                            <div class="col-md-12" >
+                              <button type="submit" class="btn-btn">Save</button>
+                          </div>
+                          
+                          </div>
+                          </div>
+                            </form> 
+                        </div>
+                  </div>
+              </div>
+
+              <div class="panel panel-default" >
+                <div class="panel-heading" role="tab" id="headingSeven"  style="border:1px solid #939293;padding:10px;">
+                  <h3 class="panel-title"> 
+                <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                 Treatment/Services/Supports Recommendations for Client/Family
+                                                                              
+                </a>
+              </h3>
+        
+                </div>
+                <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                    <div class="panel-body">
+                      <form [formGroup]="editpsycosocialtreatmentservicesForm" (ngSubmit)="editpsycosocialtreatmentservices()" ngNativeValidate>
+                        <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-row">
+                            <div class="form-group col-md-12">
+                              <h4>Link Coordinate Provide Train Monitor Instruct  Assess Refer ADvocate  </h4>
+                              <hr>
+                               </div>
+                           
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="psychiatric_consultation">Psychiatric Consultation </label>
+                              <input type="text" class="form-control" id="psychiatric_consultation" formControlName="psychiatric_consultation">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="community_cupport">Community Support</label>
+                              <input type="text" class="form-control" id="community_cupport" formControlName="community_cupport">
+                             </div>
+                             <div class="form-group col-md-4">
+                              <label for="individual_therapy">Individual Therapy</label>
+                              <input type="text" class="form-control" id="individual_therapy" formControlName="individual_therapy">
+                            </div>
+                            
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="psychological_evaluation">Psychological Evaluation                                 
+                                </label>
+                              <input type="text" class="form-control" id="psychological_evaluation" formControlName="psychological_evaluation">
+                            </div>
+                              <div class="form-group col-md-4">
+                              <label for="medication_assistance">Medication Assistance                                     
+                                </label>
+                              <input type="text" class="form-control" id="medication_assistance" formControlName="medication_assistance">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="group_therapy">Group Therapy         
+                                </label>
+                              <input type="text" class="form-control" id="group_therapy" formControlName="group_therapy">
+                            </div>
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="speech_language">Speech/Language                   
+                                </label>
+                              <input type="text" class="form-control" id="speech_language" formControlName="speech_language">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="nursing_support">Nursing Support                  
+                                </label>
+                              <input type="text" class="form-control" id="nursing_support" formControlName="nursing_support">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="family_therapy">Family Therapy                   
+                                </label>
+                              <input type="text" class="form-control" id="family_therapy" formControlName="family_therapy">
+                            </div>
+                           
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="occupational_therapy">Occupational Therapy                    
+                                </label>
+                              <input type="text" class="form-control" id="occupational_therapy" formControlName="occupational_therapy">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="housekeeping">Housekeeping                  
+                                </label>
+                              <input type="text" class="form-control" id="housekeeping" formControlName="housekeeping">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="dual_diagnosis_group">Dual Diagnosis Group                                    
+                                </label>
+                              <input type="text" class="form-control" id="dual_diagnosis_group" formControlName="dual_diagnosis_group">
+                            </div>
+                           
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="physical_therapy">Physical Therapy                                
+                                </label>
+                              <input type="text" class="form-control" id="physical_therapy" formControlName="physical_therapy">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="family_education">Family Education                 
+                                </label>
+                              <input type="text" class="form-control" id="family_education" formControlName="family_education">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="social_activity_recreation">Social Activity/Recreation               
+                                </label>
+                              <input type="text" class="form-control" id="social_activity_recreation" formControlName="social_activity_recreation">
+                            </div>
+                           
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="group_home_afc">Group Home/AFC                    
+                                </label>
+                              <input type="text" class="form-control" id="group_home_afc" formControlName="group_home_afc">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="employment_assistance">Employment Assistance                  
+                                </label>
+                              <input type="text" class="form-control" id="employment_assistance" formControlName="employment_assistance">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="housing_assistance">Housing Assistance                       
+                                </label>
+                              <input type="text" class="form-control" id="housing_assistance" formControlName="housing_assistance">
+                            </div>
+                           
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="assistance_with_benefits">Assistance with Benefits                   
+                                </label>
+                              <input type="text" class="form-control" id="assistance_with_benefits" formControlName="assistance_with_benefits">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="money_management">Money Management                
+                                </label>
+                              <input type="text" class="form-control" id="money_management" formControlName="money_management">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="adl_instruction">ADL Instruction                      
+                                </label>
+                              <input type="text" class="form-control" id="adl_instruction" formControlName="adl_instruction">
+                            </div>
+                           
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="physical_health_assessment">Physical Health Assessment              
+                                </label>
+                              <input type="text" class="form-control" id="physical_health_assessment" formControlName="physical_health_assessment">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="dietary_nutrition">Dietary/Nutrition               
+                                </label>
+                              <input type="text" class="form-control" id="dietary_nutrition" formControlName="dietary_nutrition">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="transportation">Transportation
+                        
+                                </label>
+                              <input type="text" class="form-control" id="transportation" formControlName="transportation">
+                            </div>
+                           
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="dept_of_human_services">Dept. of Human Services (formerly FIA)                                
+                                </label>
+                              <input type="text" class="form-control" id="dept_of_human_services" formControlName="dept_of_human_services">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="ccommunity_action">Community Action                
+                                </label>
+                              <input type="text" class="form-control" id="ccommunity_action" formControlName="ccommunity_action">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="social_security_administration">Social Security Administration                  
+                                </label>
+                              <input type="text" class="form-control" id="social_security_administration" formControlName="social_security_administration">
+                            </div>
+                           
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="mrs_mi_jobs_commission">MRS/MI Jobs Commission 
+                                </label>
+                              <input type="text" class="form-control" id="mrs_mi_jobs_commission" formControlName="mrs_mi_jobs_commission">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="home_health_clf">Home Health	               
+                                </label>
+                              <input type="text" class="form-control" id="home_health_clf" formControlName="home_health_clf">
+                            </div>
+                           
+                           
+                          </div>
+                        
+                           <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="room_and_board">Room and Board 
+                                </label>
+                              <input type="text" class="form-control" id="room_and_board" formControlName="room_and_board">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="substance_abuse_assessment">Substance Abuse Assessment	               
+                                </label>
+                              <input type="text" class="form-control" id="substance_abuse_assessment" formControlName="substance_abuse_assessment">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="primary_health_care">Primary Health Care
+                        
+                                </label>
+                              <input type="text" class="form-control" id="primary_health_care" formControlName="primary_health_care">
+                            </div>
+                           
+                          </div>
+                        
+                           <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="other">Other (see Medicaid Chapter III / State Plan)
+                                </label>
+                              <input type="text" class="form-control" id="other" formControlName="other">
+                            </div>
+                            
+                           
+                           
+                          </div>
+                        
+                         
+                          <div class="form-row">
+                            <div class="form-group col-md-12">
+                              <label for="initial_completion">Initial Completion </label>
+                              <input type="text" class="form-control" id="initial_completion" formControlName="initial_completion">
+                            </div>
+                            
+                          </div>
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="clinician_credentials">
+                              Clinician/Credentials
+                        
+                                </label>
+                              <input type="text" class="form-control" id="clinician_credentials" formControlName="clinician_credentials">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="clinician_credentials_date">
+                              Clinician/Credentials Date                      
+                                </label>
+                              <input type="text" class="form-control" id="clinician_credentials_date" formControlName="clinician_credentials_date">
+                            </div>
+                          
+                          </div>
+                        
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="supervisor_credentials">Supervisor/Credentials                
+                                </label>
+                              <input type="text" class="form-control" id="supervisor_credentials" formControlName="supervisor_credentials">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="supervisor_credentials_date">Supervisor/Credentials Date                   
+                                </label>
+                              <input type="text" class="form-control" id="supervisor_credentials_date" formControlName="supervisor_credentials_date">
+                            </div>
+                            
+                          </div>
+                        
+                         
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="filled_by">Filled By</label>
+                              <input type="text" class="form-control" id="filled_by" formControlName="filled_by">
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="checked_by"> Checked By </label>
+                              <input type="text" class="form-control" id="checked_by" formControlName="checked_by">
+                             </div>
+                             <div class="form-group col-md-4">
+                              <label for="verified_by"> Verified By</label>
+                              <input type="text" class="form-control" id="verified_by" formControlName="verified_by">
+                            </div>
+                            
+                          </div>
+                        
+                          <div class="form-row">
+                            <div class="form-group col-md-4">
+                              <label for="filled_by_date">Filled By Date</label>
+                              <!-- <input type="date" [max]="today" class="form-control" id="filled_by_date" formControlName="filled_by_date"> -->
+
+                              <input class="form-control" type="date" id="filled_by_date" formControlName="filled_by_date" [max]="today" value="{{filled_by_date | date:'yyyy-MM-dd' }}" > 
+
+
+                            </div>
+                            <div class="form-group col-md-4">
+                              <label for="checked_by_date"> Checked By Date</label>
+                              <input type="date" [max]="today" class="form-control" id="checked_by_date" formControlName="checked_by_date">
+                             </div>
+                             <div class="form-group col-md-4">
+                              <label for="verified_by_date"> Verified By Date</label>
+                              <input type="date" [max]="today" class="form-control" id="verified_by_date" formControlName="verified_by_date">
+                            </div>
+                            
+                          </div>
+                         
+                          <div class="col-md-12" >
+                            <button type="submit" class="btn-btn">Save</button>
+                        </div>
+                        
+                        </div>
+                        </div>
+                          </form> 
+                        
+                      </div>
+                </div>
+            </div>
+
+
+                </div>
+                </div>
+                </div>
+                </div>
+          </div>
+      </div>
+  </div>
+</div> 

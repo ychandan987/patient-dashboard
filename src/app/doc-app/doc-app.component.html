@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="container-fluid">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title><h1>Doctor Appointments</h1></mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <br>
+
+      <mat-card-content>
+        <table class="table table-hover">
+          <thead>
+            <tr class="bg-info text-white">
+              <th>ID</th>
+              <th>AppointmentId</th>
+              <th>DoctorId</th>
+              <th>DoctorName</th>
+              <th>HospitalName</th>
+              <th>PatientName</th>
+              <th>hospitalID</th>
+              <th>View</th>
+              <!-- <th>Action</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let hosp of posts,let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{hosp.AppointmentId}}</td>
+              <td>{{hosp.DoctorId}}</td>
+              <td>{{hosp.DoctorName}}</td>
+              <td>{{hosp.HospitalName}}</td>
+              <td>{{hosp.PatientName}}</td>
+              <td>{{hosp.hospitalID}}</td>
+              <td><a routerLink="/e-hospital/appointments/{{hosp.hospitalID}}/{{hosp.AppointmentId}}/details"  class="btn btn-white" > View Details</a></td>
+              <!-- <td >
+              <a routerLink="/e-hospital/appointments/{{hosp.hospitalID}}/{{hosp.AppointmentId}}/details"  class="btn btn-white" *ngIf="(hosp.paymentconfirmation==null) &&(hosp.isConfirmed==reschedule)"> Cancelled</a>
+
+              <a routerLink="/e-hospital/appointments/{{hosp.hospitalID}}/{{hosp.AppointmentId}}/details"  class="btn btn-general" *ngIf="(hosp.isConfirmed!=Confirm)"> Pending</a>
+
+              <a routerLink="/e-hospital/appointments/{{hosp.hospitalID}}/{{hosp.AppointmentId}}/details"  class="btn btn-white" *ngIf="(hosp.paymentconfirmation==true)"> Already Paid</a>
+              </td> -->
+
+              <!-- <a routerLink="/e-hospital/appointments/{{hosp.hospitalID}}/{{hosp.AppointmentId}}/details"  class="btn btn-white" *ngIf="(hosp.isConfirmed==null) && (hosp.paymentconfirmation==null)"> Appointment Pending</a> -->
+
+            </tr>
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> 

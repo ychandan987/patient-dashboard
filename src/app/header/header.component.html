@@ -1,0 +1,78 @@
+<header class="header">
+  <nav class="navbar navbar-expand-lg ">
+      <div class="search-box">
+          <button class="dismiss"><i class="icon-close"></i></button>
+          <form id="searchForm" action="#" role="search">
+              <input type="search" placeholder="Search Now" class="form-control">
+          </form>
+      </div>
+      <div class="container-fluid ">
+          <div class="navbar-holder d-flex align-items-center justify-content-between">
+              <div class="navbar-header">
+                  <a class="navbar-brand">
+                      <div class="brand-text brand-big hidden-lg-down"><img src="../assets/img/logo.jpg" alt="Logo" class="img-fluid"></div>
+                      <div class="brand-text brand-small"><img src="img/logo-icon.png" alt="Logo" class="img-fluid"></div>
+                  </a>
+             
+              </div>
+          </div>
+          <h1 style="color:black">Member Dashboard</h1>
+          <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+        
+           
+              <li class="nav-item dropdown">
+                  <a id="profile" class="nav-link logout"  style="cursor:pointer;"  (click)="onClick()" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div *ngIf="profile.profile_picture_path == '' ">
+                                
+                                <img src="./assets/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
+                            </div>
+                              
+                              <div *ngIf="profile.profile_picture_path != ''">
+                                <img alt="" src="{{profile.profile_picture_path}}"  class="img-fluid rounded-circle" style="height: 40px; width: 40px;"> 
+                                </div>                 </a>
+                  <ul aria-labelledby="profile" class="dropdown-menu profile {{retClass()}}">
+                      <li>
+                          <a rel="nofollow" class="dropdown-item d-flex">
+                              <!-- <div class="msg-profile">
+                                   <img src="{{profile.profile_picture_path}}" alt="..." class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
+                               </div> -->
+                               <!-- <div *ngIf="profile">
+                                    <img alt="" src="{{profile.profile_picture_path}}"  class="img-fluid rounded-circle" style="height: 40px; width: 40px;"> 
+                                </div>
+                                  
+                                  <div *ngIf="!profile">
+                                        <img src="./assets/img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle" style="height: 40px; width: 40px;">
+                                  </div> -->
+                              <div class="msg-body">
+                                    <h3 class="h5" *ngIf="currentUser.first_name">{{currentUser.first_name + ' ' + currentUser.last_name}}</h3><span>{{currentUser.email}}</span><br/><span>{{currentUser.unique_id}}</span>
+                              </div>
+                          </a>
+                          <hr> 
+                      </li>
+                    
+                      <li>   
+                          <a rel="nofollow" routerLink="/profile" class="dropdown-item">
+                              <div class="notification">   
+                                  <div class="notification-content"><i class="fa fa-user"></i>User Profile</div>
+                              </div>
+                          </a>
+                          <hr>
+                      </li>
+                      <li>
+                          <a rel="nofollow" (click)="logout()"  style="cursor:pointer;" class="dropdown-item">
+                              <div class="notification">
+                                  <div class="notification-content" ><i class="fa fa-power-off"></i>Logout</div>
+                              </div>
+                          </a> 
+                      </li>
+                  </ul>
+              </li>
+              <li class="nav-item dropdown"> 
+                <span style="color:black" *ngIf="currentUser.first_name">{{currentUser.first_name + ' ' + currentUser.last_name}}</span><br>
+                <span style="color:black" *ngIf="currentUser.unique_id">{{currentUser.unique_id}}</span>
+              <!-- <a id="notifications" class="nav-link" routerLink="/inbox">Inbox<span class="noti-numb-bg"></span><span class="badge">12</span></a> -->
+           </li>
+          </ul> 
+      </div>
+  </nav>
+</header>

@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="container-fluid">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title><h1>Prescription</h1></mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <br>
+
+      <mat-card-content>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <strong class="mr-5">Name: </strong> {{currentUser.username}}
+            </div>
+            <div class="form-group col-md-6" *ngFor="let app of commonData">
+                <strong class="mr-5">Doctor: </strong> {{app.Doctorname}}
+              </div>
+              <div class="form-group col-md-6" *ngFor="let app of commonData">
+                  <strong class="mr-5">Transaction Id: </strong> {{app.AppointmentId}}
+                </div>
+                <div class="form-group col-md-6" *ngFor="let app of commonData">
+                    <strong class="mr-5">Consultation Date: </strong> {{formatTime(app.Date)}}
+                  </div>
+                  <div class="form-group col-md-6" *ngFor="let app of commonData">
+                      <strong class="mr-5">PCC Name: </strong> {{app.PCCUID}}
+                    </div>
+            <div class="form-group col-md-6">
+              <strong class="mr-5">Hospital Id: </strong> {{hospId}}
+            </div>
+
+            <div class="form-group col-md-6" *ngFor="let app of commonData">
+                <strong class="mr-5">Booking Details: </strong> {{app.BookingDetails}}
+              </div>
+
+            <div class="form-group col-md-6" *ngFor="let app of commonData">
+              <strong class="mr-5">Diagnosis: </strong> {{app.Diagnosis}}
+            </div>
+
+            <div class="form-group col-md-6" *ngFor="let app of commonData">
+              <strong class="mr-5">Health Condition: </strong> {{app.HealthCondition}}
+            </div>
+
+            <div class="form-group col-md-6" *ngFor="let app of commonData">
+              <strong class="mr-5">Medical Allergies: </strong> {{app.AllergiesName}}
+            </div>
+          </div>
+
+        <mat-divider></mat-divider>
+        <br>
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr class="bg-info text-white">
+              <th>Sr No</th>
+              <th>Medicine / Lab Test Name</th>
+              <th>Recommended Medicine / Lab Test Provider(optional)</th>
+              <th>Usage(optional)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let app of posts,let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{app.MedicationName}}</td>
+              <td>{{app.MedicalProvider}}</td>
+              <td>{{app.Usage}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- <mat-card-actions>
+          <button  class="btn btn-primary pull-left" >View Prescription</button>
+      </mat-card-actions> -->
+        <mat-divider></mat-divider>
+
+        <!-- <mat-card-actions class="text-center">
+            <button  class="btn btn-primary" *ngIf="(commonData.paymentconfirmation==null) || !commonData.paymentconfirmation" (click)="pay()">Proceed To Pay</button>
+        </mat-card-actions>
+        <mat-divider></mat-divider> -->
+
+        
+
+      </mat-card-content>
+    </mat-card>
+    <hr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4" *ngFor="let app of commonData">
+                <!-- <label for="comment">View Prescription:</label> -->
+                <a *ngIf="app.PrescriptionPath.includes('https')" href="{{app.PrescriptionPath}}" target="_blank">View Prescription:<img src="./assets/img/medical-report-icon.png" width="150px" height="150px" alt="..." class="img-fluid" ></a>
+              
+                <a *ngIf="app.PrescriptionPath.includes('Uploads')==true" href="http://bridgehealth.ehospital.arkaahealth.com{{app.PrescriptionPath}}" target="_blank" >View Prescription:<img src="./assets/img/medical-report-icon.png"  width="150px" height="150px" alt="..." class="img-fluid" ></a>
+
+                
+            </div>
+            <div class="col-sm-4" *ngFor="let app of commonData">
+              <label for="comment">Special Instruction By Doctor:</label>
+              <textarea class="form-control" rows="5" value="{{app.docInstructions}}" id="comment" disabled></textarea>
+            </div>
+            <div class="col-sm-4" *ngFor="let app of commonData"> <label for="comment">Special Instruction By PCC:</label>
+              <textarea class="form-control" rows="5" value="{{app.pts_notes}}" id="comment" disabled></textarea></div>
+        </div>
+      </div>
+  </div>
+  
+</div> 

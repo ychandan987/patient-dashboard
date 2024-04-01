@@ -1,0 +1,135 @@
+<div class="container-fluid content-inner ">
+
+  <!--***** CONTENT *****-->     
+      <div class="row">
+          <div class="col-md-12">
+              <div class="row">
+                  <div class="col-md-4">
+                    <div class="invoice-title ">
+                        <div><img src="/assets/img/logo.png" alt=""></div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="invoice-title text-center">
+                          <div><h2>Arkaa Healthcare</h2></div>
+                          <div><h2>Unit : {{posts.pharmacy_name}} </h2></div>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="invoice-title ">
+                          <div><strong class="pull-right mt-3">{{posts.pharmacy_transactions[0].order_id}}</strong></div>
+                          
+                      </div>
+                  </div>
+                </div>
+              <hr>
+              <div class="panel-heading">
+                  <h3 class="panel-title"><strong>Patient details</strong></h3>
+              </div>
+              <div class="row">
+                  <div class="col-md-4">
+                      <address>
+                          <strong>Patient UID: </strong> {{posts.user_uid}}<br>
+                          <strong>Patient Name : </strong> Mr. {{posts.name}}  <br>
+                          <strong>Contact No. : </strong> {{posts.mobile}}<br>
+                          <strong>Transaction Id : </strong> {{posts.payment_id}}
+                      </address>
+                  </div>
+                  <div class="col-md-4">
+                      <address>
+                          <strong>Pharmacy Name :</strong>{{posts.pharmacy_name}}<br>
+                          <strong>Pharmacy UID : </strong> {{posts.pharmacy_uid}}<br>
+                          <strong>Address : </strong> {{posts.locality}}<br>
+                          <strong>Payment Type : </strong> {{posts.payment_type}}
+                      </address>
+                  </div>
+                  <div class="col-md-4">
+                      <address>
+                          <strong>Order Date : </strong>{{formatTime(posts.created_on)}}<br>
+                          <strong>Bill No. : </strong> #{{posts.id}}<br>
+                          <strong>Consultation Type. : </strong> {{posts.consultation_type}}<br>
+                          <strong>Order Id : </strong> {{posts.pharmacy_transactions[0].order_id}} 
+                      </address>
+                  </div>
+              </div>
+           </div>
+      </div>
+      
+      <div class="row">
+          <div class="col-md-12">
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <h3 class="panel-title"><strong>Order summary</strong></h3>
+                  </div>
+                  <div class="panel-body">
+                      <div class="table-responsive">
+                          <table class="table borderless" style="border:2px solid #ccc">
+                              <thead>
+                                  <tr class="bg-grey text-grey">
+                                      <td><strong>Sr No.</strong></td>
+                                      <td><strong>Item Name</strong></td>
+                                      <td class="text-center"><strong>Qty</strong></td>
+                                      <td class="text-center"><strong>MFR.</strong></td>
+                                      <td class="text-center"><strong>Expiry</strong></td>
+                                      <td class="text-center"><strong>Sale Price</strong></td>
+                                      <td class="text-center"><strong>Qty</strong></td>
+                                      <td class="text-center"><strong>Price*Qty</strong></td>
+                                      <!-- <td class="text-center"><strong>SGST%</strong></td> -->
+                                      <td class="text-center"><strong>GST(in %)</strong></td>
+                                      <td class="text-center"><strong>GST Amount</strong></td>
+                                      <td class="text-center"><strong>Total</strong></td>
+                                  </tr>
+                              </thead>
+                              <tbody> 
+                                <tr *ngFor='let med of posts.medicine_detail,let i=index'>
+                                      <td>{{i+1}}</td>
+                                      <td>{{med.med_name}}</td>
+                                      <td class="text-center">{{med.medicine_quantity}}</td>
+                                      <td class="text-center">{{med.med_manufacturer_name}}</td>
+                                      <td class="text-center">{{med.med_expiry_date}}</td>
+                                      <td class="text-center">Rs.{{med.med_cost}}</td>
+                                      <td class="text-center">{{med.medicine_quantity}}</td>
+                                      <td class="text-center">{{med.med_cost * med.medicine_quantity}}</td>
+                                      <!-- <td class="text-center">{{med.med_gst}}</td> -->
+                                      <td class="text-center">{{med.med_gst}}</td>
+                                      <td class="text-center">Rs. {{((med.med_cost * med.med_gst * med.medicine_quantity)/100)}}</td>
+                                      <td class="text-center">{{(med.med_cost * med.medicine_quantity) + ((med.med_cost * med.med_gst * med.medicine_quantity)/100)}}</td>
+                                  </tr>
+                                  
+                                  <tr>
+                                      <td class="thick-line"></td>
+                                      <td class="thick-line"></td>
+                                      <td class="thick-line"></td>
+                                      <td class="thick-line"></td>
+                                      <td class="thick-line"></td>
+                                      <td class="thick-line"></td>
+                                      <td class="thick-line"></td>
+                                      <td class="thick-line"></td>
+                                      <td class="thick-line"></td>
+                                      <td class="thick-line text-center" ><strong>Grand Total Cost</strong></td>
+                                      <td class="thick-line text-center">Rs. {{posts.cost}}</td>
+                                  </tr>
+                              </tbody> 
+                            </table>
+                          <!-- <div class="text-center"><strong >GST : 12%</strong> <strong>CGST : 6%</strong> <strong>SGST : 6% </strong></div> -->
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <!-- <div class="text-left">
+                                      <button class="btn btn-general btn-blue mr-3" (click)="download()"><i class="fa fa-print"></i> Print</button>
+
+                                      <a routerLink="/pharmacy-transactions/{{posts.pharmacy_uid}}/list/{{posts.payment_status_id}}"  class="btn btn-info">View Invoice List </a > 
+                                  </div> -->
+                              </div>
+                              <div class="col-md-6">
+                                  <div class="text-right">
+                                      <strong>For {{posts.pharmacy_name}} Pharmacy</strong> <br><br>
+                                      <strong>Pharmacist Signature</strong>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>

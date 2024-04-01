@@ -1,0 +1,38 @@
+
+.plus-minus-input {
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  
+  .plus-minus-input .input-group-field {
+    text-align: center;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 5px;
+    width:80px
+  }
+  
+  .plus-minus-input .input-group-field::-webkit-inner-spin-button,
+  .plus-minus-input .input-group-field ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+            appearance: none;
+  }
+  
+  .plus-minus-input .input-group-button .circle {
+    border-radius: 50%;
+    padding: 10px;
+  }
+
+  .ng-invalid.ng-touched:not(form) {
+    border: 1px solid rgb(245, 6, 6) !important;
+    }
+
+    label.required::after {
+    content: "*";
+    padding:5px;
+    color: rgb(245, 6, 6) !important;
+    font-weight:bold;
+    }
+  
+  

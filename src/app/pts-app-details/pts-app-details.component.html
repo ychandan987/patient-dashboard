@@ -1,0 +1,107 @@
+<!-- <app-pts-lab-app [parentMessage] = "parentMessage"></app-pts-lab-app> -->
+<div class="row">
+  <div class="container-fluid">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h1>PTS Appointment Details</h1>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <br>
+
+      <mat-card-content>
+        <div class="row">
+          <div class="container-fluid">
+            <h2>Details</h2>
+            <hr>
+            <div class="row">
+              <div class="form-group col-md-6">
+                
+                  <strong class="mr-5">Doctor: </strong> {{posts.doctorname}}
+              </div>
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Specialization: </strong> {{posts.specialization}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Hospital: </strong> {{posts.hospitalName}}
+              </div>
+              <div class="form-group col-md-6">
+                
+                <strong class="mr-5">Patient Name: </strong> {{this.commonData.pts_doctorconsult_patientName}}
+            </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Hospital Address: </strong> {{posts.hospitalAddress}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Appointment Date: </strong> {{formatTime(posts.pts_doctorconsult_ch_date)}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Appointment Time: </strong> {{posts.pts_doctorconsult_ch_timeSlots}}
+              </div>
+              <!-- <div class="form-group col-md-6">
+                <strong class="mr-5">Appointment Type: </strong> {{posts.pts_doctorconsult_ch_serviceHireType}}
+              </div> -->
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Description: </strong> {{posts.pts_doctorconsult_ch_details}}
+              </div>
+              <div class="form-group col-md-6">
+                <strong class="mr-5">Amount: </strong> {{posts.pts_doctorconsult_ch_FinalPrice}}
+              </div>
+
+              <div class="form-group col-md-6">
+                  <strong class="mr-5">Services: </strong> {{posts.pts_doctorconsult_ch_services}}
+                </div>
+
+                <div class="form-group col-md-6">
+                    <strong class="mr-5">Sessions: </strong> {{posts.pts_doctorconsult_ch_sessions}}
+                  </div>
+                  <div class="form-group col-md-6">
+                      <strong class="mr-5">Consult Discount: </strong> {{posts.pts_doctorconsult_ch_discount}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <strong class="mr-5">Consult Type: </strong> {{posts.pts_doctorconsult_ch_consultType}}
+                      </div>
+                      <div class="form-group col-md-6">
+                          <strong class="mr-5">Consult Mode: </strong> {{posts.pts_doctorconsult_ch_consultMode}}
+                        </div>
+                      <div class="form-group col-md-6">
+                          <strong class="mr-5">Consult Slot: </strong> {{posts.pts_doctorconsult_ch_timeSlots}}
+                        </div>  
+                        <div class="form-group col-md-6">
+                            <strong class="mr-5">Service Type: </strong> {{serviceType}}
+                          </div>  
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <div class="row">
+              <!-- <div class="form-group col-md-12">
+                  <strong class="mr-5">Payment Mode: </strong> {{posts.payment_mode}}
+              </div> -->
+              <!-- <div class="form-group col-md-12">
+                  <strong class="mr-5">Payment Status: </strong> {{posts.paymentconfirmation}}
+              </div> -->
+            </div>
+
+            <mat-divider></mat-divider>
+
+            <!-- <mat-card-actions class="text-center">
+                <button  class="btn btn-primary" *ngIf="(posts.paymentconfirmation==null) || (posts.paymentconfirmation!=false) &&(posts.payment_mode=='OFFLINE')" (click)="submit()">Proceed To Pay(Offline)</button>
+                <button  class="btn btn-primary" *ngIf="(posts.paymentconfirmation==null)  || (posts.paymentconfirmation!=false) &&(posts.payment_mode=='OFFLINE')" (click)="pay()">Proceed To Pay(Online)</button>
+            </mat-card-actions> -->
+            <mat-card-actions class="text-center">
+                <button  class="btn btn-primary" *ngIf="(commonData1 == null )" (click)="accept()">Accept</button>
+                <button  class="btn btn-primary" *ngIf="(commonData1 == 'Accepted')" >Accepted</button>
+                <button  class="btn btn-primary" *ngIf="(commonData1 == 'Rejected' )" >Rejected</button>
+                <button  class="btn btn-primary" *ngIf="(commonData1 == null)" (click)="accept_appointment()">Reject</button>
+                <!-- <button  class="btn btn-primary" *ngIf="(posts.paymentconfirmation==null) || !posts.paymentconfirmation && (posts.payment_mode != 'OFFLINE' && posts.payment_mode != 'ONLINE' )" (click)="pay()"> Pay Online </button> -->
+                <!-- <button  class="btn btn-primary" (click)="accept_appointment()"> Accept & Proceed </button> -->
+            </mat-card-actions>
+
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> 

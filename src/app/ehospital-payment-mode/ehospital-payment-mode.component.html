@@ -1,0 +1,82 @@
+<div class="row">
+    <div class="container-fluid">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title><h1>Appointments Payment Mode</h1></mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <br>
+      
+
+        <mat-card-content>
+        <div class="row">
+            <div class="form-group col-md-6">
+                <strong class="mr-5">Doctor : </strong> {{posts.DoctorName}}
+            </div>
+           
+            <div class="form-group col-md-6">
+              <strong class="mr-5">Hospital: </strong> {{posts.HospitalName}}
+            </div>
+            <div class="form-group col-md-6">
+                <strong class="mr-5">Appointment Date & Time : </strong> {{formatTime(posts.AppointmentDate)}} {{posts.AppointmentTime}}
+              </div>
+              <!-- <div class="form-group col-md-6">
+                  <strong class="mr-5">Appointment Time: </strong> {{posts.AppointmentTime}}
+                </div> -->
+                <div class="form-group col-md-6">
+                  <strong class="mr-5">Appointment Type: </strong> {{posts.AppointmentType}}
+                </div>
+                <div class="form-group col-md-6">
+
+                    <strong class="mr-5">Amount: </strong>
+    
+                   <span>{{posts.AppointmentAmount}}</span>
+                   <!-- <span *ngIf="posts.AppointmentType == 'Video Consult'">{{posts.VideoFeesWithGSt}}</span>
+                   <span *ngIf="posts.AppointmentType == 'Text Consult'">{{posts.TextFeesWithGSt}}</span>
+                   <span *ngIf="posts.AppointmentType == 'Phone Consult'">{{posts.VoiceFeesWithGSt}}</span> -->
+    
+                   
+    
+                  </div>
+              </div>
+
+           
+                
+                  <div class="row">
+                      <div class=" form-group col-md-12">
+                      <form [formGroup]="appFormGroup" (ngSubmit)="submit()">
+                          <mat-form-field class="full-width" style="width:200px;">
+                              <mat-select placeholder="Select Payment Mode" formControlName="payment_mode" required> 
+                                
+                                <mat-option value="OFFLINE" *ngIf="posts.AppointmentType == 'Walk-In'">Pay on Visit</mat-option>
+                                <mat-option value="ONLINE">Online</mat-option>
+                                
+                              </mat-select>
+                            </mat-form-field>
+                            
+                            <mat-card-actions class="text-center">
+                                <button class="btn btn-primary" >Submit</button>
+                  
+                              </mat-card-actions>
+                            </form>
+                            </div>
+                    </div>
+                 
+               
+             
+              
+
+              
+         
+          </mat-card-content>
+
+          <mat-divider></mat-divider>
+
+         
+
+
+        </mat-card>
+
+
+        </div>
+        </div>

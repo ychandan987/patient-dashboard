@@ -1,0 +1,115 @@
+<div class="row">
+  <div class="page-header">
+      <h1>
+       Medicine Orders / Quotations
+      </h1>
+    </div>
+<!-- <table class="table table-hover">
+  <thead>
+    <tr class="bg-info text-white">
+      <th>Order ID</th>
+      <th>Pharmacy Name</th>
+      <th>Prescription</th>
+      <th>Cost</th>
+      <th>Payment Type</th>
+      <th>Order Status</th>
+      <th>Created On</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders, let i=index">
+      <th scope="row">{{order.id}}</th>
+      <td>{{order.pharmacy_name}}</td>
+      <td><a href="{{order.prescription_path}}" target="_blank"><img src="{{order.prescription_path}}" width="80px" height="80px"/></a></td>
+      <td>{{order.cost}}</td>
+      <td>{{order.payment_type}}</td>
+      <td>{{order.appointment_status}}</td>
+      <td>{{formatTime(order.created_on)}}</td>
+      <td>
+        <a routerLink="/pharmacy/orders/details/{{order.id}}" class="btn btn-white" *ngIf="!((order.booking_type==2)&&(order.appointment_status_id==0))"> View Details </a>
+        <a routerLink="/prescription/quote/details/{{order.id}}" class="btn btn-general" *ngIf="(order.booking_type==2)&&(order.appointment_status_id==0)&&(order.medicine_info!=null)"> View Quotations </a>
+        <span *ngIf="(order.medicine_info==null)">No Quote Received</span>
+
+
+        <a routerLink="/pharmacy/{{order.pharmacy_uid}}/payment/{{order.id}}" class="btn btn-general" *ngIf="((order.payment_type_id==2)&&(order.appointment_status_id==0))&&(order.medicine_info!=null)">Pay Online </a>
+
+        <a routerLink="/pharmacy/{{order.pharmacy_uid}}/payment/{{order.id}}"  class="btn btn-general" *ngIf="((order.payment_type_id==1)&&(order.appointment_status_id==0))&&(order.medicine_info!=null)">COD</a>
+
+
+      </td>
+    </tr>
+ </tbody>
+</table> -->
+
+<hr>
+  <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+    </mat-form-field>
+    <hr>
+    
+    
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+     <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Order ID </th>
+      <td mat-cell *matCellDef="let element,let i=index" >  {{element.id}}</td>
+    </ng-container> 
+           
+      <ng-container matColumnDef="labname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Pharmacy Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.pharmacy_name}} </td>
+      </ng-container>    
+     
+      <!-- <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Prescription </th>
+        <td mat-cell *matCellDef="let element"> 
+            <a href="{{element.prescription_path}}" target="_blank"><img src="{{element.prescription_path}}" width="80px" height="80px"/></a>  
+        </td>
+      </ng-container>   -->
+      
+      
+      <!-- <ng-container matColumnDef="fees">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Cost </th>
+          <td mat-cell *matCellDef="let element"> {{element.cost}} </td>
+        </ng-container>  -->
+
+    <ng-container matColumnDef="location">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Payment Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.payment_type}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="appdate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Order Status </th>
+          <td mat-cell *matCellDef="let element"> {{element.appointment_status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Created On </th>
+            <td mat-cell *matCellDef="let element"> {{formatTime(element.created_on)}} </td>
+          </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+      <td mat-cell *matCellDef="let element"> 
+          <a routerLink="/pharmacy/orders/details/{{element.id}}" class="btn btn-white" *ngIf="!((element.booking_type==2)&&(element.appointment_status_id==0))"> View Details </a>
+          <a routerLink="/prescription/quote/details/{{element.id}}" class="btn btn-general" *ngIf="(element.booking_type==2)&&(element.appointment_status_id==0)&&(element.medicine_info!=null)"> View Quotations </a>
+          <span *ngIf="(element.medicine_info==null)">No Quote Received</span>
+  
+  
+          <a routerLink="/pharmacy/{{element.pharmacy_uid}}/payment/{{element.id}}" class="btn btn-general" *ngIf="((element.payment_type_id==2)&&(element.appointment_status_id==0))&&(element.medicine_info!=null)&&(element.booking_type!=2)">Pay Online </a>
+  
+          <a routerLink="/pharmacy/{{element.pharmacy_uid}}/payment/{{element.id}}"  class="btn btn-general" *ngIf="((element.payment_type_id==1)&&(element.appointment_status_id==0))&&(element.medicine_info!=null)">COD</a>
+  
+      </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+     
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+   
+
+
+</div> 

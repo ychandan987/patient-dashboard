@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="container-fluid">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title><h1>Select Lab</h1></mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <br>
+
+      <mat-card-content>
+        <table class="table table-hover">
+          <thead>
+            <tr class="bg-info text-white">
+              <th>ID</th>
+              <th>Lab Name</th>
+              <th>Contact Person</th>
+              <th>Address</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let spec of posts,let i=index">
+              <th scope="row">{{i+1}}</th>
+              <td>{{spec.name_lb}}</td>
+              <td>{{spec.contperson_lb}}</td>
+              <td>{{spec.address_lb}}</td>
+              <td><button class="btn btn-primary" style="cursor:pointer;" (click)="submit(spec.code_lb)"> Book Tests</button></td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> 

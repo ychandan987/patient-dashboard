@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-md-12">
+    <!--***** PRODUCT INFO *****-->
+      <div class="card form" id="form1">
+          <div class="card-header">
+              <h3>
+                  <i class="fa fa-medkit"></i> Share Reports
+                  <!-- <a routerLink="/labtests"  class="btn btn-primary pull-right">
+                      <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+                      Go Back
+                  </a>   -->
+              </h3>
+          </div>
+          <br>
+          <form [formGroup]="reportsForm" (ngSubmit)="submit()" ngNativeValidate> 
+              <div class="row" style="padding: 50px">
+           
+                <div class="col-md-12">
+                    <div class="form-group row">
+                        <label for="example-tel-input" style="width: 150px;" class=" col-form-label">Select Previous History</label>
+                        <div class="col-8">
+                            <!-- <button class="btn btn-info">Proceed</button> -->
+                            <button routerLink="/history/share/{{appId}}" class="btn btn-info"> Proceed to share  </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                      <div class="form-group row">
+                          <label for="example-tel-input" style="width: 150px;" class=" col-form-label">Select Report</label>
+                          <div class="col-8">
+                                <button routerLink="/other/report/share/{{appId}}" class="btn btn-info"> Proceed to share  </button>
+                          </div>
+                      </div>
+                  </div>
+
+
+                  <div class="col-md-2">
+                  <!-- <h2>OR</h2> -->
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group row">
+                        <label for="example-tel-input" style="width: 150px;" class=" col-form-label">Upload Report</label>
+                        <div class="col-8">
+                            <input class="form-control" type="file" formControlName="report_path" id="example-tel-input" (change)="getFile($event.target.files)">
+                        </div>
+                    </div>
+                  </div>
+              </div>
+              <hr>
+              <div class="row" *ngIf="selectedReports">
+                <h3 class="text-center">Selected Report:</h3><br>
+               <a href="{{selectedReports.report_path}}" target="_blank"><img src="{{selectedReports.report_path}}" width="200px" height="200px"></a>
+              </div>
+
+              <div class="row" *ngIf="selectedReports1">
+                    <h3 class="text-center">Selected Previous History:</h3><br>
+                   <a href="{{selectedReports1.doc_path}}" target="_blank"><img src="{{selectedReports1.doc_path}}" width="200px" height="200px"></a>
+                  </div>
+              <div class="row">
+                  <div class="d-block mx-auto">
+                  <button class="btn-btn">Submit</button>
+                  </div>
+              </div>
+          </form>
+      </div> 
+      <div class="container">
+        <h2>Shared Documents</h2>           
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+                <th>ID</th>
+                <th>Report ID</th>
+                <th>Report</th>
+                <!-- <th>Created Date</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let app of reports_lab,let i=index">
+                    <th scope="row">{{i+1}}</th>
+              <td>{{app.report_id}}</td>
+              <td><a href="{{app.shared_report}}" target="_blank"><img src="{{app.shared_report}}" width="50" height="50px"></a></td>
+              <!-- <td>{{app.last_updated_on}}</td> -->
+            </tr>
+           
+          </tbody>
+        </table>
+      </div>
+  </div>
+
+ 
+</div>

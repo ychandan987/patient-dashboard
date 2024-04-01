@@ -1,0 +1,1544 @@
+<div class="row mt-2" id="card-prof">
+  <div class="col-md-3">
+      <div class="card hovercard">
+          <div class="cardheader"></div>
+          <div class="avatar">
+                <div *ngIf="profile.profile_picture_path != ''">
+                        <img alt="" src="{{profile.profile_picture_path}}" class="img-fluid">
+                    </div>
+                      
+                      <div *ngIf="profile.profile_picture_path == ''">
+                            <img src="./assets/img/avatar-1.jpg" alt="..." class="img-fluid" >
+                      </div>
+          </div>
+          <div class="info">
+              <div class="title">
+                  <a target="_blank" routerLink="#">Username: {{currentUser.username}}</a>
+              </div>
+              <hr>
+              <strong class="mr-5">Unique Id:</strong>    {{currentUser.unique_id}}
+            
+            </div>
+             
+    
+      </div>
+  </div>
+  <div class="col-md-9">
+      <div class="card hovercard">
+          <div class="tab" role="tabpanel"> 
+              <ul class="nav nav-tabs" role="tablist">
+                
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/profile" role="tab" data-toggle="tab"><span><i class="fa fa-user"></i></span> My Profile</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/profile/edit" role="tab" data-toggle="tab"><span><i class="fa fa-cog"></i></span> Edit Profile</a> 
+                </li>
+                 <li class="nav-item">
+                  <a class="nav-link " routerLink="/profile/healthnutritionalform" role="tab" data-toggle="tab"><span><i class="fa fa-medkit"></i></span> Health & Nutritional </a> 
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" routerLink="/profile/psychosocialform" role="tab" data-toggle="tab"><span><i class="fa fa-heartbeat"></i></span> Psychosocial </a> 
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" routerLink="/profile/initialclinicform" role="tab" data-toggle="tab"><span><i class="fa fa-hospital-o"></i></span> Initial Clinic </a> 
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/profile/upload-previous-history" role="tab" data-toggle="tab"><span><i class="fa fa-upload"></i></span> Upload Previous History</a> 
+                  </li>
+              </ul>
+
+            
+
+              <div class="tab-content tabs">
+                
+                <div class="row">
+                  
+                <div class="col-lg-12">
+                <div class="panel-group text-left" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne" style="border:1px solid #939293;padding:10px;">
+                          <h3 class="panel-title"> 
+                        <a data-toggle="collapse" style="color:#939293;text-align:left" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                         Demographics                     
+                        </a>
+                      </h3>
+                
+                        </div>
+
+                        
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                              
+                                
+                              <form [formGroup]="editinitialclinicdemographicsForm" (ngSubmit)="editinitialclinicdemographics()" ngNativeValidate>
+                             
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Name</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-4">
+                                    <label for="first_name">First</label>
+                                    <input class="form-control" type="text" value="{{first_name}}" id="example-first_name" disabled>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="middle_name">Middle</label>
+                                    <input type="text" class="form-control" id="middle_name" formControlName="middle_name">
+                                 
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="last_name">Last</label>
+                                    <input class="form-control" type="text" value="{{last_name}}" id="example-last_name" disabled>
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="gender">Gender</label>
+                                  <input class="form-control" type="text" value="{{gender}}" id="example-last_name" disabled> 
+                                 </div>
+                                 <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Date of Birth</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="date_of_birth">Date of Birth</label>
+                                    <input class="form-control" type="date" value="{{dob}}" placeholder="DD/MM/YY" id="example-dob" value="{{dob | date:'yyyy-MM-dd' }}">
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="age">Age (Years)</label>
+                                    <input class="form-control" type="text" value="{{age}}" id="example-age" disabled>
+                                 
+                                  </div>
+                                 
+                                </div>
+                               
+                             
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Address(RES)</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-group">
+                                  <!-- <label for="inputAddress2">Building, Street/Area </label> -->
+                                  <input class="form-control" type="text" value="{{address}}" id="example-address" placeholder="Building, Street/Area" disabled>
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="city_res">City</label>
+                                    <input class="form-control" type="text" value="{{city}}" id="example-city" disabled>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="state_res">State</label>
+                                    <input class="form-control" type="text" value="{{state}}" id="example-state" disabled>
+                                
+                                    <!-- <select id="state_res" class="form-control" formControlName="state_res">
+                                      <option selected>Choose...</option>
+                                      <option>Maharashtra</option>
+                                    </select> -->
+                                  </div>
+                                  <div class="form-group col-md-2">
+                                    <label for="zip_res">Zip</label>
+                                    <input class="form-control" type="text" value="{{pincode}}" id="example-zip" disabled>
+                                  </div>
+                                </div>
+                                       
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Address(OFFICE)</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-group">
+                                  <!-- <label for="inputAddress2">Building, Street/Area </label> -->
+                                  <input type="text" class="form-control" id="address_office" placeholder="Building, Street/Area" formControlName="address_office">
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="city_office">City</label>
+                                    <input type="text" class="form-control" id="city_office" formControlName="city_office">
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="state_office">State</label>
+                                    <input type="text" class="form-control" id="state_office" formControlName="state_office">
+                              
+                                    <!-- <select id="state_office" class="form-control" formControlName="state_office">
+                                      <option selected>Choose...</option>
+                                      <option>Maharashtra</option>
+                                    </select> -->
+                                  </div>
+                                  <div class="form-group col-md-2">
+                                    <label for="zip_office">Zip</label>
+                                    <input type="text" class="form-control" id="zip_office" formControlName="zip_office">
+                                  </div>
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-12">
+                                    <h4>Contact Details</h4>
+                                    <hr>
+                                     </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="home_phone">Home Phone</label>
+                                    <input class="form-control" type="text" value="{{mobile_no}}" id="example-home_telephone" disabled>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="email">Email</label>
+                                    <input class="form-control" type="text" value="{{email}}" id="example-email" disabled>
+                                 
+                                  </div>
+                                 
+                                </div>
+                                <div class="form-row">
+                                  <div class="form-group col-md-6">
+                                    <label for="other_phone">Other Phone</label>
+                                    <input type="text" class="form-control"  formControlName="other_phone">
+                                  </div>
+                                 
+                                 
+                                </div>
+                            
+                          
+                                  <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                      <h4>Other Details</h4>
+                                      <hr>
+                                       </div>
+                                   
+                                  </div>
+                                 
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="height_in_cms">Height in CMS</label>
+                                      <input type="text" class="form-control" id="height_in_cms" formControlName="height_in_cms">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="weight_in_kgs">Weight in KGS</label>
+                                      <input type="text" class="form-control" id="weight_in_kgs" formControlName="weight_in_kgs">
+                                   
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="bmi">BMI</label>
+                                      <input type="text" class="form-control" id="bmi" formControlName="bmi">
+                                    </div>
+                                  </div>
+                          
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="spo2">SPO2</label>
+                                      <input type="text" class="form-control" id="spo2" formControlName="spo2">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="bp">BP</label>
+                                      <input type="text" class="form-control" id="bp" formControlName="bp" >
+                                   
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="pulse_rate">Pulse Rate</label>
+                                      <input type="text" class="form-control" id="pulse_rate" formControlName="pulse_rate" >
+                                   
+                                    </div>
+                                   
+                                  </div>
+                                  <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                      <label for="temperature">Temperature</label>
+                                      <input type="text" class="form-control" id="temperature" formControlName="temperature">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="neck_circumference">Neck Circumference</label>
+                                      <input type="text" class="form-control" id="neck_circumference" formControlName="neck_circumference">
+                                   
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                      <label for="waist_circumference">Waist Circumference</label>
+                                      <input type="text" class="form-control" id="waist_circumference" formControlName="waist_circumference">
+                                    </div>
+                                  </div>
+
+                                  <div class="form-row">
+                                  
+                                    <div class="form-group col-md-4">
+                                      <label for="waist_to_hip_circumference">Waist to hip Circumference</label>
+                                      <input type="text" class="form-control" id="waist_to_hip_circumference" formControlName="waist_to_hip_circumference">
+                                    </div>
+                                  </div>
+                          
+                                
+                            
+                            <div class="col-md-12" >
+                                <button type="submit" class="btn-btn">Save</button>
+                            </div>
+                           
+                          </form>
+
+                            </div>
+                        </div>
+                    </div>
+                 
+
+                    <div class="panel panel-default" >
+                      <div class="panel-heading" role="tab" id="headingFour"  style="border:1px solid #939293;padding:10px;">
+                        <h3 class="panel-title">
+                      <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                        Known Allergies to Medicines,Food or Others 
+                      </a>
+                    </h3>
+              
+                      </div>
+                      <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                          <div class="panel-body">
+                             <form [formGroup]="editinitialclinicknownallergiesForm" (ngSubmit)="editinitialclinicknownallergies()" ngNativeValidate>
+                               <div class="row">
+                                <table>
+                                  <tr>
+                                    <th>Name of Allergen</th>
+                                    <th>Remarks If Any</th>
+                                   
+                                  </tr>
+                                  <tr>
+                                    <td>Medicine</td>
+                                    <td>
+                                      <input type="text" class="form-control" id="medicine" formControlName="medicine">
+                             
+                                    </td>
+                                   
+                                  </tr>
+                                  <tr>
+                                    <td>Food</td>
+                                    <td>
+                                      <input type="text" class="form-control" id="food" formControlName="food">
+                             
+                                    </td>
+                                   
+                                  </tr>
+                                  <tr>
+                                    <td>Metal</td>
+                                    <td>
+                                      <input type="text" class="form-control" id="metal" formControlName="metal">
+                             
+                                    </td>
+                                    
+                                  </tr>
+                                  <tr>
+                                    <td>Cloth</td>
+                                    <td>
+                                      <input type="text" class="form-control" id="cloth" formControlName="cloth">
+                             
+                                    </td>
+                                    
+                                  </tr>
+                                  <tr>
+                                    <td>Environmental(Pollen,Dust,etc)</td>
+                                    <td>
+                                      <input type="text" class="form-control" id="environmental" formControlName="environmental">
+                             
+                                    </td>
+                                   
+                                  </tr>
+                                  <tr>
+                                    <td>Any Other</td>
+                                    <td>
+                                      <input type="text" class="form-control" id="any_other" formControlName="any_other">
+                             
+                                    </td>
+                                   
+                                  </tr>
+                               
+                                </table>
+                                
+                            </div> 
+
+                            <div class="col-md-12" style="margin-top:10px;">
+                              <button type="submit" class="btn-btn">Save</button>
+                          </div>
+                            </form> 
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="panel panel-default" >
+                    <div class="panel-heading" role="tab" id="headingFive"  style="border:1px solid #939293;padding:10px;">
+                      <h3 class="panel-title"> 
+                    <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+                      History of Present Concerns/Issues/Health Goals 
+                    </a>
+                  </h3>
+            
+                    </div>
+                    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                        <div class="panel-body">
+                         <form [formGroup]="editinitialclinichealthgoalsForm" (ngSubmit)="editinitialclinichealthgoals()" ngNativeValidate> 
+                            <div class="row">
+                              <table>
+                                <tr>
+                                  <th>Name of Allergen</th>
+                                  <th>Remarks If Any</th>
+                                 
+                                </tr>
+                                <tr>
+                                  <td>History of present complaints with duration</td>
+                                  <td>
+                                    <input type="text" class="form-control" id="history_of_present_complaints_with_duration" formControlName="history_of_present_complaints_with_duration">
+                             
+                                  </td>
+                                 
+                                </tr>
+                                <tr>
+                                  <td>Severity of symptoms (mild / moderate / severe / extremely distressing)</td>
+                                  <td>
+                                    <input type="text" class="form-control" id="severity_of_symptoms" formControlName="severity_of_symptoms">
+                             
+                                  </td>
+                                 
+                                </tr>
+                              
+                              </table>
+                          </div>
+
+                          <div class="col-md-12" style="margin-top:10px;">
+                            <button type="submit" class="btn-btn">Save</button>
+                        </div>
+                      
+                        
+                              </form>
+                          
+                          </div>
+                    </div>
+                </div>
+                 <div class="panel panel-default" >
+                    <div class="panel-heading" role="tab" id="headingSix"  style="border:1px solid #939293;padding:10px;">
+                      <h3 class="panel-title"> 
+                    <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
+                      Pre-Existing & Existing Treatment Summary  
+                    </a>
+                  </h3>
+            
+                    </div>
+                    <div id="collapseSix" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSix">
+                        <div class="panel-body">
+                          <div class="container">
+                            
+                            <!-- Button to Open the Modal -->
+                           
+                                            
+                          
+                            <!-- The Modal -->
+                            <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                
+                                  <!-- Modal Header -->
+                                  <div class="modal-header">
+                                    <h4 class="modal-title">{{ title }}</h4>
+                                    <button type="button" class="close" data-dismiss="modal" (click) = "hide()">&times;</button>
+                                  </div>
+                                  
+                                  <!-- Modal body -->
+                                  <div class="modal-body">
+                                  
+
+                                    <form [formGroup]="editinitialclinicpreexistingteatmentForm" (ngSubmit)="addinitialclinicpreexistingteatment()" ngNativeValidate>
+                             
+                               
+                                      <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                          <label for="first_name">Name of Medication</label>
+                                          <input type="text" class="form-control" id="name_of_medication" formControlName="name_of_medication">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                          <label for="middle_name">Strength</label>
+                                          <input type="text" class="form-control" id="strength" formControlName="strength">
+                                       
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                          <label for="last_name">Dose</label>
+                                          <input type="text" class="form-control" id="dose" formControlName="dose">
+                                        </div>
+                                      </div>
+                                     
+                                      <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                          <label for="first_name">Duration</label>
+                                          <input type="text" class="form-control" id="duration" formControlName="duration">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label for="middle_name">Dependency on Medicine</label>
+                                          <input type="text" class="form-control" id="dependency_on_medicines" formControlName="dependency_on_medicines">
+                                       
+                                        </div>
+                                       
+                                      </div>
+                                     
+                                   
+                                      
+                                      
+                                  
+                                  <div class="col-md-12" >
+                                      <button type="submit" class="btn-btn">Save</button>
+                                  </div>
+                                 
+                                </form>
+                                  </div>
+                                  
+                                  <!-- Modal footer -->
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide()">Close</button>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+                            </div>
+
+
+                             <!-- The Modal -->
+                             <div class="modal" id="myModal1" [style.display]="editModal ? 'block' : 'none'">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                
+                                  <!-- Modal Header -->
+                                  <div class="modal-header">
+                                    <h4 class="modal-title">{{ title }}</h4>
+                                    <button type="button" class="close" data-dismiss="modal" (click) = "hidepre()">&times;</button>
+                                  </div>
+                                  
+                                  <!-- Modal body -->
+                                  <div class="modal-body">
+                                  
+
+                                    <form [formGroup]="editinitialclinicpreexistingteatmentForm2" (ngSubmit)="editpreexistingdetails()" ngNativeValidate>
+                             
+                               
+                                      <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                          <label for="first_name">Name of Medication</label>
+                                          <input type="text" class="form-control" id="name_of_medication" formControlName="name_of_medication">
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                          <label for="middle_name">Strength</label>
+                                          <input type="text" class="form-control" id="strength" formControlName="strength">
+                                       
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                          <label for="last_name">Dose</label>
+                                          <input type="text" class="form-control" id="dose" formControlName="dose">
+                                        </div>
+                                      </div>
+                                     
+                                      <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                          <label for="first_name">Duration</label>
+                                          <input type="text" class="form-control" id="duration" formControlName="duration">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label for="middle_name">Dependency on Medicine</label>
+                                          <input type="text" class="form-control" id="dependency_on_medicines" formControlName="dependency_on_medicines">
+                                       
+                                        </div>
+                                       
+                                      </div>
+                                     
+                                   
+                                      
+                                      
+                                  
+                                  <div class="col-md-12" >
+                                      <button type="submit" class="btn-btn">Update</button>
+                                  </div>
+                                 
+                                </form>
+                                  </div>
+                                  
+                                  <!-- Modal footer -->
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hidepre()">Close</button>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- <a [routerLink]="['/add']" class="btn btn-success ml-2">New</a> -->
+
+
+                          <button class=" btn btn-primary " style="float:right;background-color: #2cc1c8;border-color: #2cc1c8;" (click)="show() ">Add</button>
+                              <br/>
+                                      <hr>
+
+                                      <div class="usercontact-list" style="margin-top:20px;">
+                                        <table class="table table-bordered" style="margin-top:20px;">
+                                          <thead>
+                                            <tr>
+                                              <th>Id</th>
+                                              <th>Name of Medication</th>
+                                              <th>Strength</th>
+                                              <th>Dose</th>
+                                              <th>Duration</th>
+                                              <th>Dependency On Medicines</th>
+                                              <th>Edit</th>
+                                              <th>Delete</th>
+                                            </tr>
+                                          </thead>
+                                          <tbody>
+                                            <tr *ngFor="let ptd of groupList">
+                                              <td>{{ ptd.id }}</td>
+                                              <td>{{ ptd.name_of_medication }}</td>
+                                              <td>{{ ptd.strength }}</td>
+                                              <td>{{ ptd.dose }}</td>
+                                              <td>{{ ptd.duration  }}</td>
+                                              <td>{{ ptd.dependency_on_medicines }}</td>
+                                              <td>
+                                                <button class=" btn btn-info " style="background-color: #0073c5;border-color:#0073c5;" (click)="editpre(ptd)"><span><i class="fa fa-edit"></i></span></button>
+                                            
+                                                <!-- <button class=" btn btn-info " (click)="editpreexistingdetails(ptd.id) ">Update</button> -->
+                                              </td>
+                                              <td>
+                                                <button class="btn btn-danger ml-2 " (click)="deletepreexistingdetails(ptd) "><span><i class="fa fa-trash"></i></span></button>
+                                              </td>
+                                            </tr>
+                                      
+                                      
+                                          </tbody>
+                                        </table>
+                                      </div>
+
+                                   
+
+                           <!-- <div class="row sub-sections multiple-section" *ngFor="let edu of preexistingDetails; let i = index">
+                            <span class="section-close" (click)="remove(i)"><i class="fa fa-times-circle-o fa-2x" aria-hidden="true"></i></span>
+                              <div class="col-md-6 ">
+                                  <div class="form-group row">
+                                      <label for="example-text-input" style="width: 100px;" class=" col-form-label">Name of Medication</label>
+                                      <div class="col-8">
+                                        <input class="form-control" type="text"  id="example-text-input" >
+                                      </div>
+                                  </div> 
+                                  <div class="form-group row">
+                                      <label for="example-tel-input" style="width: 100px;" class=" col-form-label">Strength</label>
+                                      <div class="col-8">
+                                        <input class="form-control" type="text"  id="example-text-input" >
+                                        </div>
+                                  </div>
+                            </div>
+                            <div class="col-md-6 ">
+                              <div class="form-group row">
+                                  <label for="example-text-input" style="width: 100px;" class=" col-form-label">Dose</label>
+                                  <div class="col-8">
+                                    <input class="form-control" type="text"  id="example-text-input" >
+                                  </div>
+                              </div> 
+                              <div class="form-group row">
+                                  <label for="example-tel-input" style="width: 100px;" class=" col-form-label">duration and remarks</label>
+                                  <div class="col-8">
+                                    <input class="form-control" type="text"  id="example-text-input" >
+                                    </div>
+                              </div>
+                        </div>
+                            </div>
+                            <div class="col-md-12">
+                              <button class="btn-btn" (click)="add()">Add</button>
+                            </div><br><br> -->
+
+                       
+                         <!-- <form [formGroup]="editpsycosocialobstaclesbarriersForm" (ngSubmit)="editpsycosocialobstaclesbarriers()" ngNativeValidate> -->
+                            <!-- <div class="row">
+                              <div class="col-md-12">
+                             
+                                <textarea class="form-control" formControlName="obstacles_barriers_details"></textarea>
+                              </div>
+                            </div>
+                            <div class="col-md-12" >
+                              <button type="submit" class="btn-btn">Save</button>
+                          </div> -->
+                              <!-- </form>  -->
+                          
+                          </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default" >
+                  <div class="panel-heading" role="tab" id="headingEight"  style="border:1px solid #939293;padding:10px;">
+                    <h3 class="panel-title"> 
+                  <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    Any other Practice modality of medicines taken like homeopathy etc. And reason for taking them  
+                  </a>
+                </h3>
+          
+                  </div>
+                  <div id="collapseEight" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEight">
+                      <div class="panel-body">
+                              <!-- The Modal -->
+                              <div class="modal" id="practice_add_Modal" [style.display]="showModal1 ? 'block' : 'none'">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                  
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                      <h4 class="modal-title">{{ title1 }}</h4>
+                                      <button type="button" class="close" data-dismiss="modal" (click) = "hide_practice_add_Modal()">&times;</button>
+                                    </div>
+                                    
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                    
+  
+                                      <form [formGroup]="editinitialclinicpraticemodalityForm" (ngSubmit)="addinitialclinicpraticemodality()" ngNativeValidate>
+                               
+                                 
+                                        <div class="form-row">
+                                          <div class="form-group col-md-4">
+                                            <label for="name_of_medication_pm">Name of Medication</label>
+                                            <input type="text" class="form-control" id="name_of_medication_pm" formControlName="name_of_medication_pm">
+                                          </div>
+                                          <div class="form-group col-md-4">
+                                            <label for="strength_pm">Strength</label>
+                                            <input type="text" class="form-control" id="strength_pm" formControlName="strength_pm">
+                                         
+                                          </div>
+                                          <div class="form-group col-md-4">
+                                            <label for="dose_pm">Dose</label>
+                                            <input type="text" class="form-control" id="dose_pm" formControlName="dose_pm">
+                                          </div>
+                                        </div>
+                                       
+                                        <div class="form-row">
+                                          <div class="form-group col-md-6">
+                                            <label for="reason_for_taking_pm">Reason for Taking</label>
+                                            <input type="text" class="form-control" id="reason_for_taking_pm" formControlName="reason_for_taking_pm">
+                                          </div>
+                                         
+                                         
+                                        </div>
+                                       
+                                     
+                                        
+                                        
+                                    
+                                    <div class="col-md-12" >
+                                        <button type="submit" class="btn-btn">Save</button>
+                                    </div>
+                                   
+                                  </form>
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide_practice_add_Modal()">Close</button>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                              </div>
+  
+                             <!-- The Modal -->
+                               <div class="modal" id="practice_edit_Modal" [style.display]="editModal1 ? 'block' : 'none'">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                  
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                      <h4 class="modal-title">{{ title1 }}</h4>
+                                      <button type="button" class="close" data-dismiss="modal" (click) = "hide_practice_edit_Modal()">&times;</button>
+                                    </div>
+                                    
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+                                    
+  
+                                       <form [formGroup]="editinitialclinicpraticemodalityForm2" (ngSubmit)="editinitialclinicpraticemodality()" ngNativeValidate>
+                               
+                                 
+                                        <div class="form-row">
+                                          <div class="form-group col-md-4">
+                                            <label for="name_of_medication_pm">Name of Medication</label>
+                                            <input type="text" class="form-control" id="name_of_medication_pm" formControlName="name_of_medication_pm">
+                                          </div>
+                                          <div class="form-group col-md-4">
+                                            <label for="strength_pm">Strength</label>
+                                            <input type="text" class="form-control" id="strength_pm" formControlName="strength_pm">
+                                         
+                                          </div>
+                                          <div class="form-group col-md-4">
+                                            <label for="dose_pm">Dose</label>
+                                            <input type="text" class="form-control" id="dose_pm" formControlName="dose_pm">
+                                          </div>
+                                        </div>
+                                       
+                                        <div class="form-row">
+                                          <div class="form-group col-md-6">
+                                            <label for="reason_for_taking_pm">Reason for Taking</label>
+                                            <input type="text" class="form-control" id="reason_for_taking_pm" formControlName="reason_for_taking_pm">
+                                          </div>
+                                         
+                                         
+                                        </div>
+                                       
+                                     
+                                        
+                                        
+                                    
+                                    <div class="col-md-12" >
+                                        <button type="submit" class="btn-btn">Update</button>
+                                    </div>
+                                   
+                                  </form>
+                                    </div>
+                                    
+                                    <!-- Modal footer -->
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide_practice_edit_Modal()">Close</button>
+                                    </div>
+                                    
+                                  </div>
+                                </div>
+                              </div>                        
+                           
+  
+                            <button class=" btn btn-primary " style="float:right;background-color: #2cc1c8;border-color: #2cc1c8;" (click)="show_practice_add_Modal() ">Add</button>
+                                <br/>
+                                        <hr>
+  
+                                        <div class="usercontact-list" style="margin-top:20px;">
+                                          <table class="table table-bordered" style="margin-top:20px;">
+                                            <thead>
+                                              <tr>
+                                                <th>Id</th>
+                                                <th>Name of Medication</th>
+                                                <th>Strength</th>
+                                                <th>Dose</th>
+                                                <th>Reason for Taking</th>                
+                                                <th>Edit</th>
+                                                <th>Delete</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr *ngFor="let pm of pacticemodalityList">
+                                                <td>{{ pm.id }}</td>
+                                                <td>{{ pm.name_of_medication }}</td>
+                                                <td>{{ pm.strength }}</td>
+                                                <td>{{ pm.dose }}</td>
+                                                <td>{{ pm.reason_for_taking  }}</td>
+                                               
+                                                <td>
+                                                  <button class=" btn btn-info " style="background-color: #0073c5;border-color:#0073c5;" (click)="editpm(pm)"><span><i class="fa fa-edit"></i></span></button>
+                                              
+                                                  <!-- <button class=" btn btn-info " (click)="editpreexistingdetails(ptd.id) ">Update</button> -->
+                                                </td>
+                                                <td>
+                                                  <button class="btn btn-danger ml-2 " (click)="deletepm(pm) "><span><i class="fa fa-trash"></i></span></button>
+                                                </td>
+                                              </tr>
+                                        
+                                        
+                                            </tbody>
+                                          </table>
+                                        </div>
+                        </div>
+                  </div>
+              </div>
+
+              <div class="panel panel-default" >
+                <div class="panel-heading" role="tab" id="headingSeven"  style="border:1px solid #939293;padding:10px;">
+                  <h3 class="panel-title"> 
+                <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                  History of Health checkups
+                                                                              
+                </a>
+              </h3>
+        
+                </div>
+                <div id="collapseSeven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingSeven">
+                    <div class="panel-body">
+                     <form [formGroup]="editinitialclinichealthcheckupsForm" (ngSubmit)="editinitialclinichealthcheckups()" ngNativeValidate> 
+                        <div class="row">
+                          <table>
+                            <tr>
+                              <th>Name of Allergen</th>
+                              <th>Remarks If Any</th>
+                             
+                            </tr>
+                            <tr>
+                              <td>Health checkups done in past / Suggested by whom</td>
+                              <td>
+                                <input type="text" class="form-control" id="health_checkups_done_in_past" formControlName="health_checkups_done_in_past">
+                              </td>
+                             
+                            </tr>
+                            <tr>
+                              <td>Frequency / Package name / Price</td>
+                              <td>
+                                <input type="text" class="form-control" id="frequency_package_name_price" formControlName="frequency_package_name_price">
+                              </td>
+                             
+                            </tr>
+                          
+                          </table>
+                        </div>
+
+                        <div class="col-md-12" style="margin-top:10px;">
+                          <button type="submit" class="btn-btn">Save</button>
+                       </div>
+                          </form> 
+                        
+                      </div>
+                </div>
+
+
+               
+            </div>
+
+
+            <div class="panel panel-default" >
+              <div class="panel-heading" role="tab" id="headingNine"  style="border:1px solid #939293;padding:10px;">
+                <h3 class="panel-title"> 
+              <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                Review of Systems Summary
+                                                                            
+              </a>
+            </h3>
+      
+              </div>
+              <div id="collapseNine" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingNine">
+                  <div class="panel-body">
+                    <form [formGroup]="editinitialclinicsystemssummaryForm" (ngSubmit)="editinitialclinicsystemssummary()" ngNativeValidate> 
+                      <div class="row">
+                        <table>
+
+                          <tr>
+                            <th>Name </th>
+                            <th>Guidelines</th>
+                            <th>Remarks</th>                           
+                          </tr>
+
+                          <tr>
+                            <td>Present Energy levels</td>
+                            <td>
+                            <input type="text" class="form-control" id="present_energy_levels_guidelines" formControlName="present_energy_levels_guidelines">
+                           
+                            </td>
+                            <td>
+                            <input type="text" class="form-control" id="present_energy_levels_remarks" formControlName="present_energy_levels_remarks">
+                           
+
+                            </td>                           
+                          </tr>
+
+                          <tr>
+                            <td>Weight change</td>
+                           <td>
+                            <input type="text" class="form-control" id="weight_change_guidelines" formControlName="weight_change_guidelines">
+                           
+                            </td>
+                            <td>
+                            <input type="text" class="form-control" id="weight_change_remarks" formControlName="weight_change_remarks">
+                           
+                            </td>                          
+                          </tr>
+
+                          <tr>
+                            <td>Usual weight</td>
+                           <td>
+                            <input type="text" class="form-control" id="usual_weight_guidelines" formControlName="usual_weight_guidelines">
+                           
+                            </td>
+                           <td>
+                            <input type="text" class="form-control" id="usual_weight_remarks" formControlName="usual_weight_remarks">
+                           
+                            </td>                         
+                          </tr>
+
+                          <tr>
+                            <td>Excessive thirst</td>
+                            <td>
+                            <input type="text" class="form-control" id="excessive_thirst_guidelines" formControlName="excessive_thirst_guidelines">
+                           
+                            </td>
+                           <td>
+                            <input type="text" class="form-control" id="excessive_thirst_remarks" formControlName="excessive_thirst_remarks">
+                           
+                            </td>                          
+                          </tr>
+
+                          <tr>
+                            <td>Sleep</td>
+                           <td>
+                            <input type="text" class="form-control" id="sleep_guidelines" formControlName="sleep_guidelines">
+                           
+                            </td>
+                            <td>
+                            <input type="text" class="form-control" id="sleep_remarks" formControlName="sleep_remarks">
+                           
+                            </td>                      
+                          </tr>
+
+                          <tr>
+                            <td>Neuropsychiatric</td>
+                            <td>
+                            <input type="text" class="form-control" id="neuropsychiatric_guidelines" formControlName="neuropsychiatric_guidelines">
+                           
+                            </td>
+                           <td>
+                            <input type="text" class="form-control" id="neuropsychiatric_remarks" formControlName="neuropsychiatric_remarks">
+                           
+                            </td>                        
+                          </tr>
+
+                          <tr>
+                            <td>Hearing </td>
+                            <td>
+                            <input type="text" class="form-control" id="hearing_guidelines" formControlName="hearing_guidelines">
+                           
+                            </td>
+                            <td>
+                            <input type="text" class="form-control" id="hearing_remarks" formControlName="hearing_remarks">
+                           
+                            </td>                          
+                          </tr>
+
+                          <tr>
+                            <td>Vision </td>
+                           <td>
+                            <input type="text" class="form-control" id="vision_guidelines" formControlName="vision_guidelines">
+                           
+                            </td>
+                          <td>
+                            <input type="text" class="form-control" id="vision_remarks" formControlName="vision_remarks">
+                           
+                            </td>                          
+                          </tr>
+
+                          <tr>
+                            <td>Heart Condition </td>
+                           <td>
+                            <input type="text" class="form-control" id="heart_condition_guidelines" formControlName="heart_condition_guidelines">
+                           
+                            </td>
+                            <td>
+                            <input type="text" class="form-control" id="heart_condition_remarks" formControlName="heart_condition_remarks">
+                           
+                            </td>                          
+                          </tr>
+
+
+                          <tr>
+                            <td>Lung Condition </td>
+                            <td>
+                            <input type="text" class="form-control" id="lung_condition_guidelines" formControlName="lung_condition_guidelines">
+                           
+                            </td>
+                            <td>
+                            <input type="text" class="form-control" id="lung_condition_remarks" formControlName="lung_condition_remarks">
+                           
+                            </td>                        
+                          </tr>
+
+                          <tr>
+                            <td>Stomach / Intestinal Conditions</td>
+                           <td>
+                            <input type="text" class="form-control" id="stomach_intestinal_conditions_guidelines" formControlName="stomach_intestinal_conditions_guidelines">
+                           
+                            </td>
+                            <td>
+                            <input type="text" class="form-control" id="stomach_intestinal_conditions_remarks" formControlName="stomach_intestinal_conditions_remarks">
+                           
+                            </td>                           
+                          </tr>
+
+                          <tr>
+                            <td>Muscle-bone-joints System</td>
+                           <td>
+                            <input type="text" class="form-control" id="muscle_bone_joints_system_guidelines" formControlName="muscle_bone_joints_system_guidelines">
+                           
+                            </td>
+                            <td>
+                            <input type="text" class="form-control" id="muscle_bone_joints_system_remarks" formControlName="muscle_bone_joints_system_remarks">
+                           
+                            </td>                           
+                          </tr>
+
+                          <tr>
+                            <td>Genitourinary system</td>
+                           <td>
+                            <input type="text" class="form-control" id="genitourinary_system_guidelines" formControlName="genitourinary_system_guidelines">
+                           
+                            </td>
+                            <td>
+                            <input type="text" class="form-control" id="genitourinary_system_remarks" formControlName="genitourinary_system_remarks">
+                           
+                            </td>                        
+                          </tr>
+
+                          <tr>
+                            <td>Skin/hair</td>
+                           <td>
+                            <input type="text" class="form-control" id="skin_hair_guidelines" formControlName="skin_hair_guidelines">
+                           
+                            </td>
+                           <td>
+                            <input type="text" class="form-control" id="skin_hair_remarks" formControlName="skin_hair_remarks">
+                           
+                            </td>                          
+                          </tr>
+
+                          <tr>
+                            <td>Oral Health</td>
+                            <td>
+                            <input type="text" class="form-control" id="oral_health_guidelines" formControlName="oral_health_guidelines">
+                           
+                            </td>
+                           <td>
+                            <input type="text" class="form-control" id="oral_health_remarks" formControlName="oral_health_remarks">
+                           
+                            </td>                         
+                          </tr>
+
+
+                          <tr>
+                            <td>GOALS</td>
+                           <td>
+                            <input type="text" class="form-control" id="goals_guidelines" formControlName="goals_guidelines">
+                           
+                            </td>
+                           <td>
+                            <input type="text" class="form-control" id="goals_remarks" formControlName="goals_remarks">
+                           
+                            </td>                          
+                          </tr>
+                        
+                        
+                        </table>
+                      </div> 
+
+                      <div class="col-md-12" style="margin-top:10px;">
+                        <button type="submit" class="btn-btn">Save</button>
+                     </div>
+                       </form>  
+                      
+                    </div>
+              </div>
+
+
+             
+          </div>
+
+
+          <div class="panel panel-default" >
+            <div class="panel-heading" role="tab" id="headingTen"  style="border:1px solid #939293;padding:10px;">
+              <h3 class="panel-title"> 
+            <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+              Significant Event-Surgery/Interventional Procedure/Hospital Admission
+                                                                          
+            </a>
+          </h3>
+    
+            </div>
+            <div id="collapseTen" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTen">
+                <div class="panel-body">
+                   <!-- The Modal -->
+                   <div class="modal" id="significant_event_add_Modal" [style.display]="showModal2 ? 'block' : 'none'">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                      
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">{{ title2 }}</h4>
+                          <button type="button" class="close" data-dismiss="modal" (click) = "hide_significant_event_add_Modal()">&times;</button>
+                        </div>
+                        
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                        
+
+                          <form [formGroup]="editinitialclinicsignificanteventForm" (ngSubmit)="addinitialclinicsignificantevent()" ngNativeValidate>
+                   
+                     
+                            <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <label for="name_of_event">Name of event</label>
+                                <input type="text" class="form-control" id="name_of_event" formControlName="name_of_event">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="date_of_event">Date of Event</label>
+                                <input type="date" class="form-control" id="date_of_event" formControlName="date_of_event">
+                             
+                              </div>
+                             
+                            </div>
+                           
+                          
+                           
+                         
+                            
+                            
+                        
+                        <div class="col-md-12" >
+                            <button type="submit" class="btn-btn">Save</button>
+                        </div>
+                       
+                      </form>
+                        </div>
+                        
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide_significant_event_add_Modal()">Close</button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+
+                 <!-- The Modal -->
+                   <div class="modal" id="significant_event_edit_Modal" [style.display]="editModal2 ? 'block' : 'none'">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                      
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                          <h4 class="modal-title">{{ title2 }}</h4>
+                          <button type="button" class="close" data-dismiss="modal" (click) = "hide_significant_event_edit_Modal()">&times;</button>
+                        </div>
+                        
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                        
+
+                           <form [formGroup]="editinitialclinicsignificanteventForm2" (ngSubmit)="editinitialclinicsignificantevent()" ngNativeValidate>
+                   
+                     
+                           <div class="form-row">
+                              <div class="form-group col-md-6">
+                                <label for="name_of_event">Name of event</label>
+                                <input type="text" class="form-control" id="name_of_event" formControlName="name_of_event">
+                              </div>
+                              <div class="form-group col-md-6">
+                                <label for="date_of_event">Date of Event</label>
+                                <input type="text" class="form-control" id="date_of_event" formControlName="date_of_event">
+                             
+                              </div>
+                             
+                            </div>
+                         
+                            
+                            
+                        
+                        <div class="col-md-12" >
+                            <button type="submit" class="btn-btn">Update</button>
+                        </div>
+                       
+                      </form>
+                        </div>
+                        
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-danger" data-dismiss="modal" (click) = "hide_significant_event_edit_Modal()">Close</button>
+                        </div>
+                        
+                      </div>
+                    </div>
+                  </div>                        
+               
+
+                <button class=" btn btn-primary " style="float:right;background-color: #2cc1c8;border-color: #2cc1c8;" (click)="show_significant_event_add_Modal() ">Add</button>
+                    <br/>
+                            <hr>
+
+                            <div class="usercontact-list" style="margin-top:20px;">
+                              <table class="table table-bordered" style="margin-top:20px;">
+                                <thead>
+                                  <tr>
+                                    <th>Id</th>
+                                    <th>Name of Event</th>
+                                    <th>Date of Event</th>                 
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let se of significanteventList">
+                                    <td>{{ se.id }}</td>
+                                    <td>{{ se.name_of_event }}</td>
+                                    <td>{{ se.date_of_event }}</td>
+                                  
+                                    <td>
+                                      <button class=" btn btn-info " style="background-color: #0073c5;border-color:#0073c5;" (click)="editse(se)"><span><i class="fa fa-edit"></i></span></button>
+                                  
+                                      <!-- <button class=" btn btn-info " (click)="editpreexistingdetails(ptd.id) ">Update</button> -->
+                                    </td>
+                                    <td>
+                                      <button class="btn btn-danger ml-2 " (click)="deletese(se) "><span><i class="fa fa-trash"></i></span></button>
+                                    </td>
+                                  </tr>
+                            
+                            
+                                </tbody>
+                              </table>
+                            </div>
+                    
+                  </div>
+            </div>
+
+
+           
+        </div>
+
+
+        <div class="panel panel-default" >
+          <div class="panel-heading" role="tab" id="headingEleven"  style="border:1px solid #939293;padding:10px;">
+            <h3 class="panel-title"> 
+          <a class="collapsed" style="color:#939293;" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+            Lifestyle Related Details
+                                                                        
+          </a>
+        </h3>
+  
+          </div>
+          <div id="collapseEleven" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingEleven">
+              <div class="panel-body">
+                <form [formGroup]="editinitialcliniclifestylerelatedForm" (ngSubmit)="editinitialcliniclifestylerelated()" ngNativeValidate> 
+                  <div class="row">
+                    <table>
+
+                      <tr>
+                        <th>NAME</th>
+                        <th>YES/NO</th>
+                        <th>DAILY/MONTHLY</th> 
+                        <th>CONDITIONS/REASONS</th>                           
+                      </tr>
+
+                      <tr>
+                        <td>Smoking</td>
+                        <td>
+                            <input type="text" class="form-control" id="smoking_yes_no" formControlName="smoking_yes_no">
+                           
+                            </td>
+                        <td>
+                            <input type="text" class="form-control" id="smoking_daily_hrs" formControlName="smoking_daily_hrs">
+                           
+                            </td>  
+                        <td>
+                            <input type="text" class="form-control" id="smoking_cond_reason" formControlName="smoking_cond_reason">
+                           
+                            </td>                           
+                      </tr>
+
+                      <tr>
+                        <td>Drinking</td>
+                        <td>
+                            <input type="text" class="form-control" id="drinking_yes_no" formControlName="drinking_yes_no">
+                           
+                            </td>
+                        <td>
+                            <input type="text" class="form-control" id="drinking_daily_hrs" formControlName="drinking_daily_hrs">
+                           
+                            </td>
+                        <td>
+                            <input type="text" class="form-control" id="drinking_cond_reason" formControlName="drinking_cond_reason">
+                           
+                            </td>                           
+                      </tr>
+
+                      <tr>
+                        <td>Junk Food Intake</td>
+                        <td>
+                            <input type="text" class="form-control" id="junk_food_intake_yes_no" formControlName="junk_food_intake_yes_no">
+                           
+                            </td>
+                        <td>
+                            <input type="text" class="form-control" id="junk_food_intake_daily_hrs" formControlName="junk_food_intake_daily_hrs">
+                           
+                            </td> 
+                        <td>
+                            <input type="text" class="form-control" id="junk_food_intake_cond_reason" formControlName="junk_food_intake_cond_reason">
+                           
+                            </td>                          
+                      </tr>
+
+                      <tr>
+                        <td>Water Intake</td>
+                        <td>
+                            <input type="text" class="form-control" id="water_intake_yes_no" formControlName="water_intake_yes_no">
+                           
+                            </td>
+                        <td>
+                            <input type="text" class="form-control" id="water_intake_daily_hrs" formControlName="water_intake_daily_hrs">
+                           
+                            </td> 
+                        <td>
+                            <input type="text" class="form-control" id="water_intake_cond_reason" formControlName="water_intake_cond_reason">
+                           
+                            </td>                          
+                      </tr>
+
+                      <tr>
+                        <td>Exercise</td>
+                        <td>
+                            <input type="text" class="form-control" id="exercise_yes_no" formControlName="exercise_yes_no">
+                           
+                            </td>
+                        <td>
+                            <input type="text" class="form-control" id="exercise_daily_hrs" formControlName="exercise_daily_hrs">
+                           
+                            </td>  
+                        <td>
+                            <input type="text" class="form-control" id="exercise_cond_reason" formControlName="exercise_cond_reason">
+                           
+                            </td>                         
+                      </tr>
+
+                      <tr>
+                        <td>Sleep</td>
+                        <td>
+                            <input type="text" class="form-control" id="sleep_yes_no" formControlName="sleep_yes_no">
+                           
+                            </td>
+                        <td>
+                            <input type="text" class="form-control" id="sleep_daily_hrs" formControlName="sleep_daily_hrs">
+                           
+                            </td>  
+                        <td>
+                            <input type="text" class="form-control" id="sleep_cond_reason" formControlName="sleep_cond_reason">
+                           
+                            </td>                         
+                      </tr>
+
+                      <tr>
+                        <td>Continuous Work Hours/sitting Hours</td>
+                        <td>
+                            <input type="text" class="form-control" id="continous_work_hrs_yes_no" formControlName="continous_work_hrs_yes_no">
+                           
+                            </td>
+                        <td>
+                            <input type="text" class="form-control" id="continous_work_hrs_daily_hrs" formControlName="continous_work_hrs_daily_hrs">
+                           
+                            </td>   
+                        <td>
+                            <input type="text" class="form-control" id="continous_work_hrs_cond_reason" formControlName="continous_work_hrs_cond_reason">
+                           
+                            </td>                        
+                      </tr>
+
+                      <tr>
+                        <td>Frequency Of Urination / Micturition </td>
+                        <td>
+                            <input type="text" class="form-control" id="freq_of_urination_yes_no" formControlName="freq_of_urination_yes_no">
+                           
+                            </td>
+                        <td>
+                            <input type="text" class="form-control" id="freq_of_urination_daily_hrs" formControlName="freq_of_urination_daily_hrs">
+                           
+                            </td>  
+                        <td>
+                            <input type="text" class="form-control" id="freq_of_urination_cond_reason" formControlName="freq_of_urination_cond_reason">
+                           
+                            </td>                         
+                      </tr>
+                    
+                    </table>
+
+
+                  </div> 
+                  <div class="row" style="margin-top:20px;">
+                    <table>
+
+                      <tr>
+                        <td>Name of Physician</td>
+                        <td>
+  							<input type="text" class="form-control" id="name_of_physician" formControlName="name_of_physician">
+                           
+                        </td>
+                                                   
+                      </tr>
+
+                      <tr>
+                        <td>Medical Council Reg No.</td>
+                        <td>
+                            <input type="text" class="form-control" id="medical_council_reg_no" formControlName="medical_council_reg_no">
+                           
+                            </td>
+                                                 
+                      </tr>
+
+                      <tr>
+                        <td>Phone</td>
+                        <td>
+                            <input type="text" class="form-control" id="phone" formControlName="phone">
+                           
+                            </td>
+                                                  
+                      </tr>
+
+                      <tr>
+                        <td>Email</td>
+                        <td>
+                            <input type="text" class="form-control" id="email" formControlName="email">
+                           
+                            </td>
+                                                 
+                      </tr>
+
+                      <tr>
+                        <td>Name of person filling out this form</td>
+                        <td>
+                            <input type="text" class="form-control" id="name_of_person_fill_out_this_form" formControlName="name_of_person_fill_out_this_form">
+                           
+                            </td>
+                                                  
+                      </tr>
+
+                      <tr>
+                        <td>Name of person assisting in filling out this form</td>
+                        <td>
+                            <input type="text" class="form-control" id="name_of_person_assisting_fill_out_this_form" formControlName="name_of_person_assisting_fill_out_this_form">
+                           
+                            </td>
+                                               
+                      </tr>
+
+                      <tr>
+                        <td>Any additional general comments</td>
+                        <td>
+                            <input type="text" class="form-control" id="any_additional_general_comments" formControlName="any_additional_general_comments">
+                           
+                            </td>                                              
+                      </tr>
+                    
+                    </table>
+
+                    
+                  </div> 
+
+
+                  <div class="col-md-12" style="margin-top:10px;">
+                    <button type="submit" class="btn-btn">Save</button>
+                </div>
+                  
+                   </form>  
+                  
+                </div>
+          </div>
+
+
+         
+      </div>
+
+
+                </div>
+                </div>
+                </div>
+                </div>
+          </div>
+      </div>
+  </div>
+</div> 
+

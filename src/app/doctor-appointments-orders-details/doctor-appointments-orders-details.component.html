@@ -1,0 +1,133 @@
+<div class="row">
+  <div class="col-md-12">
+    <!--***** PRODUCT INFO *****-->
+      <div class="card form" id="form1">
+          <div class="card-header">
+              <h3>
+                  <i class="fa fa-medkit"></i> Order Details
+              </h3>
+            </div>
+            <br>
+
+            <div class="row mt-3">
+                <h5 class="col-12 mb-2">Clinic Details
+                    <div class="progress">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                  </h5>
+                  <div class="col-12">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table borderless" style="border:2px solid #ccc">
+                            <thead>
+                                <tr class="bg-info text-white">
+                                    <td class="text-center"><strong>Clinic Name</strong></td>
+                                    <td class="text-center"><strong>Clinic City</strong></td>
+                                    <td class="text-center"><strong>Clinic Address</strong></td>
+                                    <td class="text-center"><strong>Clinic Mobile</strong></td>
+                                    <td class="text-center"><strong>Consultation Type</strong></td>
+                                    <td class="text-center"><strong>Fees</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody> 
+                                <tr *ngFor='let book of appDetails.booking_details'>
+                                    <td class="text-center">{{book.clinic_name}}</td>
+                                    <td class="text-center">{{book.city}}</td>
+                                    <td class="text-center">{{book.address}}</td>
+                                    <td class="text-center">{{book.mobile}}</td>
+                                    <td class="text-center">{{appDetails.type_consultation}}</td>
+                                    <td class="text-center">
+                                      <span *ngIf="appDetails.consultation_type == 1">
+                                          {{book.affiliation_details[0].first_consultation_fee}}
+                                      </span>
+                                      <span *ngIf="appDetails.consultation_type == 2">
+                                          {{book.affiliation_details[0].video_fees}}
+                                      </span>
+                                      <span *ngIf="appDetails.consultation_type == 3">
+                                          {{book.affiliation_details[0].voice_fees}}
+                                      </span>
+                                      <span *ngIf="appDetails.consultation_type == 4">
+                                          {{book.affiliation_details[0].text_fees}}
+                                      </span>
+                                      
+                                    
+                                    </td>
+                                    
+                                </tr>
+                           
+                                
+                               
+                            </tbody> 
+                          </table>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <div class="row mt-3">
+                <h5 class="col-12 mb-2">Doctor Details
+                  <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </h5>
+                <div class="col-6">
+                  <div class="col-12" *ngFor='let book of appDetails.booking_details'>
+                    <div class="form-group">
+                        <strong class="mr-5"> Doctor Name: </strong> {{book.doctor_details[0].doctor_name}}
+                    </div>
+                    <div class="form-group">
+                      <strong class="mr-5">Total Experience: </strong> {{book.doctor_details[0].total_experience}}
+                    </div>
+                    <div class="form-group">
+                      <strong class="mr-5">Specializations: </strong> <span *ngFor="let specs of book.doctor_details[0].specilaization, let i=index">{{specs.specialization_name}}<span *ngIf="i!= book.doctor_details[0].specilaization.length-1">,</span></span>
+                    </div>
+                    </div>
+                    </div>
+              </div>
+                <div class="row mt-3">
+                <h5 class="col-12 mb-2">Appointment Details
+                  <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height:10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </h5>
+                <div class="col-6">
+                  <div class="col-6">
+                    <div class="form-group">
+                        <strong class="mr-5"> Name: </strong> {{appDetails.name}}
+                    </div>
+                    <div class="form-group">
+                      <strong class="mr-5">Email: </strong> {{appDetails.email}}
+                    </div>
+                    <div class="form-group">
+                      <strong class="mr-5">Mobile: </strong> {{appDetails.mobile}}
+                    </div>
+                    
+                    <div class="form-group">
+                      <strong class="mr-5">Appointment Status: </strong> {{appDetails.appointment_status}}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                      <strong class="mr-5">Appointment Description : </strong> {{appDetails.description}}
+                  </div>
+                  <div class="form-group">
+                      <strong class="mr-5">Consultation Type : </strong> {{appDetails.type_consultation}}
+                  </div>
+                  <div class="form-group">
+                      <strong class="mr-5">Date: </strong>  {{formatTime(appDetails.appointment_date)}}
+                  </div>
+                  <div class="form-group">
+                    <strong class="mr-5">Time: </strong> {{appDetails.probable_start_time}}
+                  </div> 
+                </div> 
+              </div>   
+              <hr>
+              <div class="text-center" *ngIf="appDetails.payment_status_id == 1">
+                <a routerLink="/doctor/view-invoice/{{appId}}" class="btn btn-white">View Invoice</a>
+              </div>
+            <br/>
+           
+
+              </div>
+              </div>
+              </div>

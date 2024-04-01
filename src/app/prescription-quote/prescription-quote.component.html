@@ -1,0 +1,24 @@
+<div class="row">
+  <table class="table table-hover">
+    <thead>
+      <tr class="bg-info text-white">
+        <th>ID</th>
+        <th>Order Id</th>
+        <th>Pharmacy Name</th>
+        <th>Quote Cost</th>
+        <th>Order Date</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quote of quotes, let i=index">
+        <th scope="row" *ngIf="quote.medicine_info">{{quote.quote_id}}</th>
+        <td *ngIf="quote.medicine_info">{{quote.pharmacy_order_id}}</td>
+        <td *ngIf="quote.medicine_info">{{quote.pharmacy_name}}</td>
+        <td *ngIf="quote.medicine_info">{{quote.medicine_info[0].med_cost}}</td>
+        <td *ngIf="quote.medicine_info">{{quote.order_date}}</td>
+        <td><a routerLink="/prescription/quote/details/{{quote.pharmacy_order_id}}"   class="btn btn-white"> View Details</a></td>
+      </tr>
+   </tbody>
+  </table>
+</div> 
