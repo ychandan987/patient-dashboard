@@ -34,7 +34,7 @@ export class DoctorAppointmentPaymentComponent implements OnInit {
            // alert('or res =='+response.razorpay_order_id);
           }
         };
-        xhttp.open("GET", "https://arkaahealthapp.com/api/v1/doctor-appointment/update-payment/"+response.razorpay_payment_id, true);
+        xhttp.open("GET", "http://172.31.47.161:3000/api/v1/doctor-appointment/update-payment/"+response.razorpay_payment_id, true);
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
             console.log("payment res:",xhttp.responseText);

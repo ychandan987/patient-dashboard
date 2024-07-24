@@ -33,7 +33,7 @@ export class PharmacyPaymentComponent implements OnInit {
             location.href = '/member/#/dashboard/';
           }
         };
-        xhttp.open("GET", "https://arkaahealthapp.com/api/v1/pharmacy-order/update-payment/"+response.razorpay_payment_id, true);
+        xhttp.open("GET", "http://172.31.47.161:3000/api/v1/pharmacy-order/update-payment/"+response.razorpay_payment_id, true);
         xhttp.onreadystatechange = function() {
           if (this.readyState == 4 && this.status == 200) {
             console.log("payment res:",xhttp.responseText);
